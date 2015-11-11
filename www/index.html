@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
-
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
@@ -22,6 +21,7 @@
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
+    <script src="js/leaflet-src.js"></script>
   </head>
   <body ng-app="starter">
 
@@ -32,10 +32,18 @@
       <button class="button button-calm">
         button-calm
       </button>
-      <ion-content>
+
         <p align="center">George was here</p>
         <p>Tuana was here too, hopefully, finally!</p>
-      </ion-content>
+        <div id="map"></div>
     </ion-pane>
+    <script>
+    var map = new L.Map('map');
+    var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+	  var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+	  var osm = new L.TileLayer(osmUrl, {minZoom: 12, maxZoom: 20, attribution: osmAttrib});
+    map.setView(new L.LatLng(51.644224, -1.965172), 13);
+    map.addLayer(osm);
+</script>
   </body>
 </html>
