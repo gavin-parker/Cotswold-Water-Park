@@ -30,3 +30,7 @@ app.controller('MapCtrl', function(){
   };
   init();
 });
+app.controller('ActivitiesCtrl', function(parkDataService){
+  watersports = parkDataService.watersports;
+
+});

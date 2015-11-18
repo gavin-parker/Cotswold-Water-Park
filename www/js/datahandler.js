@@ -17,5 +17,5 @@ app.factory('parkDataService', function(){
     this.watersports = watersports;
   }
   console.log(activities);
-  return dummyService;
+  return activities;
 });
