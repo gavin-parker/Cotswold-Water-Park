@@ -20,8 +20,8 @@
 <!-- <script src="cordova.js"></script> -->
 
     <!-- your app's js -->
+        <script stc="js/datahandler.js"></script>
     <script src="js/app.js"></script>
-    <script stc="js/datahandler.js"></script>
     <script src="js/leaflet-src.js"></script>
   </head>
   <body ng-app="starter">
@@ -30,7 +30,7 @@
     </ion-header-bar>
 
     <ion-tabs class="tabs-positive">
-      
+
       <ion-tab title="Map">
         <ion-nav-view>
           <ion-content>
@@ -43,6 +43,9 @@
         <ion-nav-view>
           <ion-content>
             <p> Events </p>
+            <div class="card" ng-controller="ActivitiesCtrl">
+              {{boatHire.name}}
+            </div>
           </ion-content>
         </ion-nav-view>
       </ion-tab>

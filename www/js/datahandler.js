@@ -1,5 +1,4 @@
-var app = angular.module('starter', ['ionic'])
-
+var app = angular.module('datahandler');
 app.factory('parkDataService', function(){
   var boatHire = [
     {
@@ -17,5 +16,5 @@ app.factory('parkDataService', function(){
     this.watersports = watersports;
   }
   console.log(activities);
-  return activities;
+  return watersports;
 });

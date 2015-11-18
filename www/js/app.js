@@ -30,7 +30,26 @@ app.controller('MapCtrl', function(){
   };
   init();
 });
-app.controller('ActivitiesCtrl', function(parkDataService){
-  watersports = parkDataService.watersports;
+app.controller('ActivitiesCtrl', function($scope, parkDataService){
+  $scope.boatHire = parkDataService;
+});
 
+app.factory('parkDataService', function(){
+  var boatHire =
+    {
+      name : "South Cerney Outdoor",
+      number : "01285 860 388",
+      email : "southcerneyoutdoor@prospects.co.uk",
+      url : "www.southcerneyoutdoor.co.uk",
+      info : "South Cerney Outdoor Centre offers great facilities and activities for all the community to enjoy. New! Pay and Play ( with one off safety induction) available"
+    };
+
+  var watersports = {
+    boatHire : boatHire
+  };
+  var activities = {
+    watersports : watersports
+  }
+
+  return boatHire;
 });
