@@ -22,6 +22,8 @@ app.run(function($ionicPlatform) {
 app.controller('MapCtrl', function(){
   var init = function(){
     var map = new L.Map('map');
+    var lc  =  L.control.locate().addTo(map);
+    lc.start();
     var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 	  var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
 	  var osm = new L.TileLayer(osmUrl, {minZoom: 12, maxZoom: 20, attribution: osmAttrib});
@@ -29,4 +31,8 @@ app.controller('MapCtrl', function(){
     map.addLayer(osm);
   };
   init();
+});
+app.controller('ActivitiesCtrl', function(parkDataService){
+  watersports = parkDataService.watersports;
+
 });
