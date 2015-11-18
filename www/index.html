@@ -23,7 +23,6 @@
         <script stc="js/datahandler.js"></script>
     <script src="js/app.js"></script>
     <script src="js/leaflet-src.js"></script>
-    <script src="js/L.Control.Locate.js"></script>
   </head>
   <body ng-app="starter">
     <ion-header-bar class="bar-positive">
@@ -40,12 +39,17 @@
         </ion-nav-view>
       </ion-tab>
 
-      <ion-tab title="Events">
+      <ion-tab title="Events" ng-controller="ActivitiesCtrl">
         <ion-nav-view>
           <ion-content>
             <p> Events </p>
-            <div class="card" ng-controller="ActivitiesCtrl">
-              {{boatHire.name}}
+            <div class="card"  id = "activity"  ng-repeat="activity in boatHireCompanies">
+              hiya!
+              {{activity.name}}</br>
+              {{activity.number}}</br>
+              {{activity.email}}</br>
+              {{activity.url}}</br>
+              {{activity.info}}</br>
             </div>
           </ion-content>
         </ion-nav-view>
