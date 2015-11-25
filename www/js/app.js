@@ -35,6 +35,17 @@ app.controller('MapCtrl', function(){
 app.controller('ActivitiesCtrl', function($scope, parkDataService){
   $scope.boatHireCompanies = parkDataService.boatHire();
   $scope.num = parkDataService.boatHire.length;
+
+  $scope.toggleGroup = function(activity) {
+    if ($scope.isGroupShown(activity)) {
+      $scope.shownGroup = null;
+    } else {
+      $scope.shownGroup = activity;
+    }
+  };
+  $scope.isGroupShown = function(activity) {
+    return $scope.shownGroup === activity;
+  };
 });
 
 app.controller('EventsCtrl', function($scope, parkDataService){
