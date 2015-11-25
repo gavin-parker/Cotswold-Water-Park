@@ -37,7 +37,12 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
   $scope.num = parkDataService.boatHire.length;
 });
 
-app.factory('eventDataService', function(){
+app.controller('EventsCtrl', function($scope, parkDataService){
+  $scope.boatHireCompanies = parkDataService.boatHire();
+  $scope.num = parkDataService.boatHire.length;
+});
+
+app.factory('parkDataService', function(){
   var boatHire =
     [{
       name : "South Cerney Outdoor",
@@ -67,7 +72,15 @@ app.factory('eventDataService', function(){
     }
   }
 });
-app.factory('parkDataService', function(){
+app.factory('eventService', function(){
+var feed = new google.feeds.Feed("http://www.waterpark.org/events/feed/");
+feed.load(function(result){
+if(!result.error){
+  return result.feed.entries;
+}else{
+  console.log("Error getting feed");
+};
 
-  }
+
+})
 });
