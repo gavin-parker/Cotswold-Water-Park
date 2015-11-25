@@ -4,7 +4,6 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 var app = angular.module('starter', ['ionic'])
-var events;
 google.load("feeds", "1");
 
 app.run(function($ionicPlatform) {
@@ -21,18 +20,7 @@ app.run(function($ionicPlatform) {
 
   });
 
-  function loadFeed(){
-    var feed =  new google.feeds.Feed("http://www.waterpark.org/events/feed/");
-    feed.load(function(result){
-      if(!result.error){
-        events = result;
-        console.log(events.feed);
-      }else{
-        console.log("feed error");
-      };
-    });
-  };
-  google.setOnLoadCallback(loadFeed);
+
 
 });
 
@@ -66,7 +54,25 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
 });
 
 app.controller('EventsCtrl', function($scope, eventService){
-  $scope.events = eventService.Feed();
+  function initialize(){
+    eventService.Feed().then(function(result){
+      $scope.events = result.feed.entries;
+      console.log($scope.events);
+    });
+  }
+  google.setOnLoadCallback(initialize());
+
+  $scope.toggleGroup = function(activity) {
+    if ($scope.isGroupShown(activity)) {
+      $scope.shownGroup = null;
+    } else {
+      $scope.shownGroup = activity;
+    }
+  };
+  $scope.isGroupShown = function(activity) {
+    return $scope.shownGroup === activity;
+  };
+
 });
 
 app.factory('parkDataService', function(){
@@ -100,12 +106,25 @@ app.factory('parkDataService', function(){
   }
 });
 
-app.factory('eventService', function(){
-
-  return {
+app.factory('eventService', function($q){
+  return{
     Feed : function(){
-      return events;
+      var feed =  new google.feeds.Feed("http://www.waterpark.org/events/feed/");
+      var events;
+      var defer = $q.defer();
+      feed.load(function(result){
+        if(!result.error){
+          events = result;
+          console.log(events.feed);
+          defer.resolve(result);
+        }else{
+          console.log("feed error");
+        };
+      });
+      return defer.promise;
     }
   }
+
+
 
 });
