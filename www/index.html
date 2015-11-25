@@ -95,16 +95,39 @@
         </ion-content></ion-nav-view>
       </ion-tab>
 
-
       <ion-tab title="Events" ng-controller="EventsCtrl">
-        <ion-nav-view>      
+        <ion-nav-view>
           <ion-content>
-            <p> Events </p>
-            {{events}}
+            <ion-list>
+              <div ng-repeat="event in events">
+                <ion-item class="item-stable"
+                          ng-click="toggleGroup(event)"
+                          ng-class="{active: isGroupShown(event)}">
+                    <i class="icon" ng-class="isGroupShown(event) ? 'ion-minus' : 'ion-plus'"></i>
+                  &nbsp;
+                  {{event.title}}
+                </ion-item>
+                <ion-item class="item-accordion"
+                          ng-show="isGroupShown(event)">
+                  <div class="list">
+                    <div class ="item item-icon-left" href="#" ng-bind-html="event.content">
+                      <i class="icon ion-ios-telephone"></i>
+                    </div>
+                    <a class = "item item-icon-left" href="#">
+                      <i class = "icon ion-android-globe"></i>
+                      {{event.link}}
+                    </a>
+                    <a class = "item item-icon-left" href="#">
+                      <i class = "icon ion-information-circled"></i>
+                      {{event.publishedDate}}
+                    </a>
+                  </div>
+                </ion-item>
+              </div>
+            </ion-list>
           </ion-content>
         </ion-nav-view>
       </ion-tab>
-
     </ion-tabs>
 
     <script>
