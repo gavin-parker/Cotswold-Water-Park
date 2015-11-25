@@ -42,10 +42,10 @@
         </ion-nav-view>
       </ion-tab>
 
-      <ion-tab title="Events" ng-controller="ActivitiesCtrl">
+      <ion-tab title="Activities" ng-controller="ActivitiesCtrl">
         <ion-nav-view>
           <ion-content>
-            <p> Events </p>
+            <p> Activities </p>
             <div class="card"  id = "activity"  ng-repeat="activity in boatHireCompanies">
               hiya!
               {{activity.name}}</br>
@@ -54,6 +54,17 @@
               {{activity.url}}</br>
               {{activity.info}}</br>
             </div>
+
+          </ion-content>
+        </ion-nav-view>
+      </ion-tab>
+
+
+      <ion-tab title="Events" ng-controller="EventsCtrl">
+        <ion-nav-view>
+          <ion-content>
+            <p> Events </p>
+            {{events}}
           </ion-content>
         </ion-nav-view>
       </ion-tab>
