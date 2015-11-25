@@ -108,9 +108,4 @@ app.factory('eventService', function(){
     }
   }
 
-<<<<<<< HEAD
-=======
-})
-
->>>>>>> e787dc931fc7fca9d54fbd19abeccc6f4f4ce242
 });
