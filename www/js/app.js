@@ -27,16 +27,23 @@ app.run(function($ionicPlatform) {
 app.controller('MapCtrl', function(){
   var init = function(){
     var map = new L.Map('map');
-    var lc  =  L.control.locate().addTo(map);
-    lc.start();
+    //var lc  =  L.control.locate().addTo(map);  //Will have to disable for the time being, geolocation should only be an option if person is within map bounds.
+    //lc.start();
     var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-    var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
-    var osm = new L.TileLayer(osmUrl, {minZoom: 12, maxZoom: 20, attribution: osmAttrib});
-    map.setView(new L.LatLng(51.644224, -1.965172), 13);
+	  var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+	  var osm = new L.TileLayer(osmUrl, {minZoom: 12, maxZoom: 20, attribution: osmAttrib});
+    map.setView(new L.LatLng(51.635434, -1.935172), 13);
+    var bounds = map.getBounds();
+    map.setMaxBounds(bounds);
     map.addLayer(osm);
   };
   init();
 });
+
+//function in case want to add information
+app.controller('InfoCtrl', function(){
+});
+
 app.controller('ActivitiesCtrl', function($scope, parkDataService){
   $scope.boatHireCompanies = parkDataService.boatHire();
   $scope.num = parkDataService.boatHire.length;
@@ -52,6 +59,7 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
     return $scope.shownGroup === activity;
   };
 });
+
 
 app.controller('EventsCtrl', function($scope, eventService){
   function initialize(){
