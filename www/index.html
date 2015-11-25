@@ -57,10 +57,24 @@
                 </ion-item>
                 <ion-item class="item-accordion"
                           ng-show="isGroupShown(activity)">
-                  {{activity.number}}</br>
-                  {{activity.email}}</br>
-                  {{activity.url}}</br>
-                  {{activity.info}}</br>
+                  <div class="list">
+                    <a class ="item item-icon-left" href="#">
+                      <i class="icon ion-ios-telephone"></i>
+                      {{activity.number}}
+                    </a>
+                    <a class = "item item-icon-left" href="#">
+                      <i class = "icon ion-email"></i>
+                      {{activity.email}}
+                    </a>
+                    <a class = "item item-icon-left" href="#">
+                      <i class = "icon ion-android-globe"></i>
+                      {{activity.url}}
+                    </a>
+                    <a class = "item item-icon-left" href="#">
+                      <i class = "icon ion-information-circled"></i>
+                      {{activity.info}}
+                    </a>
+                  </div>
                 </ion-item>
               </div>
             </ion-list>
