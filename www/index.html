@@ -42,7 +42,7 @@
       </ion-nav-view>
     </ion-tab>
 
-    <ion-tab title = "Info">
+    <ion-tab title="Info">
       <ion-nav-view>
         <ion-content>
           <div id="Info" ng-controller="InfoCtrl"></div>
@@ -91,32 +91,29 @@
               <ion-content>
                 <ion-list>
                   <div ng-repeat="event in events">
-                    <ion-item class="item-stable"
-                              ng-click="toggleGroup(event)"
-                              ng-class="{active: isGroupShown(event)}">
-                        <i class="icon" ng-class="isGroupShown(event) ? 'ion-minus' : 'ion-plus'"></i>
-                      &nbsp;
+                    <ion-item class="item-stable" ng-click="toggleGroup(event)" ng-class="{active: isGroupShown(event)}">
+                        <i class="icon" ng-class="isGroupShown(event) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
+                      &#xA0;
                       {{event.title}}
                     </ion-item>
-                    <ion-item class="item-accordion"
-                              ng-show="isGroupShown(event)">
+                    <ion-item class="item-accordion" ng-show="isGroupShown(event)">
                       <div class="list">
-                        <div class ="item item-icon-left" href="#" ng-bind-html="event.content">
+                        <div class="item item-icon-left" href="#" ng-bind-html="event.content">
                           <i class="icon ion-ios-telephone"></i>
                         </div>
-                        <a class = "item item-icon-left" href="#">
-                          <i class = "icon ion-android-globe"></i>
+                        <a class="item item-icon-left" href="{{event.link}}">
+                          <i class="icon ion-android-globe"></i>
                           {{event.link}}
                         </a>
-                        <a class = "item item-icon-left" href="#">
-                          <i class = "icon ion-information-circled"></i>
+                        <a class="item item-icon-left" href="#">
+                          <i class="icon ion-information-circled"></i>
                           {{event.publishedDate}}
                         </a>
                       </div>
                     </ion-item>
                   </div>
                 </ion-list>
-              </ion-nav-view>
+              </ion-content></ion-nav-view>
               </ion-tab>
 
     </ion-tabs>

@@ -55,7 +55,7 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
 
 app.controller('EventsCtrl', function($scope, eventService){
   function initialize(){
-    eventService.Feed().then(function(result){
+      eventService.Feed().then(function(result){
       $scope.events = result.feed.entries;
       console.log($scope.events);
     });
@@ -124,7 +124,5 @@ app.factory('eventService', function($q){
       return defer.promise;
     }
   }
-
-
 
 });
