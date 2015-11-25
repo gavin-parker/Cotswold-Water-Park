@@ -49,6 +49,11 @@ app.controller('MapCtrl', function(){
   };
   init();
 });
+
+//function in case want to add information
+app.controller('InfoCtrl', function(){
+});
+
 app.controller('ActivitiesCtrl', function($scope, parkDataService){
   $scope.boatHireCompanies = parkDataService.boatHire();
   $scope.num = parkDataService.boatHire.length;
@@ -64,6 +69,7 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
     return $scope.shownGroup === activity;
   };
 });
+
 
 app.controller('EventsCtrl', function($scope, eventService){
   $scope.events = eventService.Feed();
