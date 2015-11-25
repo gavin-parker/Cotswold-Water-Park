@@ -99,19 +99,6 @@
         <ion-nav-view>
           <ion-content>
             <ion-list>
-<<<<<<< HEAD
-              <div ng-repeat="activity in boatHireCompanies ">
-                <ion-item class="item-stable" ng-click="toggleGroup(activity)" ng-class="{active: isGroupShown(activity)}">
-                    <i class="icon" ng-class="isGroupShown(activity) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
-                  &#xA0;
-                  {{activity.name}}
-                </ion-item>
-                <ion-item class="item-accordion" ng-show="isGroupShown(activity)">
-                  {{activity.number}}<br>
-                  {{activity.email}}<br>
-                  {{activity.url}}<br>
-                  {{activity.info}}<br>
-=======
               <div ng-repeat="event in events">
                 <ion-item class="item-stable"
                           ng-click="toggleGroup(event)"
@@ -135,7 +122,6 @@
                       {{event.publishedDate}}
                     </a>
                   </div>
->>>>>>> 7b8a48047431117085c2dc89f05f40bc57d88ef6
                 </ion-item>
               </div>
             </ion-list>
