@@ -47,38 +47,35 @@
           <ion-content>
             <ion-list>
               <div ng-repeat="activity in boatHireCompanies ">
-                <ion-item class="item-stable"
-                          ng-click="toggleGroup(activity)"
-                          ng-class="{active: isGroupShown(activity)}">
-                    <i class="icon" ng-class="isGroupShown(activity) ? 'ion-minus' : 'ion-plus'"></i>
-                  &nbsp;
+                <ion-item class="item-stable" ng-click="toggleGroup(activity)" ng-class="{active: isGroupShown(activity)}">
+                    <i class="icon" ng-class="isGroupShown(activity) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
+                  &#xA0;
                   {{activity.name}}
                 </ion-item>
-                <ion-item class="item-accordion"
-                          ng-show="isGroupShown(activity)">
+                <ion-item class="item-accordion" ng-show="isGroupShown(activity)">
                   <div class="list">
-                    <a class ="item item-icon-left" href="#">
+                    <a class="item item-icon-left" href="#">
                       <i class="icon ion-ios-telephone"></i>
                       {{activity.number}}
                     </a>
-                    <a class = "item item-icon-left" href="#">
-                      <i class = "icon ion-email"></i>
+                    <a class="item item-icon-left" href="#">
+                      <i class="icon ion-email"></i>
                       {{activity.email}}
                     </a>
-                    <a class = "item item-icon-left" href="http://{{activity.url}}">
-                      <i class = "icon ion-android-globe"></i>
+                    <a class="item item-icon-left" href="http://{{activity.url}}">
+                      <i class="icon ion-android-globe"></i>
                       {{activity.url}}
                     </a>
 
-                      <a class = "item item-icon-left, item item-text-wrap" href="#">
-                      <i class = "icon ion-information-circled"></i>
+                      <a class="item item-icon-left, item item-text-wrap" href="#">
+                      <i class="icon ion-information-circled"></i>
                       {{activity.info}}
                     </a>
                   </div>
                 </ion-item>
               </div>
             </ion-list>
-          </ion-nav-view>
+          </ion-content></ion-nav-view>
         </ion-tab>
 
 
