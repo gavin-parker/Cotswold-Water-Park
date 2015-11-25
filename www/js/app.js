@@ -37,6 +37,11 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
   $scope.num = parkDataService.boatHire.length;
 });
 
+app.controller('EventsCtrl', function($scope, parkDataService){
+  $scope.boatHireCompanies = parkDataService.boatHire();
+  $scope.num = parkDataService.boatHire.length;
+});
+
 app.factory('parkDataService', function(){
   var boatHire =
     [{
@@ -68,31 +73,16 @@ app.factory('parkDataService', function(){
   }
 });
 
-.controller('MyCtrl', function($scope) {
-  $scope.groups = [];
-  for (var i=0; i<10; i++) {
-    $scope.groups[i] = {
-      name: i,
-      items: []
-    };
-    for (var j=0; j<3; j++) {
-      $scope.groups[i].items.push(i + '-' + j);
-    }
-  }
+app.factory('eventService', function(){
+var feed = new google.feeds.Feed("http://www.waterpark.org/events/feed/");
+feed.load(function(result){
+if(!result.error){
+  return result.feed.entries;
+}else{
+  console.log("Error getting feed");
+};
 
-  /*
-   * if given group is the selected group, deselect it
-   * else, select the given group
-   */
-  $scope.toggleGroup = function(group) {
-    if ($scope.isGroupShown(group)) {
-      $scope.shownGroup = null;
-    } else {
-      $scope.shownGroup = group;
-    }
-  };
-  $scope.isGroupShown = function(group) {
-    return $scope.shownGroup === group;
-  };
+
+})
 
 });
