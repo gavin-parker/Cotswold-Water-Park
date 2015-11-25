@@ -22,21 +22,14 @@ app.run(function($ionicPlatform) {
 app.controller('MapCtrl', function(){
   var init = function(){
     var map = new L.Map('map');
-    //var lc  =  L.control.locate().addTo(map);
+    //var lc  =  L.control.locate().addTo(map);  //Will have to disable for the time being, geolocation should only be an option if person is within map bounds.
     //lc.start();
     var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 	  var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
 	  var osm = new L.TileLayer(osmUrl, {minZoom: 12, maxZoom: 20, attribution: osmAttrib});
-    //var southWest = L.latLng(51.59275, -2.04329),
-    //var northEast = L.latLng(51.67798, -1.82699),
     map.setView(new L.LatLng(51.635434, -1.935172), 13);
     var bounds = map.getBounds();
     map.setMaxBounds(bounds);
-    /*var ne = bounds.getNorthEast();
-    var sw = bounds.getSouthWest();
-    //var bounds = L.latLngBounds(southWest, northEast);*/
-    //console.log(ne.toString());
-    //console.log(sw.toString());
     map.addLayer(osm);
   };
   init();
