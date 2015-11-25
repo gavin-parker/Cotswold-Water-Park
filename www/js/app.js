@@ -37,7 +37,7 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
   $scope.num = parkDataService.boatHire.length;
 });
 
-app.factory('parkDataService', function(){
+app.factory('eventDataService', function(){
   var boatHire =
     [{
       name : "South Cerney Outdoor",
@@ -65,5 +65,9 @@ app.factory('parkDataService', function(){
     boatHire : function(){
       return boatHire;
     }
+  }
+});
+app.factory('parkDataService', function(){
+
   }
 });
