@@ -45,19 +45,24 @@
       <ion-tab title="Activities" ng-controller="ActivitiesCtrl">
         <ion-nav-view>
           <ion-content>
-            <p> Activities </p>
-            <div class="card"  id = "activity"  ng-repeat="activity in boatHireCompanies">
-              hiya!
-              {{activity.name}}</br>
-              {{activity.number}}</br>
-              {{activity.email}}</br>
-              {{activity.url}}</br>
-              {{activity.info}}</br>
-            </div>
-
-          </ion-content>
-        </ion-nav-view>
-      </ion-tab>
+            <ion-list>
+              <div ng-repeat="activity in boatHireCompanies ">
+                <ion-item class="item-stable"
+                          ng-click="toggleGroup(activity)"
+                          ng-class="{active: isGroupShown(activity)}">
+                    <i class="icon" ng-class="isGroupShown(activity) ? 'ion-minus' : 'ion-plus'"></i>
+                  &nbsp;
+                  {{activity.name}}
+                </ion-item>
+                <ion-item class="item-accordion"
+                          ng-show="isGroupShown(activity)">
+                  {{activity.number}}</br>
+                  {{activity.email}}</br>
+                  {{activity.url}}</br>
+                  {{activity.info}}</br>
+                </ion-item>
+              </div>
+            </ion-list>
 
 
       <ion-tab title="Events" ng-controller="EventsCtrl">

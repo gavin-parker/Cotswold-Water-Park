@@ -52,6 +52,17 @@ app.controller('MapCtrl', function(){
 app.controller('ActivitiesCtrl', function($scope, parkDataService){
   $scope.boatHireCompanies = parkDataService.boatHire();
   $scope.num = parkDataService.boatHire.length;
+
+  $scope.toggleGroup = function(activity) {
+    if ($scope.isGroupShown(activity)) {
+      $scope.shownGroup = null;
+    } else {
+      $scope.shownGroup = activity;
+    }
+  };
+  $scope.isGroupShown = function(activity) {
+    return $scope.shownGroup === activity;
+  };
 });
 
 app.controller('EventsCtrl', function($scope, eventService){
@@ -97,4 +108,9 @@ app.factory('eventService', function(){
     }
   }
 
+<<<<<<< HEAD
+=======
+})
+
+>>>>>>> e787dc931fc7fca9d54fbd19abeccc6f4f4ce242
 });
