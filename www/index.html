@@ -48,19 +48,16 @@
           <ion-content>
             <ion-list>
               <div ng-repeat="activity in boatHireCompanies ">
-                <ion-item class="item-stable"
-                          ng-click="toggleGroup(activity)"
-                          ng-class="{active: isGroupShown(activity)}">
-                    <i class="icon" ng-class="isGroupShown(activity) ? 'ion-minus' : 'ion-plus'"></i>
-                  &nbsp;
+                <ion-item class="item-stable" ng-click="toggleGroup(activity)" ng-class="{active: isGroupShown(activity)}">
+                    <i class="icon" ng-class="isGroupShown(activity) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
+                  &#xA0;
                   {{activity.name}}
                 </ion-item>
-                <ion-item class="item-accordion"
-                          ng-show="isGroupShown(activity)">
-                  {{activity.number}}</br>
-                  {{activity.email}}</br>
-                  {{activity.url}}</br>
-                  {{activity.info}}</br>
+                <ion-item class="item-accordion" ng-show="isGroupShown(activity)">
+                  {{activity.number}}<br>
+                  {{activity.email}}<br>
+                  {{activity.url}}<br>
+                  {{activity.info}}<br>
                 </ion-item>
               </div>
             </ion-list>
