@@ -20,7 +20,7 @@
 <!-- <script src="cordova.js"></script> -->
 
 <!-- your app's js -->
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="js/superfeedr.js"></script>
 <script stc="js/datahandler.js"></script>
 <script src="js/app.js"></script>
 <script src="js/leaflet-src.js"></script>
@@ -108,17 +108,16 @@
                 </ion-item>
                 <ion-item class="item-accordion" ng-show="isGroupShown(event)">
                   <div class="list">
-                    <div class="item item-icon-left" href="#" ng-bind-html="event.content">
+
+                    <div class="item item-icon-left" href="#" ng-bind-html="event.contentSnippet">
+
                       <i class="icon ion-ios-telephone"></i>
                     </div>
                     <a class="item item-icon-left" href="#">
                       <i class="icon ion-android-globe"></i>
                       {{event.link}}
                     </a>
-                    <a class="item item-icon-left" href="#">
-                      <i class="icon ion-information-circled"></i>
-                      {{event.publishedDate}}
-                    </a>
+
                   </div>
                 </ion-item>
               </div>
