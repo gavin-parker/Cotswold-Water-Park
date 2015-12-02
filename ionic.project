@@ -1,4 +1,16 @@
 {
   "name": "CWP",
+<<<<<<< HEAD
   "app_id": "copied-app-id"
 }
+=======
+  "app_id": "19eac88a",
+  "browsers": [
+    {
+      "platform": "android",
+      "browser": "crosswalk",
+      "version": "12.41.296.5"
+    }
+  ]
+}
+>>>>>>> 22ea742b82a5d818be01b42a732a44aa6b91a8a9
