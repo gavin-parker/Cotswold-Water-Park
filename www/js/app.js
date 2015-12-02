@@ -4,8 +4,6 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 var app = angular.module('starter', ['ionic'])
-google.load("feeds", "1");
-
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -68,7 +66,8 @@ app.controller('EventsCtrl', function($scope, eventService){
       console.log($scope.events);
     });
   }
-  google.setOnLoadCallback(initialize());
+  superfeedr.auth('gp14958','df172f3202b13c654d4777881720c9cd');
+  superfeedr.setOnLoadCallback(initialize);
 
   $scope.toggleGroup = function(activity) {
     if ($scope.isGroupShown(activity)) {
@@ -117,7 +116,7 @@ app.factory('parkDataService', function(){
 app.factory('eventService', function($q){
   return{
     Feed : function(){
-      var feed =  new google.feeds.Feed("http://www.waterpark.org/events/feed/");
+      var feed =  new superfeedr.Feed("http://www.waterpark.org/events/feed/");
       var events;
       var defer = $q.defer();
       feed.load(function(result){
@@ -126,9 +125,11 @@ app.factory('eventService', function($q){
           console.log(events.feed);
           defer.resolve(result);
         }else{
+          console.log(result);
           console.log("feed error");
         };
       });
+
       return defer.promise;
     }
   }
