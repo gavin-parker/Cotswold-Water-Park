@@ -1,4 +1,11 @@
 {
   "name": "CWP",
-  "app_id": "38167543"
+  "app_id": "19eac88a",
+  "browsers": [
+    {
+      "platform": "android",
+      "browser": "crosswalk",
+      "version": "12.41.296.5"
+    }
+  ]
 }
