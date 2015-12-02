@@ -25,6 +25,23 @@ app.run(function($ionicPlatform) {
 app.controller('MapCtrl', function(){
   var init = function(){
     var map = new L.Map('map');
+
+    var markerIcon = L.Icon.extend({
+    options: {
+        iconSize:     [50, 50],
+        iconAnchor:   [22, 94],
+        popupAnchor:  [-3, -76]
+    }
+});
+
+/*    var markerIcon = L.icon({
+    iconUrl: '/Users/aatina/Cotswold-Water-Park/www/img/marker.png',
+
+    iconSize:     [45, 45], // size of the icon
+    iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+    popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+});*/
+
     //var lc  =  L.control.locate().addTo(map);  //Will have to disable for the time being, geolocation should only be an option if person is within map bounds.
     //lc.start();
     var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -34,6 +51,8 @@ app.controller('MapCtrl', function(){
     var bounds = map.getBounds();
     map.setMaxBounds(bounds);
     map.addLayer(osm);
+    var blueIcon = new markerIcon({iconUrl: '/Users/aatina/Cotswold-Water-Park/www/img/marker.png'});
+    L.marker([51.635434, -1.935172], {icon: blueIcon}).addTo(map).bindPopup("Hi.");
   };
   init();
 });
