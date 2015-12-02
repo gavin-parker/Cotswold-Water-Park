@@ -11,6 +11,10 @@ body{
   padding:0;
   margin:0;
 }
+hyper{
+  color: blue;
+  text-decoration: underline;  
+}
 /* required styles */
 
 .leaflet-map-pane,
