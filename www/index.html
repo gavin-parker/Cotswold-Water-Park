@@ -65,31 +65,41 @@
 
         <ion-content class="has-subheader">
           <ion-list>
-            <div ng-repeat="activity in boatHireCompanies | filter:searchQuery">
+            <div ng-repeat="activity in activities | filter:searchQuery">
               <ion-item class="item-stable" ng-click="toggleGroup(activity)" ng-class="{active: isGroupShown(activity)}">
                 <i class="icon" ng-class="isGroupShown(activity) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
                 &#xA0;
                 {{activity.name}}
               </ion-item>
               <ion-item class="item-accordion" ng-show="isGroupShown(activity)">
+              <a class="item item-icon-left" href="#">
+                {{activity.info}}
+              </a>
+                <ion-list>
+                <div ng-repeat="data in activity.data | filter:searchQuery">
                 <div class="list">
                   <a class="item item-icon-left" href="#">
+                    {{data.name}}
+                  </a>
+                  <a class="item item-icon-left" href="#">
                     <i class="icon ion-ios-telephone"></i>
-                    {{activity.number}}
+                    {{data.number}}
                   </a>
                   <a class="item item-icon-left" href="#">
                     <i class="icon ion-email"></i>
-                    {{activity.email}}
+                    {{data.email}}
                   </a>
                   <a class="item item-icon-left" href="http://{{activity.url}}">
                     <i class="icon ion-android-globe"></i>
-                    <hyper>{{activity.url}}</hyper>
+                    <hyper>{{data.url}}</hyper>
                   </a>
                   <a class="item item-icon-left, item item-text-wrap" href="#">
                     <i class="icon ion-information-circled"></i>
-                    {{activity.info}}
+                    {{data.info}}
                   </a>
                 </div>
+              </div>
+              </ion-list>
               </ion-item>
             </div>
           </ion-list>
