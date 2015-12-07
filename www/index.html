@@ -78,6 +78,7 @@
                 <ion-list>
                 <div ng-repeat="data in activity.data | filter:searchQuery">
                 <div class="list">
+                  <div>
                   <a class="item item-icon-left" href="#">
                     {{data.name}}
                   </a>
@@ -97,6 +98,7 @@
                     <i class="icon ion-information-circled"></i>
                     {{data.info}}
                   </a>
+                </div>
                 </div>
               </div>
               </ion-list>
