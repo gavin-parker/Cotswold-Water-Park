@@ -99,6 +99,28 @@ app.controller('EventsCtrl', function($scope, eventService){
   };
 
 });
+app.controller('NewsCtrl', function($scope, newsService){
+  function initialize(){
+      newsService.Feed().then(function(result){
+      $scope.news = result.feed.entries;
+      console.log($scope.news);
+    });
+  }
+  superfeedr.auth('gp14958','df172f3202b13c654d4777881720c9cd');
+  superfeedr.setOnLoadCallback(initialize);
+
+  $scope.toggleGroup = function(activity) {
+    if ($scope.isGroupShown(activity)) {
+      $scope.shownGroup = null;
+    } else {
+      $scope.shownGroup = activity;
+    }
+  };
+  $scope.isGroupShown = function(activity) {
+    return $scope.shownGroup === activity;
+  };
+
+});
 
 app.factory('parkDataService', function(){
   var activities =
@@ -155,6 +177,29 @@ app.factory('eventService', function($q){
         if(!result.error){
           events = result;
           console.log(events.feed);
+          defer.resolve(result);
+        }else{
+          console.log(result);
+          console.log("feed error");
+        };
+      });
+
+      return defer.promise;
+    }
+  }
+
+});
+
+app.factory('newsService', function($q){
+  return{
+    Feed : function(){
+      var feed =  new superfeedr.Feed("http://www.waterpark.org/feed/");
+      var news;
+      var defer = $q.defer();
+      feed.load(function(result){
+        if(!result.error){
+          news = result;
+          console.log(news.feed);
           defer.resolve(result);
         }else{
           console.log(result);
