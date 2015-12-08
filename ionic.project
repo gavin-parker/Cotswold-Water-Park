@@ -1,12 +1,19 @@
 {
   "name": "CWP",
-
-  "app_id": "19eac88a",
+  "app_id": "38167543",
   "browsers": [
     {
       "platform": "android",
       "browser": "crosswalk",
       "version": "12.41.296.5"
     }
+  ],
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*"
   ]
 }
