@@ -11,3 +11,4 @@ http://docs.phonegap.com/plugin-apis/ - Phonegap device functions </br>
 http://leafletjs.com/  - leaflet map API </br>
 http://wiki.openstreetmap.org/wiki/Tiles -  some OSM tile types.  What looks nice? </br>
 http://blog.ionic.io/crosswalk-comes-to-ionic/ - performance immprovements </br>
+http://geocoder.opencagedata.com/ </br>
