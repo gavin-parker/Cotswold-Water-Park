@@ -50,7 +50,7 @@ app.controller('MapCtrl', function(){
     var bounds = map.getBounds();
     map.setMaxBounds(bounds);
     map.addLayer(osm);
-    var blueIcon = new markerIcon({iconUrl: '/img/marker.png'});
+    var blueIcon = new markerIcon({iconUrl: 'img/marker.png'});
     L.marker([51.659611, -1.913410], {icon: blueIcon}).addTo(map).bindPopup("Lake Pochard Lodges");
   };
   init();
