@@ -13,7 +13,9 @@ app.controller('MapCtrl', function($scope, parkDataService){
     }
   });
 
-  var blueIcon = new markerIcon({iconUrl: 'img/marker.png'});
+  var blueIcon = new markerIcon({iconUrl: 'img/blueMarker.png'});
+  var greenIcon = new markerIcon({iconUrl: 'img/greenMarker.png'});
+
   var getLoc = function(position) {
     var x = position.coords.latitude;
     var y = position.coords.longitude;
@@ -30,10 +32,22 @@ app.controller('MapCtrl', function($scope, parkDataService){
       var  activities = parkDataService.activities();
       for(var a in activities) {
         for(var d in activities[a].data) {
-           L.marker(activities[a].data[d].location, {icon: blueIcon}).addTo(map).bindPopup(activities[a].data[d].name);
+          addMarker(activities[a].data[d].location, blueIcon, activities[a].data[d].name)
         }
       };
   };
+
+  var addMarkersToMap = function(){ 
+    addMarker([51.670395, -1.914003], greenIcon, 'Lakeside');
+    addMarker([51.665163, -1.909227], greenIcon, 'Bridge');
+    addMarker([51.655372, -1.932596], greenIcon, 'Clayhill');
+    addMarker([51.650716, -1.974765], greenIcon, 'Neigh Bridge Lake');
+  }
+
+  var addMarker = function(location, icon, name){
+    L.marker(location, {icon: icon}).addTo(map).bindPopup(name);
+  }
+
   var init = function(){
 
     navigator.geolocation.getCurrentPosition(getLoc, onError);
@@ -52,6 +66,7 @@ app.controller('MapCtrl', function($scope, parkDataService){
   };
   init();
   addAllActivitiesToMap();
+  addMarkersToMap();
 });
 //function to control activities tab
 app.controller('ActivitiesCtrl', function($scope, parkDataService){
