@@ -5,7 +5,15 @@ app.controller('MapCtrl', function($scope, parkDataService){
   var map = new L.Map('map');
   var x = 51.659611;
   var y = -1.913410;
+  var markerIcon = L.Icon.extend({
+    options: {
+      iconSize:     [45, 45],
+      iconAnchor:   [10, 40],
+      popupAnchor:  [10, -20]
+    }
+  });
 
+  var blueIcon = new markerIcon({iconUrl: 'img/marker.png'});
   var getLoc = function(position) {
     var x = position.coords.latitude;
     var y = position.coords.longitude;
@@ -17,27 +25,16 @@ app.controller('MapCtrl', function($scope, parkDataService){
     'message: ' + error.message + '\n');
   };
 
-  function addToMap(activity){
-    L.marker([activity.location[0], activity.location[1]]).addTo(map).bindPopup(activity.name);
-  };
 
   var addAllActivitiesToMap = function(){
-      $scope.activities = parkDataService.activities();
-      for(var types in $scope.activities){
-        for(var company in types){
-          addToMap(company);
+      var  activities = parkDataService.activities();
+      for(var a in activities) {
+        for(var d in activities[a].data) {
+           L.marker(activities[a].data[d].location, {icon: blueIcon}).addTo(map).bindPopup(activities[a].data[d].name);
         }
-      }
-  }
+      };
+  };
   var init = function(){
-    var markerIcon = L.Icon.extend({
-      options: {
-        iconSize:     [45, 45],
-        iconAnchor:   [10, 40],
-        popupAnchor:  [10, -20]
-      }
-    });
-
 
     navigator.geolocation.getCurrentPosition(getLoc, onError);
     var osmUrl='http://{s}.tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png';
@@ -48,15 +45,10 @@ app.controller('MapCtrl', function($scope, parkDataService){
 
     map.setMaxBounds(bounds);
     map.addLayer(osm);
-    var blueIcon = new markerIcon({iconUrl: 'img/marker.png'});
 
     //var activities = parkDataService.activities();
 
-    /*for(var a in activities) {
-      for(var d in activities[a].data) {
-         L.marker(activities[a].data[d].location, {icon: blueIcon}).addTo(map).bindPopup(activities[a].data[d].name);
-      }
-    } */
+
   };
   init();
   addAllActivitiesToMap();
