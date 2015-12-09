@@ -6,6 +6,7 @@
   <title></title>
   <link href="lib/ionic/css/ionic.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
+
   <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
   <link href="css/ionic.app.css" rel="stylesheet">
 -->
@@ -41,9 +42,9 @@
       </ion-nav-view>
     </ion-tab>
 
-    <ion-tab title="Info" ng-controller="NewsCtrl">
+    <ion-tab title="News" ng-controller="NewsCtrl">
       <ion-nav-view>
-        <div class="bar bar-subheader item-input-inset has-footer">
+          <div class="bar bar-subheader item-input-inset has-footer">
           <label class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
             <input type="search" placeholder="Search" ng-model="searchQuery">
@@ -96,7 +97,6 @@
                 {{activity.name}}
               </ion-item>
               <ion-item class="item-accordion" ng-show="isGroupShown(activity)">
-
                 <ion-list>
                 <div ng-repeat="data in activity.data | filter:searchQuery">
                 <div class="list">
@@ -132,7 +132,8 @@
               </ion-item>
             </div>
           </ion-list>
-        </ion-content></ion-nav-view>
+        </ion-content>
+      </ion-nav-view>
       </ion-tab>
 
       <ion-tab title="Events" ng-controller="EventsCtrl">
