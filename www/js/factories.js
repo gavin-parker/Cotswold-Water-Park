@@ -12,7 +12,8 @@ app.factory('parkDataService', function(){
         number: "01285 770 007",
         email: "info@head4heights.net",
         url: "www.head4heights.net",
-        info: "Head 4 Heights, the only high ropes activity centre in the Cotswold Water Park, is open to families, individuals and all groups. With many exciting activity packages from as little as 30 minutes up to a full day, this is the perfect place to be Tarzan or Jane of The Jungle!"
+        info: "Head 4 Heights, the only high ropes activity centre in the Cotswold Water Park, is open to families, individuals and all groups. With many exciting activity packages from as little as 30 minutes up to a full day, this is the perfect place to be Tarzan or Jane of The Jungle!",
+        location: [51.659611, -1.913410]
       }
     ]
   },
@@ -26,13 +27,15 @@ app.factory('parkDataService', function(){
         email: "contact@lakepochard.co.uk",
         url: "www.lakepochard.co.uk",
         info: "Fully equipped Scandinavian-style Lodges, all with verandas and views across the 10-acre lake. Available for short or week breaks. Top quality carp fishing and large, airy Waterside Café on site.",
+        location: [51.659611, -1.923410]
       },
       {
         name: "Tackle Den",
         number: "01285 862 716",
         email: "thetackleden@hotmail.co.uk",
         url: "www.facebook/com/tackleden",
-        info: "Now bigger and better! Carp and coarse fishing specialist. The no. 1 tackle shop in the Cotswold Water Park, selling numerous brands of angling equipment and bait"
+        info: "Now bigger and better! Carp and coarse fishing specialist. The no. 1 tackle shop in the Cotswold Water Park, selling numerous brands of angling equipment and bait",
+        location: [51.658611, -1.943410]
       }
     ]
   },
@@ -46,6 +49,7 @@ app.factory('parkDataService', function(){
         email: "info@cotswoldcountrypark.co.uk",
         url: "www.cotswoldcountrypark.co.uk",
         info: "Open daily from 10am - 8pm during the summer with the largest inland bathing beach in the UK, lifeguarded during week-ends and school holidays from April. Adventure playgrounds, cafes and wonderful lakeside walks. Activities include: WMSki System 2 Cable, open water swimming, peddalo, row boat and kayak hire, stand up paddle boarding, zorbing and crazy golf",
+        location: [51.669611, -1.923410]
       }
     ]
   },
@@ -58,7 +62,8 @@ app.factory('parkDataService', function(){
         number: "07787 485 294",
         email: "mail@cotswoldcanals.com",
         url: "www.lechladetripboat.com",
-        info: "Enjoy the gentle meadering River Thames aboard the beautiful launch 'Inglesham' departing from Riverside Park. GL7 3AG . All proceeds invested in the restoration of the Cotswold canals."
+        info: "Enjoy the gentle meadering River Thames aboard the beautiful launch 'Inglesham' departing from Riverside Park. GL7 3AG . All proceeds invested in the restoration of the Cotswold canals.",
+        location: [51.649611, -1.923410]
       }
     ]
   },

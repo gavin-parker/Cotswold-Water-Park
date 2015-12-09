@@ -1,6 +1,6 @@
 
 //controller manipulating map
-app.controller('MapCtrl', function(){
+app.controller('MapCtrl', function(parkDataService){
   var map = new L.Map('map');
   var x = 51.659611;
   var y = -1.913410;
@@ -35,7 +35,14 @@ app.controller('MapCtrl', function(){
     map.setMaxBounds(bounds);
     map.addLayer(osm);
     var blueIcon = new markerIcon({iconUrl: 'img/marker.png'});
-    L.marker([51.659611, -1.913410], {icon: blueIcon}).addTo(map).bindPopup("Lake Pochard Lodges");
+
+    var activities = parkDataService.activities();
+
+    for(var a in activities) {
+      for(var d in activities[a].data) {
+         L.marker(activities[a].data[d].location, {icon: blueIcon}).addTo(map).bindPopup(activities[a].data[d].name);
+      }
+    }
   };
   init();
 });
