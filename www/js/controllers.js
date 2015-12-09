@@ -1,6 +1,6 @@
 
 //controller manipulating map
-app.controller('MapCtrl', function(){
+app.controller('MapCtrl', function($scope, parkDataService){
   var map = new L.Map('map');
   var x = 51.659611;
   var y = -1.913410;
@@ -16,8 +16,19 @@ app.controller('MapCtrl', function(){
     'message: ' + error.message + '\n');
   };
 
-  var init = function(){
+  function addToMap(activity){
+    L.marker([activity.location[0], activity.location[1]]).addTo(map).bindPopup(activity.name);
+  };
 
+  var addAllActivitiesToMap = function(){
+      $scope.activities = parkDataService.activities();
+      for(var types in $scope.activities){
+        for(var company in types){
+          addToMap(company);
+        }
+      }
+  }
+  var init = function(){
     var markerIcon = L.Icon.extend({
       options: {
         iconSize:     [45, 45],
@@ -25,6 +36,8 @@ app.controller('MapCtrl', function(){
         popupAnchor:  [10, -20]
       }
     });
+
+
     navigator.geolocation.getCurrentPosition(getLoc, onError);
     var osmUrl='http://{s}.tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png';
     var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
@@ -38,6 +51,7 @@ app.controller('MapCtrl', function(){
     L.marker([51.659611, -1.913410], {icon: blueIcon}).addTo(map).bindPopup("Lake Pochard Lodges");
   };
   init();
+  addAllActivitiesToMap();
 });
 //function to control activities tab
 app.controller('ActivitiesCtrl', function($scope, parkDataService){
