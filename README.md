@@ -3,7 +3,7 @@ Useful links: </br>
 http://www.webdesignerdepot.com/2013/07/20-beautifully-designed-smartphone-apps/ </br>
 http://www.waterpark.org/ </br>
 http://www.waterpark.org/events/feed/   - RSS feed for events </br>
-
+https://github.com/johnpapa/angular-styleguide - AngularJS style guide </br>
 Technology:</br>
 http://ionicframework.com/docs/components/ - UI components </br>
 https://docs.angularjs.org/guide/concepts - Angular MVC structure </br>
