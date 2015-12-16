@@ -15,11 +15,16 @@ app.controller('MapCtrl', function($scope, parkDataService){
 
   var blueIcon = new markerIcon({iconUrl: 'img/blueMarker.png'});
   var greenIcon = new markerIcon({iconUrl: 'img/greenMarker.png'});
-
+  var pinPoint = new markerIcon({iconUrl: 'img/pinpoint.png'});
   var getLoc = function(position) {
+    /*
     var x = position.coords.latitude;
     var y = position.coords.longitude;
+    */
+    var x = 51.65;
+    var y = -1.91;
     map.setView(new L.LatLng(x, y), 13);
+    addMarker([x,y], pinPoint, 'You Are Here' );
   };
 
   function onError(error) {
@@ -58,7 +63,7 @@ app.controller('MapCtrl', function($scope, parkDataService){
     map.setView(new L.LatLng(x, y), 13);
     var bounds = map.getBounds();
 
-    map.setMaxBounds(bounds);
+    //map.setMaxBounds(bounds);
     map.addLayer(osm);
 
     //var activities = parkDataService.activities();
@@ -68,7 +73,7 @@ app.controller('MapCtrl', function($scope, parkDataService){
   addMarkersToMap();
 });
 //function to control activities tab
-app.controller('ActivitiesCtrl', function($scope, parkDataService){
+  app.controller('ActivitiesCtrl', function($scope, parkDataService){
   $scope.activities = parkDataService.activities();
   $scope.num = parkDataService.activities.length;
 
