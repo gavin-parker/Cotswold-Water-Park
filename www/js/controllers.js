@@ -25,6 +25,14 @@ app.controller('MapCtrl', function($scope, parkDataService){
     var y = -1.91;
     map.setView(new L.LatLng(x, y), 13);
     addMarker([x,y], pinPoint, 'You Are Here' );
+
+    L.Routing.control({
+      waypoints: [
+        L.latLng(x, y),
+        L.latLng(51.670395, -1.914003)
+      ],
+      routeWhileDragging: true
+    }).addTo(map);
   };
 
   function onError(error) {
@@ -66,6 +74,8 @@ app.controller('MapCtrl', function($scope, parkDataService){
     //map.setMaxBounds(bounds);
     map.addLayer(osm);
 
+
+
     //var activities = parkDataService.activities();
   };
   init();
@@ -73,7 +83,7 @@ app.controller('MapCtrl', function($scope, parkDataService){
   addMarkersToMap();
 });
 //function to control activities tab
-  app.controller('ActivitiesCtrl', function($scope, parkDataService){
+app.controller('ActivitiesCtrl', function($scope, parkDataService){
   $scope.activities = parkDataService.activities();
   $scope.num = parkDataService.activities.length;
 
