@@ -69,10 +69,18 @@ app.factory('parkDataService', function(){
   },
   ];
 
+
+  
+
   return {
     activities : function(){
       return activities;
+    },
+    gActivities : function(){
+
+      return activities;
     }
+
   }
 });
 
@@ -120,5 +128,4 @@ app.factory('newsService', function($q){
       return defer.promise;
     }
   }
-
 });
