@@ -26,14 +26,21 @@ app.controller('MapCtrl', function($scope, parkDataService){
     map.setView(new L.LatLng(x, y), 13);
     addMarker([x,y], pinPoint, 'You Are Here' );
 
+
+  };
+
+  var routeTo = function(e){
     L.Routing.control({
       waypoints: [
         L.latLng(x, y),
-        L.latLng(51.670395, -1.914003)
+        e.latlng
       ],
       routeWhileDragging: true
     }).addTo(map);
+
   };
+
+
 
   function onError(error) {
     alert('code: '    + error.code    + '\n' +
@@ -73,6 +80,7 @@ app.controller('MapCtrl', function($scope, parkDataService){
 
     //map.setMaxBounds(bounds);
     map.addLayer(osm);
+    map.on('contextmenu', routeTo);
 
 
 
