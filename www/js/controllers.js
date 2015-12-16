@@ -29,15 +29,16 @@ app.controller('MapCtrl', function($scope, parkDataService){
 
 
   var addAllActivitiesToMap = function(){
-      var  activities = parkDataService.activities();
-      for(var a in activities) {
-        for(var d in activities[a].data) {
-          addMarker(activities[a].data[d].location, blueIcon, activities[a].data[d].name)
-        }
-      };
+    var  activities = parkDataService.activities();
+    for(var a in activities) {
+      for(var d in activities[a].data) {
+        addMarker(activities[a].data[d].location, blueIcon, activities[a].data[d].name)
+      }
+    };
   };
 
-  var addMarkersToMap = function(){ 
+  //adds hardcoded example markers to the map
+  var addMarkersToMap = function(){
     addMarker([51.670395, -1.914003], greenIcon, 'Lakeside');
     addMarker([51.665163, -1.909227], greenIcon, 'Bridge');
     addMarker([51.655372, -1.932596], greenIcon, 'Clayhill');
@@ -51,7 +52,7 @@ app.controller('MapCtrl', function($scope, parkDataService){
   var init = function(){
 
     navigator.geolocation.getCurrentPosition(getLoc, onError);
-    var osmUrl='http://{s}.tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png';
+    var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
     var osm = new L.TileLayer(osmUrl, {minZoom: 12, maxZoom: 20, attribution: osmAttrib});
     map.setView(new L.LatLng(x, y), 13);
@@ -61,8 +62,6 @@ app.controller('MapCtrl', function($scope, parkDataService){
     map.addLayer(osm);
 
     //var activities = parkDataService.activities();
-
-
   };
   init();
   addAllActivitiesToMap();
