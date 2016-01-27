@@ -122,9 +122,23 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
     } else {
       $scope.shownGroup = activity;
     }
+    $scope.shownEntry = null;
   };
+
   $scope.isGroupShown = function(activity) {
     return $scope.shownGroup === activity;
+  };
+
+  $scope.toggleEntry = function(entry) {
+    if($scope.isEntryShown(entry)) {
+      $scope.shownEntry = null;
+    } else {
+      $scope.shownEntry = entry;
+    }
+  }
+
+  $scope.isEntryShown = function(entry) {
+    return $scope.shownEntry === entry;
   };
 });
 

@@ -101,38 +101,45 @@
                 {{activity.name}}
               </ion-item>
               <ion-item class="item-accordion" ng-show="isGroupShown(activity)">
+                <a class="item item-icon-left, item item-text-wrap" href="#">
+                  <i class="icon ion-information-circled"></i>
+                  {{activity.info}}
+                </a>
                 <ion-list>
-                <div ng-repeat="data in activity.data | filter:searchQuery">
-                <div class="list">
-                  <div>
-                  <a class="item item-icon-left" href="#">
-                    <i class="icon ion-map"></i>
-                    {{data.name}}
-                  </a>
-                  <a class="item item-icon-left" href="#">
-                    <i class="icon ion-ios-telephone"></i>
-                    {{data.number}}
-                  </a>
-                  <a class="item item-icon-left" href="#">
-                    <i class="icon ion-email"></i>
-                    {{data.email}}
-                  </a>
-                  <a class="item item-icon-left" href="{{activity.url}}">
-                    <i class="icon ion-android-globe"></i>
-                    <hyper>{{data.url}}</hyper>
-                  </a>
-                  <a class="item item-icon-left, item item-text-wrap" href="#">
-                    <i class="icon ion-information-circled"></i>
-                    {{data.info}}
-                  </a>
-                  <a class="item item-icon-left, item item-text-wrap" href="#">
-                    <i class="icon ion-information-circled"></i>
-                    {{activity.info}}
-                  </a>
-                </div>
-                </div>
-              </div>
-              </ion-list>
+                
+                  <div ng-repeat="entry in activity.data | filter:searchQuery">
+                    <div class="list">
+
+                      <ion-item class="item-stable" ng-click="toggleEntry(entry)" ng-class="{active: isEntryShown(entry)}">
+                        <i class="icon" ng-class="isEntryShown(entry) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
+                        &#xA0;
+                        {{entry.name}}
+                      </ion-item>
+                      <ion-item class="item-accordion" ng-show="isEntryShown(entry)">
+                        <a class="item item-icon-left" href="#">
+                          <i class="icon ion-map"></i>
+                          {{entry.name}}
+                        </a>
+                        <a class="item item-icon-left" href="#">
+                          <i class="icon ion-ios-telephone"></i>
+                          {{entry.number}}
+                        </a>
+                        <a class="item item-icon-left" href="#">
+                          <i class="icon ion-email"></i>
+                          {{entry.email}}
+                        </a>
+                        <a class="item item-icon-left" href="{{activity.url}}">
+                          <i class="icon ion-android-globe"></i>
+                          <hyper>{{entry.url}}</hyper>
+                        </a>
+                        <a class="item item-icon-left, item item-text-wrap" href="#">
+                          <i class="icon ion-information-circled"></i>
+                          {{entry.info}}
+                        </a>
+                      </ion-item>
+                    </div>
+                  </div>
+                </ion-list>
               </ion-item>
             </div>
           </ion-list>
