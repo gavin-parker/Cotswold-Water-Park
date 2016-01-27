@@ -16,6 +16,7 @@ app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
   };
   var x = 51.659611;
   var y = -1.913410;
+  var control = null;
   var markerIcon = L.Icon.extend({
     options: {
       iconSize:     [45, 45],
@@ -43,13 +44,17 @@ app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
   };
 
   var routeTo = function(e){
-    var control = L.Routing.control({
+    if(control == null){
+    control = L.Routing.control({
       waypoints: [
         L.latLng(x, y),
         e.latlng
       ],
       routeWhileDragging: true
     }).addTo(map);
+  }else{
+    control.spliceWaypoints(1,1, e.latlng);
+  }
     console.log("Added routing control to map");
     L.Routing.errorControl(control).addTo(map);
   };
@@ -67,16 +72,17 @@ app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
     for(var a in activities) {
       for(var d in activities[a].data) {
         //addMarker(activities[a].data[d].location, blueIcon, activities[a].data[d].name)
-        activityLayer.addLayer(L.marker(activities[a].data[d].location, {icon: blueIcon}).addTo(map).bindPopup(activities[a].data[d].name));
+        activityLayer.addLayer(L.marker(activities[a].data[d].location, {icon: blueIcon}).addTo(map).bindPopup(activities[a].data[d].name).on('click', routeTo));
       }
     }
   };
 
   var addMarkersToMap = function(){
+
     var  markers = markersDataService.markers();
     for(var a in markers) {
       for(var f in markers[a].food) {
-        foodLayer.addLayer(L.marker(markers[a].food[f].location, {icon: foodIcon}).addTo(map).bindPopup((markers[a].food[f].name)+'</br>'+(markers[a].food[f].info)));
+        foodLayer.addLayer(L.marker(markers[a].food[f].location, {icon: foodIcon}).addTo(map).bindPopup((markers[a].food[f].name)+'</br>'+(markers[a].food[f].info)).on('click', routeTo));
       }
       for (var s in markers[a].sites) {
         locationLayer.addLayer(L.marker(markers[a].sites[s].location, {icon: greenIcon}).addTo(map).bindPopup(markers[a].sites[s].name));
@@ -103,7 +109,7 @@ app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
 
   init();
   console.log("Map initialized");
-  map.on('contextmenu', routeTo);
+  //map.on('contextmenu', routeTo);
   console.log("added event handler");
   addAllActivitiesToMap();
   addMarkersToMap();
@@ -120,9 +126,23 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
     } else {
       $scope.shownGroup = activity;
     }
+    $scope.shownEntry = null;
   };
+
   $scope.isGroupShown = function(activity) {
     return $scope.shownGroup === activity;
+  };
+
+  $scope.toggleEntry = function(entry) {
+    if($scope.isEntryShown(entry)) {
+      $scope.shownEntry = null;
+    } else {
+      $scope.shownEntry = entry;
+    }
+  }
+
+  $scope.isEntryShown = function(entry) {
+    return $scope.shownEntry === entry;
   };
 });
 
