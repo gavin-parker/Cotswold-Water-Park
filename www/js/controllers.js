@@ -79,14 +79,14 @@ app.controller('MapCtrl', function($scope, parkDataService){
     addMarker([51.665163, -1.909227], greenIcon, 'Bridge');
     addMarker([51.655372, -1.932596], greenIcon, 'Clayhill');
     addMarker([51.650716, -1.974765], greenIcon, 'Neigh Bridge Lake');*/
-    locationLayer.addLayer(L.marker([51.670395, -1.914003], {icon: greenIcon}).addTo(map).bindPopup('Lakeside'));
-    locationLayer.addLayer(L.marker([51.665163, -1.909227], {icon: greenIcon}).addTo(map).bindPopup('Bridge'));
-    locationLayer.addLayer(L.marker([51.655372, -1.932596], {icon: greenIcon}).addTo(map).bindPopup('Clayhill'));
-    locationLayer.addLayer(L.marker([51.650716, -1.974765], {icon: greenIcon}).addTo(map).bindPopup('Neigh Bridge Lake'));
+    locationLayer.addLayer(L.marker([51.670395, -1.914003], {icon: greenIcon}).addTo(map).bindPopup('Lakeside').on('click', routeTo));
+    locationLayer.addLayer(L.marker([51.665163, -1.909227], {icon: greenIcon}).addTo(map).bindPopup('Bridge').on('click', routeTo));
+    locationLayer.addLayer(L.marker([51.655372, -1.932596], {icon: greenIcon}).addTo(map).bindPopup('Clayhill').on('click', routeTo));
+    locationLayer.addLayer(L.marker([51.650716, -1.974765], {icon: greenIcon}).addTo(map).bindPopup('Neigh Bridge Lake').on('click', routeTo));
   }
 
   var addMarker = function(location, icon, name){
-    L.marker(location, {icon: icon}).addTo(map).bindPopup(name).on('click', routeTo);;
+    L.marker(location, {icon: icon}).addTo(map).bindPopup(name).on('click', routeTo);
   }
 
   L.control.layers(overlayMaps).addTo(map);
