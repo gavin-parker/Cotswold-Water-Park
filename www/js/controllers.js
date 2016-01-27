@@ -11,8 +11,8 @@ app.controller('MapCtrl', function($scope, parkDataService){
     "Activities": activityLayer,
     "Sites": locationLayer
   };
-  var x = 51.659611;
-  var y = -1.913410;
+  var x = 51.65; //Temporary start location, change to user location
+  var y = -1.91; //
   var control = null;
   var markerIcon = L.Icon.extend({
     options: {
@@ -30,20 +30,17 @@ app.controller('MapCtrl', function($scope, parkDataService){
     var x = position.coords.latitude;
     var y = position.coords.longitude;
     */
-    var x = 51.65;
-    var y = -1.91;
+
     map.setView(new L.LatLng(x, y), 13);
     //addMarker([x,y], pinPoint, 'You Are Here' );
     L.marker([x,y], {icon: pinPoint}).addTo(map).bindPopup('You Are Here');
-
-
   };
 
   var routeTo = function(e){
     if(control == null){
     control = L.Routing.control({
       waypoints: [
-        L.latLng(x, y),
+        L.latLng(x, y), //change x,y to user location
         e.latlng
       ],
       routeWhileDragging: true
