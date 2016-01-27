@@ -1898,6 +1898,103 @@ if (typeof module !== undefined) module.exports = polyline;
 				endPlaceholder: 'Destino'
 			}
 		},
+		'sk': {
+			directions: {
+				N: 'sever',
+				NE: 'serverovýchod',
+				E: 'východ',
+				SE: 'juhovýchod',
+				S: 'juh',
+				SW: 'juhozápad',
+				W: 'západ',
+				NW: 'serverozápad'
+			},
+			instructions: {
+				// instruction, postfix if the road is named
+				'Head':
+					['Mierte na {dir}', ' na {road}'],
+				'Continue':
+					['Pokračujte na {dir}', ' na {road}'],
+				'SlightRight':
+					['Mierne doprava', ' na {road}'],
+				'Right':
+					['Doprava', ' na {road}'],
+				'SharpRight':
+					['Prudko doprava', ' na {road}'],
+				'TurnAround':
+					['Otočte sa'],
+				'SharpLeft':
+					['Prudko doľava', ' na {road}'],
+				'Left':
+					['Doľava', ' na {road}'],
+				'SlightLeft':
+					['Mierne doľava', ' na {road}'],
+				'WaypointReached':
+					['Ste v prejazdovom bode.'],
+				'Roundabout':
+					['Odbočte na {exitStr} výjazde', ' na {road}'],
+				'DestinationReached':
+					['Prišli ste do cieľa.'],
+			},
+			formatOrder: function(n) {
+				var i = n % 10 - 1,
+				suffix = ['.', '.', '.'];
+
+				return suffix[i] ? n + suffix[i] : n + '.';
+			},
+			ui: {
+				startPlaceholder: 'Začiatok',
+				viaPlaceholder: 'Cez {viaNumber}',
+				endPlaceholder: 'Koniec'
+			}
+		},
+		'el': {
+			directions: {
+				N: 'βόρεια',
+				NE: 'βορειοανατολικά',
+				E: 'ανατολικά',
+				SE: 'νοτιοανατολικά',
+				S: 'νότια',
+				SW: 'νοτιοδυτικά',
+				W: 'δυτικά',
+				NW: 'βορειοδυτικά'
+			},
+			instructions: {
+				// instruction, postfix if the road is named
+				'Head':
+					['Κατευθυνθείτε {dir}', ' στην {road}'],
+				'Continue':
+					['Συνεχίστε {dir}', ' στην {road}'],
+				'SlightRight':
+					['Ελαφρώς δεξιά', ' στην {road}'],
+				'Right':
+					['Δεξιά', ' στην {road}'],
+				'SharpRight':
+					['Απότομη δεξιά στροφή', ' στην {road}'],
+				'TurnAround':
+					['Κάντε αναστροφή'],
+				'SharpLeft':
+					['Απότομη αριστερή στροφή', ' στην {road}'],
+				'Left':
+					['Αριστερά', ' στην {road}'],
+				'SlightLeft':
+					['Ελαφρώς αριστερά', ' στην {road}'],
+				'WaypointReached':
+					['Φτάσατε στο σημείο αναφοράς'],
+				'Roundabout':
+					['Ακολουθήστε την {exitStr} έξοδο στο κυκλικό κόμβο', ' στην {road}'],
+				'DestinationReached':
+					['Φτάσατε στον προορισμό σας'],
+			},
+			formatOrder: function(n) {
+				return n + 'º';
+			},
+			ui: {
+				startPlaceholder: 'Αφετηρία',
+				viaPlaceholder: 'μέσω {viaNumber}',
+				endPlaceholder: 'Προορισμός'
+			}
+		}
 	};
 
 	module.exports = L.Routing;
@@ -1921,9 +2018,10 @@ if (typeof module !== undefined) module.exports = polyline;
 
 	L.Routing.OSRM = L.Class.extend({
 		options: {
-			serviceUrl: '//router.project-osrm.org/viaroute',
+			serviceUrl: 'https://router.project-osrm.org/viaroute',
 			timeout: 30 * 1000,
-			routingOptions: {}
+			routingOptions: {},
+			polylinePrecision: 6
 		},
 
 		initialize: function(options) {
@@ -2001,7 +2099,7 @@ if (typeof module !== undefined) module.exports = polyline;
 			    i;
 
 			context = context || callback;
-			if (response.status !== 0) {
+			if (response.status !== 0 && response.status !== 200) {
 				callback.call(context, {
 					status: response.status,
 					message: response.status_message
@@ -2049,7 +2147,7 @@ if (typeof module !== undefined) module.exports = polyline;
 		},
 
 		_decodePolyline: function(routeGeometry) {
-			var cs = polyline.decode(routeGeometry, 6),
+			var cs = polyline.decode(routeGeometry, this.options.polylinePrecision),
 				result = new Array(cs.length),
 				i;
 			for (i = cs.length - 1; i >= 0; i--) {

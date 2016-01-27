@@ -39,14 +39,15 @@ app.controller('MapCtrl', function($scope, parkDataService){
   };
 
   var routeTo = function(e){
-    L.Routing.control({
+    var control = L.Routing.control({
       waypoints: [
         L.latLng(x, y),
         e.latlng
       ],
       routeWhileDragging: true
     }).addTo(map);
-
+    console.log("Added routing control to map");
+    L.Routing.errorControl(control).addTo(map);
   };
 
 
@@ -87,23 +88,22 @@ app.controller('MapCtrl', function($scope, parkDataService){
   L.control.layers(overlayMaps).addTo(map);
 
   var init = function(){
-
-    navigator.geolocation.getCurrentPosition(getLoc, onError);
+    //navigator.geolocation.getCurrentPosition(getLoc, onError);
+    getLoc();
     var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
     var osm = new L.TileLayer(osmUrl, {minZoom: 12, maxZoom: 20, attribution: osmAttrib});
     map.setView(new L.LatLng(x, y), 13);
     var bounds = map.getBounds();
-
     //map.setMaxBounds(bounds);
     map.addLayer(osm);
-    map.on('contextmenu', routeTo);
-
-
-
     //var activities = parkDataService.activities();
   };
+
   init();
+  console.log("Map initialized");
+  map.on('contextmenu', routeTo);
+  console.log("added event handler");
   addAllActivitiesToMap();
   addMarkersToMap();
 });
