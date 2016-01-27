@@ -7,7 +7,7 @@ app.factory('parkDataService', function($http, $q){
       var activities;
       var defer = $q.defer();
       $http.get('js/activities.json')
-           .success(function(res){
+           .success(function(res){ 
               defer.resolve(res);
               console.log(res);
             });

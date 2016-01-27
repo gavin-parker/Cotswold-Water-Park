@@ -68,13 +68,17 @@ app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
 
 
   var addAllActivitiesToMap = function(){
-    var  activities = parkDataService.activities();
-    for(var a in activities) {
-
-      for(var d in activities[a].data) {
-        activityLayer.addLayer(L.marker(activities[a].data[d].location, {icon: blueIcon}).addTo(map).bindPopup((activities[a].data[d].name)+'</br>'+(activities[a].data[d].info)).on('click', routeTo));
+    parkDataService.activities().then(function(result){
+      $scope.activities = result;
+      console.log("yay");
+      for(var i = 0;i < result.length;i++) {
+          console.log(result[i].Name);
+          var loc = JSON.parse(result[i].Location);
+          activityLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)).on('click', routeTo));
       }
-    }
+    })
+
+
   };
 
   var addMarkersToMap = function(){
