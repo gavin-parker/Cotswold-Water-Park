@@ -1,18 +1,20 @@
 
 //controller manipulating map
-app.controller('MapCtrl', function($scope, parkDataService){
-  
+app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
+
   var activityLayer = new L.layerGroup();
   var locationLayer = new L.layerGroup();
-  
+  var foodLayer = new L.layerGroup();
+
   var map = new L.Map('map', {
-    layers: [activityLayer, locationLayer]
+    layers: [activityLayer, locationLayer, foodLayer]
   });
 
   //Layer Options
   var overlayMaps = {
     "Activities": activityLayer,
-    "Sites": locationLayer
+    "Sites": locationLayer,
+    "Food": foodLayer
   };
 
   var x = 51.659611;
@@ -28,6 +30,7 @@ app.controller('MapCtrl', function($scope, parkDataService){
 
   var blueIcon = new markerIcon({iconUrl: 'img/blueMarker.png'});
   var greenIcon = new markerIcon({iconUrl: 'img/greenMarker.png'});
+  var foodIcon = new markerIcon({iconUrl: 'img/restaurant.png'})
   var pinPoint = new markerIcon({iconUrl: 'img/pinpoint.png'});
   var getLoc = function(position) {
     /*
@@ -72,23 +75,27 @@ app.controller('MapCtrl', function($scope, parkDataService){
       for(var d in activities[a].data) {
         activityLayer.addLayer(L.marker(activities[a].data[d].location, {icon: blueIcon}).addTo(map).bindPopup(activities[a].data[d].name).on('click', routeTo));
       }
-    };
+    }
   };
 
-  //adds hardcoded example markers to the map
   var addMarkersToMap = function(){
-    locationLayer.addLayer(L.marker([51.670395, -1.914003], {icon: greenIcon}).addTo(map).bindPopup('Lakeside').on('click', routeTo));
-    locationLayer.addLayer(L.marker([51.665163, -1.909227], {icon: greenIcon}).addTo(map).bindPopup('Bridge').on('click', routeTo));
-    locationLayer.addLayer(L.marker([51.655372, -1.932596], {icon: greenIcon}).addTo(map).bindPopup('Clayhill').on('click', routeTo));
-    locationLayer.addLayer(L.marker([51.650716, -1.974765], {icon: greenIcon}).addTo(map).bindPopup('Neigh Bridge Lake').on('click', routeTo));
-  }
 
-  var addMarker = function(location, icon, name){
-    L.marker(location, {icon: icon}).addTo(map).bindPopup(name).on('click', routeTo);
-  }
+    var  markers = markersDataService.markers();
+    for(var a in markers) {
+      for(var f in markers[a].food) {
+        foodLayer.addLayer(L.marker(markers[a].food[f].location, {icon: foodIcon}).addTo(map).bindPopup((markers[a].food[f].name)+'</br>'+(markers[a].food[f].info)).on('click', routeTo));
+      }
+      for (var s in markers[a].sites) {
+        locationLayer.addLayer(L.marker(markers[a].sites[s].location, {icon: greenIcon}).addTo(map).bindPopup(markers[a].sites[s].name));
+
+      }
+    } 
+  };
+
 
   //Layer tobble for activities and sites
   L.control.layers("",overlayMaps).addTo(map);
+
 
   var init = function(){
     //navigator.geolocation.getCurrentPosition(getLoc, onError);
@@ -109,6 +116,7 @@ app.controller('MapCtrl', function($scope, parkDataService){
   console.log("added event handler");
   addAllActivitiesToMap();
   addMarkersToMap();
+
 });
 //function to control activities tab
 app.controller('ActivitiesCtrl', function($scope, parkDataService){
