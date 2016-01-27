@@ -5,6 +5,7 @@ app.controller('MapCtrl', function($scope, parkDataService){
   var map = new L.Map('map');
   var x = 51.659611;
   var y = -1.913410;
+  var control = null;
   var markerIcon = L.Icon.extend({
     options: {
       iconSize:     [45, 45],
@@ -30,13 +31,17 @@ app.controller('MapCtrl', function($scope, parkDataService){
   };
 
   var routeTo = function(e){
-    var control = L.Routing.control({
+    if(control == null){
+    control = L.Routing.control({
       waypoints: [
         L.latLng(x, y),
         e.latlng
       ],
       routeWhileDragging: true
     }).addTo(map);
+  }else{
+    control.spliceWaypoints(1,1, e.latlng);
+  }
     console.log("Added routing control to map");
     L.Routing.errorControl(control).addTo(map);
   };
@@ -67,7 +72,7 @@ app.controller('MapCtrl', function($scope, parkDataService){
   }
 
   var addMarker = function(location, icon, name){
-    L.marker(location, {icon: icon}).addTo(map).bindPopup(name);
+    L.marker(location, {icon: icon}).addTo(map).bindPopup(name).on('click', routeTo);;
   }
 
   var init = function(){
@@ -85,7 +90,7 @@ app.controller('MapCtrl', function($scope, parkDataService){
 
   init();
   console.log("Map initialized");
-  map.on('contextmenu', routeTo);
+  //map.on('contextmenu', routeTo);
   console.log("added event handler");
   addAllActivitiesToMap();
   addMarkersToMap();
