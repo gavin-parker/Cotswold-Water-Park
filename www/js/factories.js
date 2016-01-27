@@ -42,14 +42,16 @@ app.factory('parkDataService', function(){
         number: "01367 253 266",
         email: "tim@timtrout.co.uk",
         url: "www.lechladetrout.co.uk",
-        info: "Lechlade and Bushyleaze Trout Fisheries - excellent day ticket fly fishing in beautiful Cotswold countryside. Tuition available. Large fishing tackle shop on site. Corporate hospitality available. "
+        info: "Lechlade and Bushyleaze Trout Fisheries - excellent day ticket fly fishing in beautiful Cotswold countryside. Tuition available. Large fishing tackle shop on site. Corporate hospitality available. ",
+        location: [51.650611, -1.943410]
       },
       {
         name: "South Cerney Angling Club",
         number: "01285 861 876 / 07989 973 217",
         email: "info@scac.org.uk",
         url: "www.scac.org.uk",
-        info: "With our main waters set in the heart of the Cotswold Water Park, we have waters to suit the match, pleasure and specimen angler."
+        info: "With our main waters set in the heart of the Cotswold Water Park, we have waters to suit the match, pleasure and specimen angler.",
+        location: [51.651611, -1.943410]
       }
     ]
   },
@@ -98,7 +100,8 @@ app.factory('parkDataService', function(){
         number: "01666 860 068",
         email: "info@reinandshine.co.uk",
         url: "www.reinandshine.co.uk",
-        info: "Superb facilities, wide range of ponies and horses, with highly qualified riding instructors. For inexperienced and experienced riders, all ages from 4 upwards. Private and group lessons."
+        info: "Superb facilities, wide range of ponies and horses, with highly qualified riding instructors. For inexperienced and experienced riders, all ages from 4 upwards. Private and group lessons.",
+        location: [51.652611, -1.943410]
       }
     ]
   },
@@ -115,7 +118,8 @@ app.factory('parkDataService', function(){
         number: "01793 752 281",
         email: "info@glosrallyschool.co.uk",
         url: "www.glosrallyschool.co.uk",
-        info: "Gloucestershire Rally School offers drivers aged just 10 years old and above the opportunity to experience the demanding, exciting sport of rally driving. Our purpose built 100% gravel track and rally-prepped cars enable us to give you a truly memorable day out that make ideal birthday or Christmas gifts, or the ultimate group event for corporate days or stag and hen parties."
+        info: "Gloucestershire Rally School offers drivers aged just 10 years old and above the opportunity to experience the demanding, exciting sport of rally driving. Our purpose built 100% gravel track and rally-prepped cars enable us to give you a truly memorable day out that make ideal birthday or Christmas gifts, or the ultimate group event for corporate days or stag and hen parties.",
+        location: [51.653611, -1.943410]
       }
     ]
   },
@@ -128,7 +132,8 @@ app.factory('parkDataService', function(){
         number: "07597 093 708",
         email: "olddownspursuits@live.co.uk",
         url: "www.old-downs-pursuits.co.uk",
-        info: "Clay target and air rifle shooting are popular country sports. No previous experience is necessary, so why not try something new today, or brush up on your skills."
+        info: "Clay target and air rifle shooting are popular country sports. No previous experience is necessary, so why not try something new today, or brush up on your skills.",
+        location: [51.654611, -1.943410]
       }
     ]
   },
@@ -141,7 +146,8 @@ app.factory('parkDataService', function(){
         number: "01285 860 388",
         email: "southcerneyoutdoor@prospects.co.uk",
         url: "www.southcerneyoutdoor.co.uk",
-        info: "South Cerney Outdoor Centre offers great facilities and activities for all the community to enjoy. New! Pay and Play ( with one off safety induction) available "
+        info: "South Cerney Outdoor Centre offers great facilities and activities for all the community to enjoy. New! Pay and Play ( with one off safety induction) available ",
+        location: [51.655611, -1.943410]
       },
       {
         name: "Waterland",
@@ -149,20 +155,22 @@ app.factory('parkDataService', function(){
         email: "admin@ukwatersports.co.uk",
         url: "www.ukwatersports.co.uk",
         info: "Waterland Outdoor Pursuits provides activities to companies, schools & Youth Organisations. You can participate in Windsurfing, Archery, Raftbuilding, Low Ropes, Sailing, Kayaking, Orienteering, Problem Solving and Canoeing",
+        location: [51.656611, -1.943410]
       },
       {
         name: "Cotswold Forest School",
         number: "07738 708 880",
         email: "enquiries@.cotswoldforestschool.co.uk",
         url: "www.cotswoldforestschool.co.uk",
-        info: "Get back to basics and learn to embrace the outdoors through various hand on survival techniques, such as bushcraft, fire lighting, shelter building and more! The programme is educational, inspirational and designed to increase nature awareness for all ages"
+        info: "Get back to basics and learn to embrace the outdoors through various hand on survival techniques, such as bushcraft, fire lighting, shelter building and more! The programme is educational, inspirational and designed to increase nature awareness for all ages",
+        location: [51.657611, -1.943410]
       }
     ]
   }
   ];
 
 
-  
+
 
   return {
     activities : function(){
