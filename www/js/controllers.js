@@ -37,7 +37,6 @@ app.controller('MapCtrl', function($scope, parkDataService){
       ],
       routeWhileDragging: true
     }).addTo(map);
-
   };
 
 
@@ -71,7 +70,8 @@ app.controller('MapCtrl', function($scope, parkDataService){
 
   var init = function(){
 
-    navigator.geolocation.getCurrentPosition(getLoc, onError);
+    //navigator.geolocation.getCurrentPosition(getLoc, onError);
+    getLoc();
     var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
     var osm = new L.TileLayer(osmUrl, {minZoom: 12, maxZoom: 20, attribution: osmAttrib});
