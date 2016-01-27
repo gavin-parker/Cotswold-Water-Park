@@ -30,7 +30,7 @@ app.controller('MapCtrl', function($scope, parkDataService){
   };
 
   var routeTo = function(e){
-    L.Routing.control({
+    var control = L.Routing.control({
       waypoints: [
         L.latLng(x, y),
         e.latlng
@@ -38,6 +38,7 @@ app.controller('MapCtrl', function($scope, parkDataService){
       routeWhileDragging: true
     }).addTo(map);
     console.log("Added routing control to map");
+    L.Routing.errorControl(control).addTo(map);
   };
 
 
