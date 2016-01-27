@@ -4,6 +4,7 @@ app.controller('MapCtrl', function($scope, parkDataService){
 
   var activityLayer = new L.layerGroup();
   var locationLayer = new L.layerGroup();
+//  var combinedLayer = L.Layergroup([activityLayer, locationLayer]);
   var map = new L.Map('map', {
     layers: [activityLayer, locationLayer]
   });
@@ -89,7 +90,7 @@ app.controller('MapCtrl', function($scope, parkDataService){
     L.marker(location, {icon: icon}).addTo(map).bindPopup(name).on('click', routeTo);
   }
 
-  L.control.layers(overlayMaps).addTo(map);
+  L.control.layers("",overlayMaps).addTo(map);
 
   var init = function(){
     //navigator.geolocation.getCurrentPosition(getLoc, onError);
