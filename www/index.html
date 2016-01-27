@@ -101,6 +101,10 @@
                 {{activity.Name}}
               </ion-item>
               <ion-item class="item-accordion" ng-show="isGroupShown(activity)">
+                <a class="item item-icon-left, item item-text-wrap" href="#">
+                  <i class="icon ion-information-circled"></i>
+                  {{activity.info}}
+                </a>
                 <ion-list>
                 <div class="list">
                   <div>
@@ -124,6 +128,7 @@
                 </div>
               </div>
               </ion-list>
+
               </ion-item>
             </div>
           </ion-list>
