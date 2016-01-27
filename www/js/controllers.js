@@ -17,6 +17,7 @@ app.controller('MapCtrl', function($scope, parkDataService){
 
   var x = 51.659611;
   var y = -1.913410;
+  var control = null;
   var markerIcon = L.Icon.extend({
     options: {
       iconSize:     [45, 45],
@@ -42,13 +43,17 @@ app.controller('MapCtrl', function($scope, parkDataService){
   };
 
   var routeTo = function(e){
-    var control = L.Routing.control({
+    if(control == null){
+    control = L.Routing.control({
       waypoints: [
         L.latLng(x, y),
         e.latlng
       ],
       routeWhileDragging: true
     }).addTo(map);
+  }else{
+    control.spliceWaypoints(1,1, e.latlng);
+  }
     console.log("Added routing control to map");
     L.Routing.errorControl(control).addTo(map);
   };
@@ -65,22 +70,25 @@ app.controller('MapCtrl', function($scope, parkDataService){
     var  activities = parkDataService.activities();
     for(var a in activities) {
       for(var d in activities[a].data) {
-        activityLayer.addLayer(L.marker(activities[a].data[d].location, {icon: blueIcon}).addTo(map).bindPopup(activities[a].data[d].name));
+        activityLayer.addLayer(L.marker(activities[a].data[d].location, {icon: blueIcon}).addTo(map).bindPopup(activities[a].data[d].name).on('click', routeTo));
       }
     };
   };
 
   //adds hardcoded example markers to the map
   var addMarkersToMap = function(){
-    locationLayer.addLayer(L.marker([51.670395, -1.914003], {icon: greenIcon}).addTo(map).bindPopup('Lakeside'));
-    locationLayer.addLayer(L.marker([51.665163, -1.909227], {icon: greenIcon}).addTo(map).bindPopup('Bridge'));
-    locationLayer.addLayer(L.marker([51.655372, -1.932596], {icon: greenIcon}).addTo(map).bindPopup('Clayhill'));
-    locationLayer.addLayer(L.marker([51.650716, -1.974765], {icon: greenIcon}).addTo(map).bindPopup('Neigh Bridge Lake'));
+    locationLayer.addLayer(L.marker([51.670395, -1.914003], {icon: greenIcon}).addTo(map).bindPopup('Lakeside').on('click', routeTo));
+    locationLayer.addLayer(L.marker([51.665163, -1.909227], {icon: greenIcon}).addTo(map).bindPopup('Bridge').on('click', routeTo));
+    locationLayer.addLayer(L.marker([51.655372, -1.932596], {icon: greenIcon}).addTo(map).bindPopup('Clayhill').on('click', routeTo));
+    locationLayer.addLayer(L.marker([51.650716, -1.974765], {icon: greenIcon}).addTo(map).bindPopup('Neigh Bridge Lake').on('click', routeTo));
   }
 
+  var addMarker = function(location, icon, name){
+    L.marker(location, {icon: icon}).addTo(map).bindPopup(name).on('click', routeTo);
+  }
 
   //Layer tobble for activities and sites
-  L.control.layers(overlayMaps).addTo(map);
+  L.control.layers("",overlayMaps).addTo(map);
 
   var init = function(){
     //navigator.geolocation.getCurrentPosition(getLoc, onError);
@@ -97,7 +105,7 @@ app.controller('MapCtrl', function($scope, parkDataService){
 
   init();
   console.log("Map initialized");
-  map.on('contextmenu', routeTo);
+  //map.on('contextmenu', routeTo);
   console.log("added event handler");
   addAllActivitiesToMap();
   addMarkersToMap();
@@ -113,9 +121,23 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
     } else {
       $scope.shownGroup = activity;
     }
+    $scope.shownEntry = null;
   };
+
   $scope.isGroupShown = function(activity) {
     return $scope.shownGroup === activity;
+  };
+
+  $scope.toggleEntry = function(entry) {
+    if($scope.isEntryShown(entry)) {
+      $scope.shownEntry = null;
+    } else {
+      $scope.shownEntry = entry;
+    }
+  }
+
+  $scope.isEntryShown = function(entry) {
+    return $scope.shownEntry === entry;
   };
 });
 
