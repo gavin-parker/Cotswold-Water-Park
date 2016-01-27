@@ -4,7 +4,6 @@ app.controller('MapCtrl', function($scope, parkDataService){
 
   var activityLayer = new L.layerGroup();
   var locationLayer = new L.layerGroup();
-//  var combinedLayer = L.Layergroup([activityLayer, locationLayer]);
   var map = new L.Map('map', {
     layers: [activityLayer, locationLayer]
   });
