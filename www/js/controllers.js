@@ -66,10 +66,10 @@ app.controller('MapCtrl', function($scope, parkDataService){
   var addAllActivitiesToMap = function(){
     var  activities = parkDataService.activities();
     for(var a in activities) {
-      for(var d in activities[a].data) {
+      /*for(var d in activities[a].data) {
         //addMarker(activities[a].data[d].location, blueIcon, activities[a].data[d].name)
-        activityLayer.addLayer(L.marker(activities[a].data[d].location, {icon: blueIcon}).addTo(map).bindPopup(activities[a].data[d].name));
-      }
+        //activityLayer.addLayer(L.marker(activities[a].data[d].location, {icon: blueIcon}).addTo(map).bindPopup(activities[a].data[d].name));
+      } */
     };
   };
 
@@ -113,8 +113,13 @@ app.controller('MapCtrl', function($scope, parkDataService){
 });
 //function to control activities tab
 app.controller('ActivitiesCtrl', function($scope, parkDataService){
-  $scope.activities = parkDataService.activities();
+  $scope.activities = [];
+  parkDataService.activities().then(function(result){
+    console.log(result);
+    $scope.activities = result;
+  })
   $scope.num = parkDataService.activities.length;
+  //console.log($scope.activities);
 
   $scope.toggleGroup = function(activity) {
     if ($scope.isGroupShown(activity)) {
