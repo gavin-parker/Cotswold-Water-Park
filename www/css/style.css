@@ -19,7 +19,7 @@ hyper{
   text-decoration: underline;
 }
 
-.float-button {
+.button-fab {
 
 background-color:#ef473a;
 opacity: 1;
@@ -36,21 +36,6 @@ right: 5%; /* Adjust position */
 z-index: 1000;
 }
 
-.float-button .height_fix {
-  margin-top: 100%;
-  border: 1px solid red;
-}
-
-.float-button .content {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  height: 100%;
-  width: 100%;
-  text-align: center;
-  margin-top: -20px;
-  color: white;
-}
 
 /* required styles */
 
