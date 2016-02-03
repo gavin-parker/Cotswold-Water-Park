@@ -68,7 +68,8 @@
               </ion-item>
               <ion-item class="item-accordion" ng-show="isGroupShown(item)">
                 <div class="list">
-                  <div class="item item-icon-left" href="#" ng-bind-html="item.contentSnippet">
+                  <div class="item item-icon-left, item item-text-wrap" href="#">
+                    <pre ng-bind-html="item.contentSnippet"></pre>
 
                   </div>
 
@@ -102,6 +103,11 @@
                 {{activity.Name}}
               </ion-item>
               <ion-item class="item-accordion" ng-show="isGroupShown(activity)">
+
+                <a class="item item-icon-left, item item-text-wrap" href="#">
+                  <i class="icon ion-information-circled"></i>
+                  {{activity.Type}}
+                </a>
                 <ion-list>
                   <div class="list">
                     <div>
@@ -122,6 +128,14 @@
                         <i class="icon ion-information-circled"></i>
                         {{activity.Description}}
                       </a>
+                      <a class= "item item-icon-center" href="#">
+                    <button class="button">
+                    <i class="icon ion-ios-navigate-outline"></i>
+                    Show Location on Map
+                  </button>
+                    <!-- <i class="icon ion-ios-navigate-outline"></i>
+                    {{activity.Location}}  -->
+                  </a>
                     </div>
                   </div>
                 </ion-list>
@@ -164,6 +178,9 @@
                     <i class="icon ion-android-globe"></i>
                     {{event.link}}
                   </a>
+                </div>
+              </div>
+              </ion-list>
 
                 </div>
               </ion-item>
@@ -184,6 +201,14 @@
             Cancel
           </button>
 
+                    <div class="item item-icon-left, item item-text-wrap" href="#">
+                      <pre ng-bind-html="event.contentSnippet"></pre>
+                      <i class="icon ion-ios-telephone"></i>
+                    </div>
+                    <a class="item item-icon-left" href="#">
+                      <i class="icon ion-android-globe"></i>
+                      {{event.link}}
+                    </a>
         </div>
         <strong>
           <a class="content" href="https://cotswoldwaterpark.wordpress.com/sightings-or-comments/">
@@ -192,8 +217,6 @@
         </a>
         </strong>
         <ion-content class="has-subheader">
-
-
           <ion-list>
               <div class="card" href="#" ng-bind-html="bird.contentSnippet" ng-repeat="bird in birds | filter:searchQuery">
             </ion-list>
