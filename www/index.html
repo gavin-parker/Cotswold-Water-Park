@@ -67,7 +67,8 @@
               </ion-item>
               <ion-item class="item-accordion" ng-show="isGroupShown(item)">
                 <div class="list">
-                  <div class="item item-icon-left" href="#" ng-bind-html="item.contentSnippet">
+                  <div class="item item-icon-left, item item-text-wrap" href="#">
+                    <pre ng-bind-html="item.contentSnippet"></pre>
 
                   </div>
 
@@ -103,7 +104,7 @@
               <ion-item class="item-accordion" ng-show="isGroupShown(activity)">
                 <a class="item item-icon-left, item item-text-wrap" href="#">
                   <i class="icon ion-information-circled"></i>
-                  {{activity.info}}
+                  {{activity.Type}}
                 </a>
                 <ion-list>
                 <div class="list">
@@ -124,6 +125,14 @@
                   <a class="item item-icon-left, item item-text-wrap" href="#">
                     <i class="icon ion-information-circled"></i>
                     {{activity.Description}}
+                  </a>
+                  <a class= "item item-icon-center" href="#">
+                    <button class="button">
+                    <i class="icon ion-ios-navigate-outline"></i>
+                    Show Location on Map
+                  </button>
+                    <!-- <i class="icon ion-ios-navigate-outline"></i>                    
+                    {{activity.Location}}  -->
                   </a>
                 </div>
               </div>
@@ -159,8 +168,8 @@
                   <div class="list">
 
 
-                    <div class="item item-icon-left" href="#" ng-bind-html="event.contentSnippet">
-
+                    <div class="item item-icon-left, item item-text-wrap" href="#">
+                      <pre ng-bind-html="event.contentSnippet"></pre>
                       <i class="icon ion-ios-telephone"></i>
                     </div>
                     <a class="item item-icon-left" href="#">

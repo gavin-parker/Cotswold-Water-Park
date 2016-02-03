@@ -92,7 +92,7 @@ app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
     var  markers = markersDataService.markers();
     for(var a in markers) {
       for(var f in markers[a].food) {
-        //foodLayer.addLayer(L.marker(markers[a].food[f].location, {icon: foodIcon}).addTo(map).bindPopup((markers[a].food[f].name)+'</br>'+(markers[a].food[f].info)).on('click', routeTo));
+        foodLayer.addLayer(L.marker(markers[a].food[f].location, {icon: foodIcon}).addTo(map).bindPopup((markers[a].food[f].name)+'</br>'+(markers[a].food[f].info)).on('click', routeTo));
       }
       for (var s in markers[a].sites) {
         locationLayer.addLayer(L.marker(markers[a].sites[s].location, {icon: greenIcon}).addTo(map).bindPopup(markers[a].sites[s].name));
