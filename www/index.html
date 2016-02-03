@@ -5,14 +5,15 @@
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
   <title></title>
   <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <link href="lib/ionic-material/dist/ionic.material.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="css/leaflet-routing-machine.css" />
-
+  <link href='https://fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic' rel='stylesheet' type='text/css'>
 
   <!-- ionic/angularjs js -->
   <script src="lib/ionic/js/ionic.bundle.js"></script>
   <script src="lib/ionic-platform-web-client/dist/ionic.io.bundle.min.js"></script>
-
+<script src="lib/ionic-material/dist/ionic.material.min.js"></script>
   <!-- cordova script (this will be a 404 during development) -->
   <!-- Cordova is bootstrapped by ionic-platform-web-client, uncomment this if you remove ionic-platform-web-client... -->
   <!-- <script src="cordova.js"></script> -->
@@ -32,11 +33,11 @@
 
 </head>
 <body ng-app="starter">
-  <ion-header-bar class="bar-positive">
+  <ion-header-bar class="bar-balanced">
     <h1 class="title">Cotswold Water Park</h1>
   </ion-header-bar>
 
-  <ion-tabs class="tabs-positive">
+  <ion-tabs class="tabs-balanced">
 
     <ion-tab title="Map">
       <ion-nav-view>
@@ -102,6 +103,7 @@
                 {{activity.Name}}
               </ion-item>
               <ion-item class="item-accordion" ng-show="isGroupShown(activity)">
+
                 <a class="item item-icon-left, item item-text-wrap" href="#">
                   <i class="icon ion-information-circled"></i>
                   {{activity.Type}}
@@ -131,8 +133,6 @@
                           <i class="icon ion-ios-navigate-outline"></i>
                           Show Location on Map
                         </button>
-                    <!-- <i class="icon ion-ios-navigate-outline"></i>                    
-                    {{activity.Location}}  -->
                       </a>
                     </div>
                   </div>
@@ -198,28 +198,16 @@
           <button class="button button-clear">
             Cancel
           </button>
-
-                    <div class="item item-icon-left, item item-text-wrap" href="#">
-                      <pre ng-bind-html="event.contentSnippet"></pre>
-                      <i class="icon ion-ios-telephone"></i>
-                    </div>
-                    <a class="item item-icon-left" href="#">
-                      <i class="icon ion-android-globe"></i>
-                      {{event.link}}
-                    </a>
         </div>
-        <div class="float-button">
-          <span class="height-fix">
-            <a class="content" href="https://cotswoldwaterpark.wordpress.com/sightings-or-comments/">
-              <i class="ion-android-add"> </i>
-            </a>
-          </span>
-        </div>
+        <strong>
+          <a class="content" href="https://cotswoldwaterpark.wordpress.com/sightings-or-comments/">
+          <button class="button button-fab button-assertive icon ion-android-add">
+          </button>
+        </a>
+        </strong>
         <ion-content class="has-subheader">
           <ion-list>
-            <div ng-repeat="bird in birds | filter:searchQuery">
-              <div class="item item-icon-left" href="#" ng-bind-html="bird.contentSnippet">
-              </div>
+              <div class="card" href="#" ng-bind-html="bird.contentSnippet" ng-repeat="bird in birds | filter:searchQuery">
             </ion-list>
           </ion-content>
 
