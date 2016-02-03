@@ -66,7 +66,7 @@ app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
     'message: ' + error.message + '\n');
   };
 
-
+//Adds all the activities and food locations to the map from the JSON file
   var addAllActivitiesToMap = function(){
     parkDataService.activities().then(function(result){
       $scope.activities = result;
@@ -74,7 +74,13 @@ app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
       for(var i = 0;i < result.length;i++) {
           console.log(result[i].Name);
           var loc = JSON.parse(result[i].Location);
-          activityLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)).on('click', routeTo));
+          switch(result[i].Type){
+            case "Food":
+            foodLayer.addLayer(L.marker(loc, {icon: foodIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)).on('click', routeTo));
+            break;
+            default:
+            activityLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)).on('click', routeTo));
+          }
       }
     })
 
@@ -86,7 +92,7 @@ app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
     var  markers = markersDataService.markers();
     for(var a in markers) {
       for(var f in markers[a].food) {
-        foodLayer.addLayer(L.marker(markers[a].food[f].location, {icon: foodIcon}).addTo(map).bindPopup((markers[a].food[f].name)+'</br>'+(markers[a].food[f].info)).on('click', routeTo));
+        //foodLayer.addLayer(L.marker(markers[a].food[f].location, {icon: foodIcon}).addTo(map).bindPopup((markers[a].food[f].name)+'</br>'+(markers[a].food[f].info)).on('click', routeTo));
       }
       for (var s in markers[a].sites) {
         locationLayer.addLayer(L.marker(markers[a].sites[s].location, {icon: greenIcon}).addTo(map).bindPopup(markers[a].sites[s].name));
