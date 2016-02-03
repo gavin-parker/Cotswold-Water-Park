@@ -1,4 +1,4 @@
-var app = angular.module('starter', ['ionic'])
+var app = angular.module('starter', ['ionic','ionic-material'])
 
 app.config(['$ionicConfigProvider', function($ionicConfigProvider) {
 

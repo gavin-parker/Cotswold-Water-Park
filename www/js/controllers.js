@@ -77,26 +77,25 @@ app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
       for(var i = 0;i < result.length;i++) {
           console.log(result[i].Name);
           var loc = JSON.parse(result[i].Location);
-          var button = '</br><button class="button">Directions</button>';
           switch(result[i].Type){
             case "Food":
-              foodLayer.addLayer(L.marker(loc, {icon: foodIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', routeTo));
+              foodLayer.addLayer(L.marker(loc, {icon: foodIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)).on('dblclick', routeTo));
               break;
 
             case "Angling":
-              waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', routeTo));
+              waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)).on('dblclick', routeTo));
               break;
 
             case "Boat":
-              waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', routeTo));
+              waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)).on('dblclick', routeTo));
               break;
 
             case "Groups":
-              groupLayer.addLayer(L.marker(loc, {icon: greenIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', routeTo));
+              groupLayer.addLayer(L.marker(loc, {icon: greenIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)).on('dblclick', routeTo));
               break;
 
             default:
-              activityLayer.addLayer(L.marker(loc, {icon: redIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', routeTo));
+              activityLayer.addLayer(L.marker(loc, {icon: redIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)).on('dblclick', routeTo));
           }
       }
     })
@@ -129,13 +128,14 @@ app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
 
 });
 //function to control activities tab
-app.controller('ActivitiesCtrl', function($scope, parkDataService){
+app.controller('ActivitiesCtrl', function($scope, parkDataService,ionicMaterialMotion, ionicMaterialInk){
   $scope.activities = [];
   parkDataService.activities().then(function(result){
     console.log(result);
     $scope.activities = result;
   })
   $scope.num = parkDataService.activities.length;
+  ionicMaterialInk.displayEffect()
   //console.log($scope.activities);
 
   $scope.toggleGroup = function(activity) {
