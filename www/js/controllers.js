@@ -77,25 +77,26 @@ app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
       for(var i = 0;i < result.length;i++) {
           console.log(result[i].Name);
           var loc = JSON.parse(result[i].Location);
+          var button = '</br><button class="button">Directions</button>';
           switch(result[i].Type){
             case "Food":
-              foodLayer.addLayer(L.marker(loc, {icon: foodIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)).on('click', routeTo));
+              foodLayer.addLayer(L.marker(loc, {icon: foodIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', routeTo));
               break;
 
             case "Angling":
-              waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)).on('click', routeTo));
+              waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', routeTo));
               break;
 
             case "Boat":
-              waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)).on('click', routeTo));
-              break;            
+              waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', routeTo));
+              break;
 
             case "Groups":
-              groupLayer.addLayer(L.marker(loc, {icon: greenIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)).on('click', routeTo));
+              groupLayer.addLayer(L.marker(loc, {icon: greenIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', routeTo));
               break;
 
             default:
-              activityLayer.addLayer(L.marker(loc, {icon: redIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)).on('click', routeTo));
+              activityLayer.addLayer(L.marker(loc, {icon: redIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', routeTo));
           }
       }
     })
@@ -125,7 +126,6 @@ app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
   //map.on('contextmenu', routeTo);
   console.log("added event handler");
   addAllActivitiesToMap();
-  addMarkersToMap();
 
 });
 //function to control activities tab
