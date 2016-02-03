@@ -1,6 +1,6 @@
 
 //controller manipulating map
-app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
+app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersDataService){
 
   var activityLayer = new L.layerGroup();
   var waterLayer = new L.layerGroup();
@@ -46,8 +46,9 @@ app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
     L.marker([x,y], {icon: pinPoint}).addTo(map).bindPopup('You Are Here');
   };
 
-  var routeTo = function(e){
+  $rootScope.routeTo = function(e){
     if(control == null){
+    console.log(e);
     control = L.Routing.control({
       waypoints: [
         L.latLng(x, y), //change x,y to user location
@@ -80,23 +81,23 @@ app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
           var button = '</br><button class="button">Directions</button>';
           switch(result[i].Type){
             case "Food":
-              foodLayer.addLayer(L.marker(loc, {icon: foodIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', routeTo));
+              foodLayer.addLayer(L.marker(loc, {icon: foodIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
               break;
 
             case "Angling":
-              waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', routeTo));
+              waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
               break;
 
             case "Boat":
-              waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', routeTo));
+              waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
               break;
 
             case "Groups":
-              groupLayer.addLayer(L.marker(loc, {icon: greenIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', routeTo));
+              groupLayer.addLayer(L.marker(loc, {icon: greenIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
               break;
 
             default:
-              activityLayer.addLayer(L.marker(loc, {icon: redIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', routeTo));
+              activityLayer.addLayer(L.marker(loc, {icon: redIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
           }
       }
     })
@@ -232,4 +233,12 @@ app.controller('NewsCtrl', function($scope, newsService){
     return $scope.shownGroup === activity;
   };
 
+});
+
+app.controller('LocationCtrl', function($scope, $rootScope, $ionicTabsDelegate){
+  $scope.selectTabWithIndexandRouteTo = function(index, coords) {
+    $ionicTabsDelegate.select(index);
+    console.log(coords);
+    /*$scope.routeTo(coords);*/
+  }
 });

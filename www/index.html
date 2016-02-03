@@ -126,14 +126,14 @@
                         <i class="icon ion-information-circled"></i>
                         {{activity.Description}}
                       </a>
-                      <a class= "item item-icon-center" href="#">
-                    <button class="button">
-                    <i class="icon ion-ios-navigate-outline"></i>
-                    Show Location on Map
-                  </button>
+                      <a class= "item item-icon-center" href="#" ng-controller="LocationCtrl">
+                        <button class="button" ng-click="selectTabWithIndexandRouteTo(0, {{activity.Location}})">
+                          <i class="icon ion-ios-navigate-outline"></i>
+                          Show Location on Map
+                        </button>
                     <!-- <i class="icon ion-ios-navigate-outline"></i>                    
                     {{activity.Location}}  -->
-                  </a>
+                      </a>
                     </div>
                   </div>
                 </ion-list>
