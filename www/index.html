@@ -9,24 +9,24 @@
   <link rel="stylesheet" href="css/leaflet-routing-machine.css" />
 
 
-<!-- ionic/angularjs js -->
-<script src="lib/ionic/js/ionic.bundle.js"></script>
-<script src="lib/ionic-platform-web-client/dist/ionic.io.bundle.min.js"></script>
+  <!-- ionic/angularjs js -->
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <script src="lib/ionic-platform-web-client/dist/ionic.io.bundle.min.js"></script>
 
-<!-- cordova script (this will be a 404 during development) -->
-<!-- Cordova is bootstrapped by ionic-platform-web-client, uncomment this if you remove ionic-platform-web-client... -->
-<!-- <script src="cordova.js"></script> -->
+  <!-- cordova script (this will be a 404 during development) -->
+  <!-- Cordova is bootstrapped by ionic-platform-web-client, uncomment this if you remove ionic-platform-web-client... -->
+  <!-- <script src="cordova.js"></script> -->
 
-<!-- your app's js -->
+  <!-- your app's js -->
 
-<script type="text/javascript" src="js/superfeedr.js"></script>
-<script stc="js/datahandler.js"></script>
-<script src="js/app.js"></script>
-<script src="js/factories.js"></script>
-<script src="js/controllers.js"></script>
+  <script type="text/javascript" src="js/superfeedr.js"></script>
+  <script stc="js/datahandler.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/factories.js"></script>
+  <script src="js/controllers.js"></script>
 
-<script src="js/leaflet-src.js"></script>
-<script src="js/leaflet-routing-machine.js"></script>
+  <script src="js/leaflet-src.js"></script>
+  <script src="js/leaflet-routing-machine.js"></script>
 
 
 
@@ -48,7 +48,7 @@
 
     <ion-tab title="News" ng-controller="NewsCtrl">
       <ion-nav-view>
-          <div class="bar bar-subheader item-input-inset has-footer">
+        <div class="bar bar-subheader item-input-inset has-footer">
           <label class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
             <input type="search" placeholder="Search" ng-model="searchQuery">
@@ -61,7 +61,7 @@
           <ion-list>
             <div ng-repeat="item in news | filter:searchQuery">
               <ion-item class="item-stable" ng-click="toggleGroup(item)" ng-class="{active: isGroupShown(item)}">
-                  <i class="icon" ng-class="isGroupShown(item) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
+                <i class="icon" ng-class="isGroupShown(item) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
                 &#xA0;
                 {{item.title}}
               </ion-item>
@@ -106,92 +106,102 @@
                   {{activity.info}}
                 </a>
                 <ion-list>
-                <div class="list">
-                  <div>
+                  <div class="list">
+                    <div>
 
-                  <a class="item item-icon-left" href="#">
-                    <i class="icon ion-ios-telephone"></i>
-                    {{activity.Number}}
-                  </a>
-                  <a class="item item-icon-left" href="#">
-                    <i class="icon ion-email"></i>
-                    {{activity.Email}}
-                  </a>
-                  <a class="item item-icon-left" href="{{activity.url}}">
-                    <i class="icon ion-android-globe"></i>
-                    <hyper>{{activity.URL}}</hyper>
-                  </a>
-                  <a class="item item-icon-left, item item-text-wrap" href="#">
-                    <i class="icon ion-information-circled"></i>
-                    {{activity.Description}}
-                  </a>
-                </div>
-              </div>
-              </ion-list>
+                      <a class="item item-icon-left" href="#">
+                        <i class="icon ion-ios-telephone"></i>
+                        {{activity.Number}}
+                      </a>
+                      <a class="item item-icon-left" href="#">
+                        <i class="icon ion-email"></i>
+                        {{activity.Email}}
+                      </a>
+                      <a class="item item-icon-left" href="{{activity.url}}">
+                        <i class="icon ion-android-globe"></i>
+                        <hyper>{{activity.URL}}</hyper>
+                      </a>
+                      <a class="item item-icon-left, item item-text-wrap" href="#">
+                        <i class="icon ion-information-circled"></i>
+                        {{activity.Description}}
+                      </a>
+                    </div>
+                  </div>
+                </ion-list>
 
               </ion-item>
             </div>
           </ion-list>
         </ion-content>
       </ion-nav-view>
-      </ion-tab>
+    </ion-tab>
 
-      <ion-tab title="Events" ng-controller="EventsCtrl">
-        <ion-nav-view>
-          <div class="bar bar-subheader item-input-inset has-footer">
-            <label class="item-input-wrapper">
-              <i class="icon ion-ios-search placeholder-icon"></i>
-              <input type="search" placeholder="Search" ng-model="searchQuery">
-            </label>
-            <button class="button button-clear">
-              Cancel
-            </button>
-          </div>
-          <ion-content class="has-subheader">
-            <ion-list>
-              <div ng-repeat="event in events | filter:searchQuery">
-                <ion-item class="item-stable" ng-click="toggleGroup(event)" ng-class="{active: isGroupShown(event)}">
-                    <i class="icon" ng-class="isGroupShown(event) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
-                  &#xA0;
-                  {{event.title}}
-                </ion-item>
-                <ion-item class="item-accordion" ng-show="isGroupShown(event)">
-                  <div class="list">
+    <ion-tab title="Events" ng-controller="EventsCtrl">
+      <ion-nav-view>
+        <div class="bar bar-subheader item-input-inset has-footer">
+          <label class="item-input-wrapper">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="search" placeholder="Search" ng-model="searchQuery">
+          </label>
+          <button class="button button-clear">
+            Cancel
+          </button>
+        </div>
+        <ion-content class="has-subheader">
+          <ion-list>
+            <div ng-repeat="event in events | filter:searchQuery">
+              <ion-item class="item-stable" ng-click="toggleGroup(event)" ng-class="{active: isGroupShown(event)}">
+                <i class="icon" ng-class="isGroupShown(event) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
+                &#xA0;
+                {{event.title}}
+              </ion-item>
+              <ion-item class="item-accordion" ng-show="isGroupShown(event)">
+                <div class="list">
 
 
-                    <div class="item item-icon-left" href="#" ng-bind-html="event.contentSnippet">
+                  <div class="item item-icon-left" href="#" ng-bind-html="event.contentSnippet">
 
-                      <i class="icon ion-ios-telephone"></i>
-                    </div>
-                    <a class="item item-icon-left" href="#">
-                      <i class="icon ion-android-globe"></i>
-                      {{event.link}}
-                    </a>
-
+                    <i class="icon ion-ios-telephone"></i>
                   </div>
-                </ion-item>
-              </div>
-            </ion-list>
-          </ion-content>
-        </ion-nav-view>
-      </ion-tab>
+                  <a class="item item-icon-left" href="#">
+                    <i class="icon ion-android-globe"></i>
+                    {{event.link}}
+                  </a>
 
-      <ion-tab title="Birds" ng-controller="BirdsCtrl">
-        <ion-nav-view>
-          <div class="bar bar-subheader item-input-inset has-footer">
-            <label class="item-input-wrapper">
-              <i class="icon ion-ios-search placeholder-icon"></i>
-              <input type="search" placeholder="Search" ng-model="searchQuery">
-            </label>
-            <button class="button button-clear">
-              Cancel
-            </button>
-          </div>
-          <ion-content class="has-subheader">
-            <ion-list>
-              <div ng-repeat="bird in birds | filter:searchQuery">
-                <div class="item item-icon-left" href="#" ng-bind-html="bird.contentSnippet">
                 </div>
+              </ion-item>
+            </div>
+          </ion-list>
+        </ion-content>
+      </ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="Birds" ng-controller="BirdsCtrl">
+      <ion-nav-view>
+        <div class="bar bar-subheader item-input-inset has-footer">
+          <label class="item-input-wrapper">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="search" placeholder="Search" ng-model="searchQuery">
+          </label>
+          <button class="button button-clear">
+            Cancel
+          </button>
+
+        </div>
+        <div class="float-button">
+          <span class="height-fix">
+            <a class="content" href="https://cotswoldwaterpark.wordpress.com/sightings-or-comments/">
+              <i class="ion-android-add"> </i>
+            </a>
+          </span>
+        </div>
+        <ion-content class="has-subheader">
+
+
+          <ion-list>
+            <div ng-repeat="bird in birds | filter:searchQuery">
+              <div class="item item-icon-left" href="#" ng-bind-html="bird.contentSnippet">
+              </div>
             </ion-list>
           </ion-content>
 
