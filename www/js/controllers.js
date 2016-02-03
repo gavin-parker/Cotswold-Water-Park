@@ -3,18 +3,20 @@
 app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
 
   var activityLayer = new L.layerGroup();
-  var locationLayer = new L.layerGroup();
+  var waterLayer = new L.layerGroup();
   var foodLayer = new L.layerGroup();
+  var groupLayer = new L.layerGroup();
 
   var map = new L.Map('map', {
-    layers: [activityLayer, locationLayer, foodLayer]
+    layers: [activityLayer, waterLayer, foodLayer, groupLayer]
   });
 
   //Layer Options
   var overlayMaps = {
-    "Activities": activityLayer,
-    "Sites": locationLayer,
-    "Food": foodLayer
+    "General Activities": activityLayer,
+    "Water Activities": waterLayer,
+    "Food": foodLayer,
+    "Group Activities": groupLayer
   };
 
   var x = 51.65; //Temporary start location, change to user location
@@ -31,6 +33,7 @@ app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
 
   var blueIcon = new markerIcon({iconUrl: 'img/blueMarker.png'});
   var greenIcon = new markerIcon({iconUrl: 'img/greenMarker.png'});
+  var redIcon = new markerIcon({iconUrl: 'img/redMarker.png'});
   var foodIcon = new markerIcon({iconUrl: 'img/restaurant.png'})
   var pinPoint = new markerIcon({iconUrl: 'img/pinpoint.png'});
   var getLoc = function(position) {
@@ -76,31 +79,29 @@ app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
           var loc = JSON.parse(result[i].Location);
           switch(result[i].Type){
             case "Food":
-            foodLayer.addLayer(L.marker(loc, {icon: foodIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)).on('click', routeTo));
-            break;
+              foodLayer.addLayer(L.marker(loc, {icon: foodIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)).on('click', routeTo));
+              break;
+
+            case "Angling":
+              waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)).on('click', routeTo));
+              break;
+
+            case "Boat":
+              waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)).on('click', routeTo));
+              break;            
+
+            case "Groups":
+              groupLayer.addLayer(L.marker(loc, {icon: greenIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)).on('click', routeTo));
+              break;
+
             default:
-            activityLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)).on('click', routeTo));
+              activityLayer.addLayer(L.marker(loc, {icon: redIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)).on('click', routeTo));
           }
       }
     })
 
 
   };
-
-  var addMarkersToMap = function(){
-
-    var  markers = markersDataService.markers();
-    for(var a in markers) {
-      for(var f in markers[a].food) {
-        //foodLayer.addLayer(L.marker(markers[a].food[f].location, {icon: foodIcon}).addTo(map).bindPopup((markers[a].food[f].name)+'</br>'+(markers[a].food[f].info)).on('click', routeTo));
-      }
-      for (var s in markers[a].sites) {
-        locationLayer.addLayer(L.marker(markers[a].sites[s].location, {icon: greenIcon}).addTo(map).bindPopup(markers[a].sites[s].name));
-
-      }
-    }
-  };
-
 
   //Layer tobble for activities and sites
   L.control.layers("",overlayMaps).addTo(map);
