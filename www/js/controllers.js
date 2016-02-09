@@ -152,17 +152,8 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
     return $scope.shownGroup === activity;
   };
 
-  $scope.toggleEntry = function(entry) {
-    if($scope.isEntryShown(entry)) {
-      $scope.shownEntry = null;
-    } else {
-      $scope.shownEntry = entry;
-    }
-  }
-
-  $scope.isEntryShown = function(entry) {
-    return $scope.shownEntry === entry;
-  };
+  $scope.activityOptions = ['All', 'Aerial', 'Angling', 'Beach\n', 'Boat ', 'Groups', 'Horse v', 'Rally', 'Shooting', 'Wilderness', 'Food'];
+  $scope.selectedActivity = "All";
 });
 
 //controls events tab

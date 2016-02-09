@@ -83,6 +83,18 @@
 
     <ion-tab title="Activities" ng-controller="ActivitiesCtrl">
       <ion-nav-view>
+
+        <div class="bar bar-subheader item-input-inset">
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Filter Activities
+            </div>
+            <select ng-model="selectedActivity" ng-options="a for a in activityOptions">
+            </select>
+          </label>
+        </div>
+
+        <!--
         <div class="bar bar-subheader item-input-inset has-footer">
           <label class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
@@ -92,12 +104,12 @@
             Cancel
           </button>
         </div>
-
+        -->
 
         <ion-content class="has-subheader">
           <ion-list>
             <div ng-repeat="activity in activities | filter:searchQuery">
-              <ion-item class="item-stable" ng-click="toggleGroup(activity)" ng-class="{active: isGroupShown(activity)}">
+              <ion-item class="item-stable" ng-click="toggleGroup(activity)" ng-class="{active: isGroupShown(activity)}" ng-show="selectedActivity == 'All' || activity.Type == selectedActivity">
                 <i class="icon" ng-class="isGroupShown(activity) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
                 &#xA0;
                 {{activity.Name}}
