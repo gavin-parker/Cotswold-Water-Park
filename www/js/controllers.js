@@ -110,12 +110,12 @@ app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
   var init = function(){
     //navigator.geolocation.getCurrentPosition(getLoc, onError);
     getLoc();
-    var osmUrl='img/mapTiles/{z}/{x}/{y}.png';
-    var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
-    var osm = new L.TileLayer(osmUrl, {minZoom: 12, maxZoom: 20, attribution: osmAttrib});
-    map.setView(new L.LatLng(x, y), 13);
+    var osmUrl='img/mapTiles/{z}/{x}/{y}.jpg';
+    var osmAttrib='locals';
+    var osm = new L.TileLayer(osmUrl, {minZoom: 12, maxZoom: 16, attribution: osmAttrib});
+    map.setView(new L.LatLng(x, y), 14);
     var bounds = map.getBounds();
-    //map.setMaxBounds(bounds);
+    map.setMaxBounds(bounds);
     map.addLayer(osm);
     //var activities = parkDataService.activities();
   };
