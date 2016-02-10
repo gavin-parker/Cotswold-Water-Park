@@ -6,7 +6,9 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersD
   var waterLayer = new L.layerGroup();
   var foodLayer = new L.layerGroup();
   var groupLayer = new L.layerGroup();
+  var local='img/mapTiles/{z}/{x}/{y}.jpg';
 
+  var offlineLayer = new L.TileLayer(local, {minZoom: 12, maxZoom: 16});
   var map = new L.Map('map', {
     layers: [activityLayer, waterLayer, foodLayer, groupLayer]
   });
@@ -16,7 +18,8 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersD
     "General Activities": activityLayer,
     "Water Activities": waterLayer,
     "Food": foodLayer,
-    "Group Activities": groupLayer
+    "Group Activities": groupLayer,
+    "offline" : offlineLayer
   };
 
   var x = 51.65; //Temporary start location, change to user location
@@ -112,13 +115,16 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersD
   var init = function(){
     //navigator.geolocation.getCurrentPosition(getLoc, onError);
     getLoc();
-    var osmUrl='img/mapTiles/{z}/{x}/{y}.jpg';
+    var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     var osmAttrib='locals';
+    //var offlineLayer = new L.TileLayer(local, {minZoom: 12, maxZoom: 16, attribution: osmAttrib});
     var osm = new L.TileLayer(osmUrl, {minZoom: 12, maxZoom: 16, attribution: osmAttrib});
     map.setView(new L.LatLng(x, y), 14);
     var bounds = map.getBounds();
     map.setMaxBounds(bounds);
+    map.addLayer(offlineLayer);
     map.addLayer(osm);
+
     //var activities = parkDataService.activities();
   };
 
