@@ -66,7 +66,13 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersD
     L.Routing.errorControl(control).addTo(map);
   };
 
+function saveLocations(locs){
+  window.localStorage['locs'] = JSON.stringify(locs);
+}
+function loadLocations(){
+  var locs = JSON.parse(window.localStorage['locs'] || '{}');
 
+}
 
   function onError(error) {
     alert('code: '    + error.code    + '\n' +
@@ -135,6 +141,9 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersD
   addAllActivitiesToMap();
 
 });
+
+
+
 //function to control activities tab
 app.controller('ActivitiesCtrl', function($scope, parkDataService){
   $scope.activities = [];
@@ -153,6 +162,16 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
     }
     $scope.shownEntry = null;
   };
+  $scope.addToFavourites = function(fav){
+    console.log("Adding to favourites");
+    var favs = JSON.parse(window.localStorage['favs'] || '{}');
+    if(Object.keys(favs).length == 0){
+      console.log("no favourites");
+      favs = [];
+    }
+    favs.push(fav);
+    window.localStorage['favs'] = JSON.stringify(favs);
+  }
 
   $scope.isGroupShown = function(activity) {
     return $scope.shownGroup === activity;
@@ -185,6 +204,24 @@ app.controller('EventsCtrl', function($scope, eventService){
   };
 
 });
+
+app.controller('FavsCtrl', function($scope){
+  $scope.favourites = [];
+    $scope.favourites = JSON.parse(window.localStorage['favs'] || {});
+    console.log($scope.favourites);
+  $scope.toggleGroup = function(activity) {
+    if ($scope.isGroupShown(activity)) {
+      $scope.shownGroup = null;
+    } else {
+      $scope.shownGroup = activity;
+    }
+  };
+  $scope.isGroupShown = function(activity) {
+    return $scope.shownGroup === activity;
+  };
+
+});
+
 //controls birds tab
 app.controller('BirdsCtrl', function($scope, birdService){
   function initialize(){
