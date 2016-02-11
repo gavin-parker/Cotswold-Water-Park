@@ -1,4 +1,3 @@
-//var app = angular.module('starter', ['ionic','ionic-material']) // pb is there are 2 apps defined but if not defined here some stuff dont work 
 
 app.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider

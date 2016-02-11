@@ -36,26 +36,23 @@
 
 
 
-   <ion-nav-bar class="bar-balanced" align-title="center">
-      <ion-nav-back-button>
-      </ion-nav-back-button>
-    </ion-nav-bar>
-
+ <ion-nav-bar class="bar-balanced" align-title="center">
+    <ion-nav-buttons side = "left">
+      <a class="button button-icon button-clear ion-navicon" href="#/tab/home"></a> 
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">        
+      <a class="button button-icon button-clear icon ion-map" href="#/tab/map"></a>
+    </ion-nav-buttons>
+  </ion-nav-bar>
   <ion-nav-view></ion-nav-view>
- <!--  <ion-header-bar class="bar-balanced">
-    <h1 class="title">Cotswold Water Park</h1>
-  </ion-header-bar>
- -->
- <!--  <ion-tabs class="tabs-balanced">
- -->
 
   <script id="templates/tabs.html" type="text/ng-template">
-    <ion-tabs class="tabs-icon-top tabs-balanced">
-      <ion-tab title="Home" icon="ion-home" href="#/tab/home">
+    <ion-tabs class="tabs-icon-top tabs-balanced" hide-tabs="true">
+      <ion-tab> <!-- title="Home" icon="ion-home" href="#/tab/home"> -->
         <ion-nav-view name="home-tab"></ion-nav-view>
       </ion-tab>
 
-      <ion-tab title="Map" icon="ion-map" href="#/tab/map">
+      <ion-tab> <!--title="Map" icon="ion-map" href="#/tab/map"> -->
         <ion-nav-view name="map-tab"></ion-nav-view>
       </ion-tab> 
     </ion-tabs>
@@ -84,7 +81,7 @@
   </script>
 
   <script id = "templates/map.html" type="text/ng-template">
-    <ion-view title="Cotswold Water Park">
+    <ion-view title="Cotswold Water Park" hide-tabs='true'>
       <ion-content>
           <div id="map" ng-controller="MapCtrl"></div>
         </ion-content> 
@@ -92,7 +89,7 @@
   </script>
 
   <script id = "templates/favs.html" type="text/ng-template">
-    <ion-view title="Cotswold Water Park">
+    <ion-view title="Cotswold Water Park" align-title="center">
       <div class="bar bar-subheader item-input-inset has-footer">
           <label class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
