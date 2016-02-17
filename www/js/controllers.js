@@ -78,6 +78,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersD
   var waterLayer = new L.layerGroup();
   var foodLayer = new L.layerGroup();
   var groupLayer = new L.layerGroup();
+  var markers = new L.layerGroup();
   var local='img/mapTiles/{z}/{x}/{y}.jpg';
   var offlineLayer = new L.TileLayer(local, {minZoom: 12, maxZoom: 16});
   var map = new L.Map('map', {
@@ -185,8 +186,18 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersD
 
 
   };
-
-  //Layer tobble for activities and sites
+  $rootScope.removeMarkersAndShowActivity = function(e){ // removes all other markers from map and shows activity marker
+    map.removeLayer(foodLayer); 
+    map.removeLayer(waterLayer);
+    map.removeLayer(activityLayer);
+    map.removeLayer(groupLayer);
+    markers.clearLayers();
+    console.log(e.Name);
+    var marker = L.marker(JSON.parse(e.Location), {icon: redIcon}).addTo(map).bindPopup((e.Name)+'</br>'+(e.Description)).on('dblclick', $scope.routeTo);
+    markers.addLayer(marker);
+    map.addLayer(markers);
+  };
+  //Layer toggle for activities and sites
   L.control.layers("",overlayMaps).addTo(map);
 
 
@@ -289,6 +300,12 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
   $scope.isGroupShown = function(activity) {
     return $scope.shownGroup === activity;
   };
+
+  $scope.showOnMap = function(coords) {
+    console.log("Pressed show on map");
+    $scope.removeMarkersAndShowActivity(coords);
+  };
+
   $scope.activityOptions = ['All', 'Aerial', 'Angling', 'Beach\n', 'Boat ', 'Groups', 'Horse v', 'Rally', 'Shooting', 'Wilderness', 'Food'];
   $scope.selectedActivity = "All";
 });
@@ -400,14 +417,6 @@ app.controller('NewsCtrl', function($scope, newsService){
     return $scope.shownGroup === activity;
   };
 
-});
-
-app.controller('LocationCtrl', function($scope, $rootScope, $ionicTabsDelegate){
-  $scope.selectTabWithIndexandRouteTo = function(index, coords) {
-    $ionicTabsDelegate.select(index);
-    console.log(coords);
-    /*$scope.routeTo(coords);*/
-  }
 });
 
 app.directive('hideTabs', function($rootScope) {
