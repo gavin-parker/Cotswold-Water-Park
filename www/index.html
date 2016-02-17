@@ -286,8 +286,11 @@
                           <i class="icon ion-ios-navigate-outline"></i>
                           Show Location on Map
                         </button>
-                        <button class="button button-energized" ng-click="addToFavourites({{activity}})">
+                        <button class="button button-energized"  ng-hide="activity.fav"ng-click="addToFavourites({{activity}})">
                           Add to Favourites
+                        </button>
+                        <button class="button button-assertive" ng-show="activity.fav"  ng-click="removeFromFavourites({{activity}})">
+                          Remove From Favourites
                         </button>
                       </a>
                     </div>
