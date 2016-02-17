@@ -1,20 +1,102 @@
 
+app.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+    .state('tabs', {
+      url: "/tab",
+      abstract: true,
+      templateUrl: "templates/tabs.html"
+    })
+    .state('tabs.map', {
+      url: "/map",
+      views: {
+        'map-tab': {
+          templateUrl: "templates/map.html"
+        }
+      }
+    })
+    .state('tabs.home', {
+      url: "/home",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/home.html",
+          controller: 'HomeTabCtrl'
+        }
+      }
+    })
+    .state('tabs.activities', {
+      url: "/activities",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/activities.html",
+          controller : "ActivitiesCtrl"
+        }
+      }
+    })
+    .state('tabs.events', {
+      url: "/events",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/events.html",
+          controller : 'EventsCtrl'
+        }
+      }
+    })
+    .state('tabs.birds', {
+      url: "/birds",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/birds.html",
+          controller : "BirdsCtrl"
+        }
+      }
+    })
+    .state('tabs.news', {
+      url: "/news",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/news.html",
+          controller : "NewsCtrl"
+        }
+      }
+    })
+    .state('tabs.favs', {
+      url: "/favs",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/favs.html",
+          controller : "FavsCtrl"
+        }
+      }
+    });
+
+   $urlRouterProvider.otherwise("/tab/map");
+})
+
+.controller('HomeTabCtrl', function($scope) {
+  console.log('HomeTabCtrl');
+});
+
 //controller manipulating map
-app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
+app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersDataService){
 
   var activityLayer = new L.layerGroup();
-  var locationLayer = new L.layerGroup();
+  var waterLayer = new L.layerGroup();
   var foodLayer = new L.layerGroup();
+  var groupLayer = new L.layerGroup();
+  var local='img/mapTiles/{z}/{x}/{y}.jpg';
 
+  var offlineLayer = new L.TileLayer(local, {minZoom: 12, maxZoom: 16});
   var map = new L.Map('map', {
-    layers: [activityLayer, locationLayer, foodLayer]
+    layers: [activityLayer, waterLayer, foodLayer, groupLayer]
   });
 
   //Layer Options
   var overlayMaps = {
-    "Activities": activityLayer,
-    "Sites": locationLayer,
-    "Food": foodLayer
+    "General Activities": activityLayer,
+    "Water Activities": waterLayer,
+    "Food": foodLayer,
+    "Group Activities": groupLayer,
+    "offline" : offlineLayer
   };
 
   var x = 51.65; //Temporary start location, change to user location
@@ -31,6 +113,7 @@ app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
 
   var blueIcon = new markerIcon({iconUrl: 'img/blueMarker.png'});
   var greenIcon = new markerIcon({iconUrl: 'img/greenMarker.png'});
+  var redIcon = new markerIcon({iconUrl: 'img/redMarker.png'});
   var foodIcon = new markerIcon({iconUrl: 'img/restaurant.png'})
   var pinPoint = new markerIcon({iconUrl: 'img/pinpoint.png'});
   var getLoc = function(position) {
@@ -43,8 +126,9 @@ app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
     L.marker([x,y], {icon: pinPoint}).addTo(map).bindPopup('You Are Here');
   };
 
-  var routeTo = function(e){
+  $rootScope.routeTo = function(e){
     if(control == null){
+    console.log(e);
     control = L.Routing.control({
       waypoints: [
         L.latLng(x, y), //change x,y to user location
@@ -59,37 +143,53 @@ app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
     L.Routing.errorControl(control).addTo(map);
   };
 
+function saveLocations(locs){
+  window.localStorage['locs'] = JSON.stringify(locs);
+}
+function loadLocations(){
+  var locs = JSON.parse(window.localStorage['locs'] || '{}');
 
+}
 
   function onError(error) {
     alert('code: '    + error.code    + '\n' +
     'message: ' + error.message + '\n');
   };
 
-
+//Adds all the activities and food locations to the map from the JSON file
   var addAllActivitiesToMap = function(){
-    var  activities = parkDataService.activities();
-    for(var a in activities) {
-      for(var d in activities[a].data) {
-        activityLayer.addLayer(L.marker(activities[a].data[d].location, {icon: blueIcon}).addTo(map).bindPopup((activities[a].data[d].name)+'</br>'+(activities[a].data[d].info)).on('click', routeTo));
+    parkDataService.activities().then(function(result){
+      $scope.activities = result;
+      console.log("yay");
+      for(var i = 0;i < result.length;i++) {
+          console.log(result[i].Name);
+          var loc = JSON.parse(result[i].Location);
+          var button = '</br><button class="button">Directions</button>';
+          switch(result[i].Type){
+            case "Food":
+              foodLayer.addLayer(L.marker(loc, {icon: foodIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
+              break;
+
+            case "Angling":
+              waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
+              break;
+
+            case "Boat":
+              waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
+              break;
+
+            case "Groups":
+              groupLayer.addLayer(L.marker(loc, {icon: greenIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
+              break;
+
+            default:
+              activityLayer.addLayer(L.marker(loc, {icon: redIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
+          }
       }
-    }
+    })
+
+
   };
-
-  var addMarkersToMap = function(){
-
-    var  markers = markersDataService.markers();
-    for(var a in markers) {
-      for(var f in markers[a].food) {
-        foodLayer.addLayer(L.marker(markers[a].food[f].location, {icon: foodIcon}).addTo(map).bindPopup((markers[a].food[f].name)+'</br>'+(markers[a].food[f].info)).on('click', routeTo));
-      }
-      for (var s in markers[a].sites) {
-        locationLayer.addLayer(L.marker(markers[a].sites[s].location, {icon: greenIcon}).addTo(map).bindPopup(markers[a].sites[s].name));
-
-      }
-    }
-  };
-
 
   //Layer tobble for activities and sites
   L.control.layers("",overlayMaps).addTo(map);
@@ -99,12 +199,15 @@ app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
     //navigator.geolocation.getCurrentPosition(getLoc, onError);
     getLoc();
     var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-    var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
-    var osm = new L.TileLayer(osmUrl, {minZoom: 12, maxZoom: 20, attribution: osmAttrib});
-    map.setView(new L.LatLng(x, y), 13);
+    var osmAttrib='locals';
+    //var offlineLayer = new L.TileLayer(local, {minZoom: 12, maxZoom: 16, attribution: osmAttrib});
+    var osm = new L.TileLayer(osmUrl, {minZoom: 12, maxZoom: 16, attribution: osmAttrib});
+    map.setView(new L.LatLng(x, y), 14);
     var bounds = map.getBounds();
-    //map.setMaxBounds(bounds);
+    map.setMaxBounds(bounds);
+    map.addLayer(offlineLayer);
     map.addLayer(osm);
+
     //var activities = parkDataService.activities();
   };
 
@@ -113,9 +216,9 @@ app.controller('MapCtrl', function($scope, parkDataService, markersDataService){
   //map.on('contextmenu', routeTo);
   console.log("added event handler");
   addAllActivitiesToMap();
-  addMarkersToMap();
 
 });
+
 //function to control activities tab
 app.controller('ActivitiesCtrl', function($scope, parkDataService){
   $scope.activities = parkDataService.activities();
@@ -129,22 +232,23 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
     }
     $scope.shownEntry = null;
   };
+  $scope.addToFavourites = function(fav){
+    console.log("Adding to favourites");
+    var favs = JSON.parse(window.localStorage['favs'] || '{}');
+    if(Object.keys(favs).length == 0){
+      console.log("no favourites");
+      favs = [];
+    }
+    favs.push(fav);
+    window.localStorage['favs'] = JSON.stringify(favs);
+  }
 
   $scope.isGroupShown = function(activity) {
     return $scope.shownGroup === activity;
   };
 
-  $scope.toggleEntry = function(entry) {
-    if($scope.isEntryShown(entry)) {
-      $scope.shownEntry = null;
-    } else {
-      $scope.shownEntry = entry;
-    }
-  }
-
-  $scope.isEntryShown = function(entry) {
-    return $scope.shownEntry === entry;
-  };
+  $scope.activityOptions = ['All', 'Aerial', 'Angling', 'Beach\n', 'Boat ', 'Groups', 'Horse v', 'Rally', 'Shooting', 'Wilderness', 'Food'];
+  $scope.selectedActivity = "All";
 });
 
 //controls events tab
@@ -170,6 +274,48 @@ app.controller('EventsCtrl', function($scope, eventService){
   };
 
 });
+
+app.controller('FavsCtrl', function($scope){
+  $scope.favourites = [];
+    $scope.favourites = JSON.parse(window.localStorage['favs'] || {});
+    console.log($scope.favourites);
+  $scope.toggleGroup = function(activity) {
+    if ($scope.isGroupShown(activity)) {
+      $scope.shownGroup = null;
+    } else {
+      $scope.shownGroup = activity;
+    }
+  };
+  $scope.isGroupShown = function(activity) {
+    return $scope.shownGroup === activity;
+  };
+
+});
+
+//controls birds tab
+app.controller('BirdsCtrl', function($scope, birdService){
+  function initialize(){
+    birdService.Feed().then(function(result){
+      $scope.birds = result.feed.entries;
+      console.log($scope.birds);
+    });
+  }
+  superfeedr.auth('gp14958','df172f3202b13c654d4777881720c9cd');
+  superfeedr.setOnLoadCallback(initialize);
+
+  $scope.toggleGroup = function(activity) {
+    if ($scope.isGroupShown(activity)) {
+      $scope.shownGroup = null;
+    } else {
+      $scope.shownGroup = activity;
+    }
+  };
+  $scope.isGroupShown = function(activity) {
+    return $scope.shownGroup === activity;
+  };
+
+});
+
 //controls news tab
 app.controller('NewsCtrl', function($scope, newsService){
   function initialize(){
@@ -192,4 +338,12 @@ app.controller('NewsCtrl', function($scope, newsService){
     return $scope.shownGroup === activity;
   };
 
+});
+
+app.controller('LocationCtrl', function($scope, $rootScope, $ionicTabsDelegate){
+  $scope.selectTabWithIndexandRouteTo = function(index, coords) {
+    $ionicTabsDelegate.select(index);
+    console.log(coords);
+    /*$scope.routeTo(coords);*/
+  }
 });

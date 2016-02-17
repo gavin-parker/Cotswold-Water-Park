@@ -5,8 +5,8 @@
     "Number":"01285 770 007\n",
     "Email":"info@head4heights.net\n",
     "URL":"www.head4heights.net",
+    "Location":"[51.661488,-1.9655847]",
     "Description":"Head 4 Heights, the only high ropes activity centre in the Cotswold Water Park, is open to families, individuals and all groups. With many exciting activity packages from as little as 30 minutes up to a full day, this is the perfect place to be Tarzan or Jane of The Jungle!",
-    "FIELD7":"",
     "FIELD8":"",
     "FIELD9":"",
     "FIELD10":"",
@@ -14,7 +14,8 @@
     "FIELD12":"",
     "FIELD13":"",
     "FIELD14":"",
-    "FIELD15":""
+    "FIELD15":"",
+    "FIELD16":""
   },
   {
     "Name":"Lake Pochard\n",
@@ -22,8 +23,8 @@
     "Number":"01793 751 513\n",
     "Email":"contact@lakepochard.co.uk\n",
     "URL":"www.lakepochard.co.uk",
-    "Description":"Fully equipped Scandinavian-style Lodges, all with verandas and views across the 10-acre lake. Available for short or week breaks. Top quality carp fishing and large, airy Waterside Caf� on site.",
-    "FIELD7":"",
+    "Location":"[51.659806,-1.9156237]",
+    "Description":"Fully equipped Scandinavian-style Lodges, all with verandas and views across the 10-acre lake. Available for short or week breaks. Top quality carp fishing and large, airy Waterside Cafe on site.",
     "FIELD8":"",
     "FIELD9":"",
     "FIELD10":"",
@@ -31,7 +32,8 @@
     "FIELD12":"",
     "FIELD13":"",
     "FIELD14":"",
-    "FIELD15":""
+    "FIELD15":"",
+    "FIELD16":""
   },
   {
     "Name":"Tackle Den\n",
@@ -39,8 +41,8 @@
     "Number":"01285 862 716\n",
     "Email":"thetackleden@hotmail.co.uk\n",
     "URL":"www.tackleden.co.uk",
+    "Location":"[51.667791,-1.9087707]",
     "Description":"Now bigger and better! Carp and coarse fishing specialist. The no. 1 tackle shop in the Cotswold Water Park, selling numerous brands of angling equipment and bait",
-    "FIELD7":"",
     "FIELD8":"",
     "FIELD9":"",
     "FIELD10":"",
@@ -48,7 +50,8 @@
     "FIELD12":"",
     "FIELD13":"",
     "FIELD14":"",
-    "FIELD15":""
+    "FIELD15":"",
+    "FIELD16":""
   },
   {
     "Name":"Lechlade & Bushyleaze Trout Fisheries\n",
@@ -56,8 +59,8 @@
     "Number":"01367 253 266\n",
     "Email":"tim@timtrout.co.uk\n",
     "URL":"www.lechladetrout.co.uk",
+    "Location":"[51.708946,-1.6837227]",
     "Description":"Lechlade and Bushyleaze Trout Fisheries - excellent day ticket fly fishing in beautiful Cotswold countryside. Tuition available. Large fishing tackle shop on site. Corporate hospitality available.",
-    "FIELD7":"",
     "FIELD8":"",
     "FIELD9":"",
     "FIELD10":"",
@@ -65,7 +68,8 @@
     "FIELD12":"",
     "FIELD13":"",
     "FIELD14":"",
-    "FIELD15":""
+    "FIELD15":"",
+    "FIELD16":""
   },
   {
     "Name":"South Cerney Angling Club\n",
@@ -73,8 +77,8 @@
     "Number":"01285 861 876 / 07989 973 217\n",
     "Email":"info@scac.org.uk\n",
     "URL":"www.scac.org.uk",
+    "Location":"[51.6638616,-1.9277832]",
     "Description":"With our main waters set in the heart of the Cotswold Water Park, we have waters to suit the match, pleasure and specimen angler.",
-    "FIELD7":"",
     "FIELD8":"",
     "FIELD9":"",
     "FIELD10":"",
@@ -82,7 +86,8 @@
     "FIELD12":"",
     "FIELD13":"",
     "FIELD14":"",
-    "FIELD15":""
+    "FIELD15":"",
+    "FIELD16":""
   },
   {
     "Name":"Cotswold Country Park and Beach\n",
@@ -90,8 +95,8 @@
     "Number":"01285 868 096\n",
     "Email":"info@cotswoldcountrypark.co.uk\n",
     "URL":"www.cotswoldcountrypark.co.uk",
+    "Location":"[51.6613551,-1.9655737]",
     "Description":"Open daily from 10am - 8pm during the summer with the largest inland bathing beach in the UK, lifeguarded during week-ends and school holidays from April.\nAdventure playgrounds, cafes and wonderful lakeside walks. Activities include: WMSki System 2 Cable, open water swimming, peddalo, row boat and kayak hire, stand up paddle boarding, zorbing and crazy golf",
-    "FIELD7":"",
     "FIELD8":"",
     "FIELD9":"",
     "FIELD10":"",
@@ -99,16 +104,17 @@
     "FIELD12":"",
     "FIELD13":"",
     "FIELD14":"",
-    "FIELD15":""
+    "FIELD15":"",
+    "FIELD16":""
   },
   {
-    "Name":"Cotswold Canals Trust Boat Trips\n",
+    "Name":"Cotswold Canals Trust Boat Trips",
     "Type":"Boat ",
     "Number":"07787 485 294\n",
     "Email":"mail@cotswoldcanals.com\n",
     "URL":"www.lechladetripboat.com",
+    "Location":"[51.699013, -1.691792]",
     "Description":"Enjoy the gentle meadering River Thames aboard the beautiful launch \"Inglesham\" departing from Riverside Park. GL7 3AG . All proceeds invested in the restoration of the Cotswold canals.\n",
-    "FIELD7":"",
     "FIELD8":"",
     "FIELD9":"",
     "FIELD10":"",
@@ -116,7 +122,8 @@
     "FIELD12":"",
     "FIELD13":"",
     "FIELD14":"",
-    "FIELD15":""
+    "FIELD15":"",
+    "FIELD16":""
   },
   {
     "Name":"Waterland",
@@ -124,8 +131,8 @@
     "Number":"01285 861 202\n",
     "Email":"admin@ukwatersports.co.uk\n",
     "URL":"www.ukwatersports.co.uk",
+    "Location":"[51.656930, -1.961713]",
     "Description":"Waterland Outdoor Pursuits provides activities to companies, schools & Youth Organisations.\nYou can participate in Windsurfing, Archery, Raftbuilding, Low Ropes, Sailing, Kayaking, Orienteering, Problem Solving and Canoeing",
-    "FIELD7":"",
     "FIELD8":"",
     "FIELD9":"",
     "FIELD10":"",
@@ -133,7 +140,8 @@
     "FIELD12":"",
     "FIELD13":"",
     "FIELD14":"",
-    "FIELD15":""
+    "FIELD15":"",
+    "FIELD16":""
   },
   {
     "Name":"Cotswold Country Park and Beach\n",
@@ -141,8 +149,8 @@
     "Number":"01285 868 096\n",
     "Email":"info@cotswoldcountrypark.co.uk\n",
     "URL":"www.cotswoldcountrypark.co.uk",
+    "Location":"[51.6613551,-1.9655737]",
     "Description":"Open daily from 10am - 8pm during the summer with the largest inland bathing beach in the UK, lifeguarded during week-ends and school holidays from April.\nAdventure playgrounds, cafes and wonderful lakeside walks. Activities include: WMSki System 2 Cable, open water swimming, peddalo, row boat and kayak hire, stand up paddle boarding, zorbing and crazy golf",
-    "FIELD7":"",
     "FIELD8":"",
     "FIELD9":"",
     "FIELD10":"",
@@ -150,7 +158,8 @@
     "FIELD12":"",
     "FIELD13":"",
     "FIELD14":"",
-    "FIELD15":""
+    "FIELD15":"",
+    "FIELD16":""
   },
   {
     "Name":"South Cerney Outdoor\n",
@@ -158,8 +167,8 @@
     "Number":"01285 860 388\n",
     "Email":"southcerneyoutdoor@prospects.co.uk\n",
     "URL":"",
+    "Location":"[51.670446, -1.905419]",
     "Description":"South Cerney Outdoor Centre offers great facilities and activities for all the community to enjoy. New! Pay and Play ( with one off safety induction) available\n",
-    "FIELD7":"",
     "FIELD8":"",
     "FIELD9":"",
     "FIELD10":"",
@@ -167,7 +176,8 @@
     "FIELD12":"",
     "FIELD13":"",
     "FIELD14":"",
-    "FIELD15":""
+    "FIELD15":"",
+    "FIELD16":""
   },
   {
     "Name":"CWP Hire\n",
@@ -175,8 +185,8 @@
     "Number":"01285 860 086\n",
     "Email":"communicate@cwptb.com\n",
     "URL":"",
+    "Location":"[51.673011, -1.895304]",
     "Description":"Based in the Cotswold Water Park, a sought after holiday destination, just a minutes walk from the Four Pillars Hotel and Spa and easily accessible from both the M4 and M5 we can cater for all of your corporate event and team building needs.\n",
-    "FIELD7":"",
     "FIELD8":"",
     "FIELD9":"",
     "FIELD10":"",
@@ -184,7 +194,8 @@
     "FIELD12":"",
     "FIELD13":"",
     "FIELD14":"",
-    "FIELD15":""
+    "FIELD15":"",
+    "FIELD16":""
   },
   {
     "Name":"Lakeside",
@@ -192,8 +203,8 @@
     "Number":"01285 860 606 or 01285 862 894\n",
     "Email":"info@lakeside-bar.co.uk\n",
     "URL":"",
+    "Location":"[51.668030, -1.911299]",
     "Description":"Lakeside is a unique venue in a unique location. It can be found on the Watermark Club complex, overlooking Spring Lake, just outside the village of South Cerney. Lakeside has one of the best water sports facilities in the country, Lakeside Ski and Wake, a vibrant family friendly sports bar and restaurant, the Lakeside Brasserie, plus a gymnasium.\n",
-    "FIELD7":"",
     "FIELD8":"",
     "FIELD9":"",
     "FIELD10":"",
@@ -201,7 +212,8 @@
     "FIELD12":"",
     "FIELD13":"",
     "FIELD14":"",
-    "FIELD15":""
+    "FIELD15":"",
+    "FIELD16":""
   },
   {
     "Name":"Cotswold Water Park Four Pillars Hotel\n",
@@ -209,8 +221,8 @@
     "Number":"01285 864 000\n",
     "Email":"waterpark.reservations@four-pillars.co.uk\n",
     "URL":"",
+    "Location":"[51.670048, -1.900220]",
     "Description":"The Cotswold Water Park Four Pillars Hotel blends contemporary design with nature, capturing the scenic landscape through expanses of glass. The surroundings have also provided inspiration for the interior styling, incorporating natural elements.\n",
-    "FIELD7":"",
     "FIELD8":"",
     "FIELD9":"",
     "FIELD10":"",
@@ -218,16 +230,17 @@
     "FIELD12":"",
     "FIELD13":"",
     "FIELD14":"",
-    "FIELD15":""
+    "FIELD15":"",
+    "FIELD16":""
   },
   {
-    "Name":"Gloucestershire Rally School\n",
+    "Name":"Gloucestershire Rally School",
     "Type":"Groups",
     "Number":"01793 752 281\n",
     "Email":"info@glosrallyschool.co.uk\n",
     "URL":"",
+    "Location":"[51.669799, -1.885716]",
     "Description":"Gloucestershire Rally School offers drivers aged just 10 years old and above the opportunity to experience the demanding, exciting sport of rally driving. Our purpose built 100% gravel track and rally-prepped cars enable us to give you a truly memorable day out that make ideal birthday or Christmas gifts, or the ultimate group event for corporate days or stag and hen parties.\n",
-    "FIELD7":"",
     "FIELD8":"",
     "FIELD9":"",
     "FIELD10":"",
@@ -235,7 +248,8 @@
     "FIELD12":"",
     "FIELD13":"",
     "FIELD14":"",
-    "FIELD15":""
+    "FIELD15":"",
+    "FIELD16":""
   },
   {
     "Name":"Head 4 Heights Ltd\n",
@@ -243,8 +257,8 @@
     "Number":"01285 770 007\n",
     "Email":"info@head4heights.net\n",
     "URL":"www.head4heights.net",
+    "Location":"[51.661488,-1.9655847]",
     "Description":"Head 4 Heights, the only high ropes activity centre in the Cotswold Water Park, is open to families, individuals and all groups. With many exciting activity packages from as little as 30 minutes up to a full day, this is the perfect place to be Tarzan or Jane of The Jungle!",
-    "FIELD7":"",
     "FIELD8":"",
     "FIELD9":"",
     "FIELD10":"",
@@ -252,7 +266,8 @@
     "FIELD12":"",
     "FIELD13":"",
     "FIELD14":"",
-    "FIELD15":""
+    "FIELD15":"",
+    "FIELD16":""
   },
   {
     "Name":"Rein and Shine\n",
@@ -260,8 +275,8 @@
     "Number":"01666 860 068\n",
     "Email":"info@reinandshine.co.uk\n",
     "URL":"www.reinandshine.co.uk",
+    "Location":"[51.603798, -1.920503]",
     "Description":"Superb facilities, wide range of ponies and horses, with highly qualified riding instructors. For inexperienced and experienced riders, all ages from 4 upwards. Private and group lessons.\n",
-    "FIELD7":"",
     "FIELD8":"",
     "FIELD9":"",
     "FIELD10":"",
@@ -269,7 +284,8 @@
     "FIELD12":"",
     "FIELD13":"",
     "FIELD14":"",
-    "FIELD15":""
+    "FIELD15":"",
+    "FIELD16":""
   },
   {
     "Name":"Gloucestershire Rally School\n",
@@ -277,8 +293,8 @@
     "Number":"01793 752 281\n",
     "Email":"info@glosrallyschool.co.uk\n",
     "URL":"",
+    "Location":"[51.669799, -1.885716]",
     "Description":"Gloucestershire Rally School offers drivers aged just 10 years old and above the opportunity to experience the demanding, exciting sport of rally driving. Our purpose built 100% gravel track and rally-prepped cars enable us to give you a truly memorable day out that make ideal birthday or Christmas gifts, or the ultimate group event for corporate days or stag and hen parties.\n",
-    "FIELD7":"",
     "FIELD8":"",
     "FIELD9":"",
     "FIELD10":"",
@@ -286,7 +302,8 @@
     "FIELD12":"",
     "FIELD13":"",
     "FIELD14":"",
-    "FIELD15":""
+    "FIELD15":"",
+    "FIELD16":""
   },
   {
     "Name":"Old Downs Pursuits\n",
@@ -294,8 +311,8 @@
     "Number":"07597 093 708\n",
     "Email":"olddownspursuits@live.co.uk\n",
     "URL":"www.old-downs-pursuits.co.uk",
+    "Location":"[51.677957, -1.895378]",
     "Description":"Clay target and air rifle shooting are popular country sports. No previous experience is necessary, so why not try something new today, or brush up on your skills.\n",
-    "FIELD7":"",
     "FIELD8":"",
     "FIELD9":"",
     "FIELD10":"",
@@ -303,7 +320,8 @@
     "FIELD12":"",
     "FIELD13":"",
     "FIELD14":"",
-    "FIELD15":""
+    "FIELD15":"",
+    "FIELD16":""
   },
   {
     "Name":"Cotswold Forest School\n",
@@ -311,8 +329,8 @@
     "Number":"07738 708 880\n",
     "Email":"enquiries@.cotswoldforestschool.co.uk\n",
     "URL":"www.cotswoldforestschool.co.uk",
+    "Location":"[51.655864, -1.927703]",
     "Description":"Get back to basics and learn to embrace the outdoors through various hand on survival techniques, such as bushcraft, fire lighting, shelter building and more! The programme is educational, inspirational and designed to increase nature awareness for all ages\n",
-    "FIELD7":"",
     "FIELD8":"",
     "FIELD9":"",
     "FIELD10":"",
@@ -320,16 +338,17 @@
     "FIELD12":"",
     "FIELD13":"",
     "FIELD14":"",
-    "FIELD15":""
+    "FIELD15":"",
+    "FIELD16":""
   },
   {
-    "Name":"",
-    "Type":"",
-    "Number":"",
-    "Email":"",
-    "URL":"",
-    "Description":"",
-    "FIELD7":"",
+    "Name":"The White Hart\n",
+    "Type":"Food",
+    "Number":"01285 861 247\n",
+    "Email":"enquiries@whitehartak.com\n",
+    "URL":"www.whitehartak.com",
+    "Location":"[51.6438034,-1.9370136]",
+    "Description":"A real village pub, run by locals who love their beautiful village and offer a warm welcome to all, from local club meetings over a convivial pint to lunches for cyclists and campers or Thames Path walkers just passing through\n",
     "FIELD8":"",
     "FIELD9":"",
     "FIELD10":"",
@@ -337,16 +356,17 @@
     "FIELD12":"",
     "FIELD13":"",
     "FIELD14":"",
-    "FIELD15":""
+    "FIELD15":"",
+    "FIELD16":""
   },
   {
-    "Name":"",
-    "Type":"",
-    "Number":"",
-    "Email":"",
-    "URL":"",
-    "Description":"",
-    "FIELD7":"",
+    "Name":"Old Boathouse Pub\n",
+    "Type":"Food",
+    "Number":"01285 864 111\n",
+    "Email":"oldboathouse@four-pillars.co.uk\n",
+    "URL":"www.oldboathousepub.co.uk",
+    "Location":"[51.6719228,-1.9008366]",
+    "Description":"The Old Boathouse is a �real� Cotswolds pub. where you can enjoy a drink and a bite to eat in a relaxed setting. In fact, we� are one of the few pubs in the area that serve food all day\n",
     "FIELD8":"",
     "FIELD9":"",
     "FIELD10":"",
@@ -354,16 +374,17 @@
     "FIELD12":"",
     "FIELD13":"",
     "FIELD14":"",
-    "FIELD15":""
+    "FIELD15":"",
+    "FIELD16":""
   },
   {
-    "Name":"",
-    "Type":"",
-    "Number":"",
-    "Email":"",
-    "URL":"",
-    "Description":"",
-    "FIELD7":"",
+    "Name":"The Wild Duck Inn",
+    "Type":"Food",
+    "Number":"01285 770 310\n",
+    "Email":"duckreservations@aol.com\n",
+    "URL":"www.thewildduckinn.co.uk",
+    "Location":"[51.661488,-1.9655847]",
+    "Description":"The Wild Duck is a mellow Cotswold stone inn dating back to 1568 steeped in history with oak beams, ancestral portraits and open log fires. An extensive wine list and real ales compliment the fresh local produce used in the innovative menu.\n",
     "FIELD8":"",
     "FIELD9":"",
     "FIELD10":"",
@@ -371,16 +392,17 @@
     "FIELD12":"",
     "FIELD13":"",
     "FIELD14":"",
-    "FIELD15":""
+    "FIELD15":"",
+    "FIELD16":""
   },
   {
-    "Name":"",
-    "Type":"",
-    "Number":"",
-    "Email":"",
-    "URL":"",
-    "Description":"",
-    "FIELD7":"",
+    "Name":"Masons Arms",
+    "Type":"Food",
+    "Number":"01285 850 164\n",
+    "Email":"masonsatmeysey@gmail.com\n",
+    "URL":"www.masonsarmsmeyseyhampton.com",
+    "Location":"[51.696835, -1.828400]",
+    "Description":"A popular Cotswolds village pub conveniently located in the central Water Park, between Fairford and South Cerney. Accommodation comprises of eight bedrooms with en-suite facilities. Morning teas & coffees from 8.30am weekdays, with pub lunches and dinners daily, including Sunday roasts. Situated on the Village Green, you can park your bikes and relax with a drink, also enjoy one of the pub�s picnics in the summer.\n",
     "FIELD8":"",
     "FIELD9":"",
     "FIELD10":"",
@@ -388,6 +410,133 @@
     "FIELD12":"",
     "FIELD13":"",
     "FIELD14":"",
-    "FIELD15":""
+    "FIELD15":"",
+    "FIELD16":""
+  },
+  {
+    "Name":"Royal Oak South Cerney",
+    "Type":"Food",
+    "Number":"01285 860 900\n",
+    "Email":"",
+    "URL":"www.royaloakatsouthcerney.co.uk",
+    "Location":"[51.6858004,-1.9093466]",
+    "Description":"The Royal Oak is a 300 year old pub situated in South Cerney, offering fantastic food and drinks. Please see our website for more details.",
+    "FIELD8":"",
+    "FIELD9":"",
+    "FIELD10":"",
+    "FIELD11":"",
+    "FIELD12":"",
+    "FIELD13":"",
+    "FIELD14":"",
+    "FIELD15":"",
+    "FIELD16":""
+  },
+  {
+    "Name":"Cafe at the Gateway Centre",
+    "Type":"Food",
+    "Number":"01285 862 627\n",
+    "Email":"",
+    "URL":"",
+    "Location":"[51.672082, -1.897242]",
+    "Description":"Discover the delights of the cafe at the stunning Gateway Centre - offering fresh local dishes, mouth watering cakes and excellent coffee seven days a week..all with a wonderful lakeside setting, easy access and free parking\n",
+    "FIELD8":"",
+    "FIELD9":"",
+    "FIELD10":"",
+    "FIELD11":"",
+    "FIELD12":"",
+    "FIELD13":"",
+    "FIELD14":"",
+    "FIELD15":"",
+    "FIELD16":""
+  },
+  {
+    "Name":"Lakeside",
+    "Type":"Food",
+    "Number":"01285 860 606 or 01285 862 894\n",
+    "Email":"info@lakeside-bar.co.uk\n",
+    "URL":"www.lakeside-bar.co.uk",
+    "Location":"[51.668030, -1.911299]",
+    "Description":"Lakeside is a unique venue in a unique location. It can be found on the Watermark Club complex, overlooking Spring Lake, just outside the village of South Cerney. Lakeside has one of the best water sports facilities in the country, Lakeside Ski and Wake, a vibrant family friendly sports bar and restaurant, the Lakeside Brasserie, plus a gymnasium.\n",
+    "FIELD8":"",
+    "FIELD9":"",
+    "FIELD10":"",
+    "FIELD11":"",
+    "FIELD12":"",
+    "FIELD13":"",
+    "FIELD14":"",
+    "FIELD15":"",
+    "FIELD16":""
+  },
+  {
+    "Name":"Cotswold Water Park Four Pillars Hotel",
+    "Type":"Food",
+    "Number":"01285 864 000\n",
+    "Email":"waterpark.reservations@four-pillars.co.uk\n",
+    "URL":"www.cotswoldwaterparkhotel.co.uk",
+    "Location":"[51.670048, -1.900220]",
+    "Description":"The Cotswold Water Park Four Pillars Hotel blends contemporary design with nature, capturing the scenic landscape through expanses of glass. The surroundings have also provided inspiration for the interior styling, incorporating natural elements.\n",
+    "FIELD8":"",
+    "FIELD9":"",
+    "FIELD10":"",
+    "FIELD11":"",
+    "FIELD12":"",
+    "FIELD13":"",
+    "FIELD14":"",
+    "FIELD15":"",
+    "FIELD16":""
+  },
+  {
+    "Name":"Cotswold Country Park and Beach",
+    "Type":"Food",
+    "Number":"01285 868 096\n",
+    "Email":"info@cotswoldcountrypark.co.uk\n",
+    "URL":"www.cotswoldcountrypark.co.uk",
+    "Location":"[51.661355, -1.963385]",
+    "Description":"Open daily from 10am - 8pm during the summer with the largest inland bathing beach in the UK, lifeguarded during week-ends and school holidays from April.\nAdventure playgrounds, cafes and wonderful lakeside walks. Activities include: WMSki System 2 Cable, open water swimming, peddalo, row boat and kayak hire, stand up paddle boarding, zorbing and crazy golf\n",
+    "FIELD8":"",
+    "FIELD9":"",
+    "FIELD10":"",
+    "FIELD11":"",
+    "FIELD12":"",
+    "FIELD13":"",
+    "FIELD14":"",
+    "FIELD15":"",
+    "FIELD16":""
+  },
+  {
+    "Name":"Lake Pochard",
+    "Type":"Food",
+    "Number":"01793 751 513\n",
+    "Email":"contact@lakepochard.co.uk\n",
+    "URL":"www.lakepochard.co.uk",
+    "Location":"[51.659613, -1.913403]",
+    "Description":"Fully equipped Scandinavian-style Lodges, all with verandas and views across the 10-acre lake. Available for short or week breaks. Top quality carp fishing and large, airy Waterside Caf� on site.\n",
+    "FIELD8":"",
+    "FIELD9":"",
+    "FIELD10":"",
+    "FIELD11":"",
+    "FIELD12":"",
+    "FIELD13":"",
+    "FIELD14":"",
+    "FIELD15":"",
+    "FIELD16":""
+  },
+  {
+    "Name":"South Cerney Fish & Chips\n",
+    "Type":"Food",
+    "Number":"01285 861 007\n",
+    "Email":"info@southcerneyfishandchips.co.uk\n",
+    "URL":"http://southcerneyfishandchips.co.uk/",
+    "Location":"[51.673476, -1.930900]",
+    "Description":"South Cerney Fish and Chips offers an extensive menu, with freshly cooked take away meals.\nTelephone orders welcome.\nClosed Monday",
+    "FIELD8":"",
+    "FIELD9":"",
+    "FIELD10":"",
+    "FIELD11":"",
+    "FIELD12":"",
+    "FIELD13":"",
+    "FIELD14":"",
+    "FIELD15":"",
+    "FIELD16":""
   }
 ]

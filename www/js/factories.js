@@ -1,6 +1,9 @@
 
 //service to get hardcoded activity data
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2c8b0dd832f8ec663adc89f1bdda988f5c409217
 app.factory('parkDataService', function($http, $q){
 
   return {
@@ -19,6 +22,7 @@ app.factory('parkDataService', function($http, $q){
 
 //service for markers
 app.factory('markersDataService', function(){
+<<<<<<< HEAD
   var markers =
   [
     {
@@ -87,6 +91,9 @@ app.factory('markersDataService', function(){
       ]
     }
   ]
+=======
+  var markers
+>>>>>>> 2c8b0dd832f8ec663adc89f1bdda988f5c409217
 
     return {
     markers : function(){
@@ -111,6 +118,29 @@ app.factory('eventService', function($q){
         if(!result.error){
           events = result;
           console.log(events.feed);
+          defer.resolve(result);
+        }else{
+          console.log(result);
+          console.log("feed error");
+        };
+      });
+
+      return defer.promise;
+    }
+  }
+
+});
+//gets live bird data via RSS feed (superfeedr API)
+app.factory('birdService', function($q){
+  return{
+    Feed : function(){
+      var feed =  new superfeedr.Feed("https://cotswoldwaterpark.wordpress.com/feed/");
+      var birds;
+      var defer = $q.defer();
+      feed.load(function(result){
+        if(!result.error){
+          birds = result;
+          console.log(birds.feed);
           defer.resolve(result);
         }else{
           console.log(result);
