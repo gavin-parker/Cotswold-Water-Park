@@ -11,7 +11,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: "/map",
     views: {
       'map-tab': {
-        templateUrl: "templates/map.html", 
+        templateUrl: "templates/map.html",
         controller : "MapCtrl"
       }
     }
@@ -365,6 +365,7 @@ app.controller('BirdsCtrl', function($scope, birdService){
     birdService.Import().then(function(result){
       $scope.birds = result;
       console.log($scope.birds);
+      //console.log($scope.birds[0]["postedon_link/_text"]);
     });
   }
   superfeedr.auth('gp14958','df172f3202b13c654d4777881720c9cd');

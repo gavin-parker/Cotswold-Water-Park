@@ -108,7 +108,7 @@
     <ion-view title="Cotswold Water Park" hide-tabs="true">
       <ion-content>
           <div id="map" data-tap-disabled="true"></div>
-        </ion-content> 
+        </ion-content>
     </ion-view>
   </script>
 
@@ -352,12 +352,15 @@
         <ion-content class="has-subheader">
           <ion-list>
             <div class="card" href="#" ng-repeat="bird in birds | filter:searchQuery">
-            <img  class="card-img" src="{{bird.entrycontent_image}}"/>
-            {{bird.entry_content}}
-
+            <div class="item item-avatar">
+              <img src="img/twitter-bird.svg" />
+              <h2>BIRD SIGHTING</h2>
+              <p>{{bird["postedon_link/_text"]}} </p>
             </div>
+            <img  class="card-img" src="{{bird.entrycontent_image}}"/>
+            <p ng-bind-html="bird.entry_content">
 
-          </ion-list>
+            </p>
         </ion-content>
     </ion-view>
   </script>
