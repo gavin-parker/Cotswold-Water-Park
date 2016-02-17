@@ -1,32 +1,26 @@
-
 app.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
-    .state('tabs', {
-      url: "/tab",
-      abstract: true,
-      templateUrl: "templates/tabs.html"
-    })
-    .state('tabs.map', {
-      url: "/map",
-      views: {
-        'map-tab': {
-          templateUrl: "templates/map.html"
-        }
+
+  .state('tabs', {
+    url: "/tab",
+    abstract: true,
+    templateUrl: "templates/menu.html",
+  //  controller: 'AppCtrl'
+  })
+
+  .state('tabs.map', {
+    url: "/map",
+    views: {
+      'map-tab': {
+        templateUrl: "templates/map.html"
       }
-    })
-    .state('tabs.home', {
-      url: "/home",
-      views: {
-        'home-tab': {
-          templateUrl: "templates/home.html",
-          controller: 'HomeTabCtrl'
-        }
-      }
-    })
-    .state('tabs.activities', {
+    }
+  })
+
+  .state('tabs.activities', {
       url: "/activities",
       views: {
-        'home-tab': {
+        'activities-tab': {
           templateUrl: "templates/activities.html", 
           controller : "ActivitiesCtrl"
         }
@@ -35,7 +29,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('tabs.events', {
       url: "/events",
       views: {
-        'home-tab': {
+        'events-tab': {
           templateUrl: "templates/events.html", 
           controller : 'EventsCtrl'
         }
@@ -44,7 +38,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('tabs.birds', {
       url: "/birds",
       views: {
-        'home-tab': {
+        'birds-tab': {
           templateUrl: "templates/birds.html", 
           controller : "BirdsCtrl"
         }
@@ -53,7 +47,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('tabs.news', {
       url: "/news",
       views: {
-        'home-tab': {
+        'news-tab': {
           templateUrl: "templates/news.html", 
           controller : "NewsCtrl"
         }
@@ -62,18 +56,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('tabs.favs', {
       url: "/favs",
       views: {
-        'home-tab': {
+        'favs-tab': {
           templateUrl: "templates/favs.html", 
           controller : "FavsCtrl"
         }
       }
     });
-
-   $urlRouterProvider.otherwise("/tab/map");
-})
-
-.controller('HomeTabCtrl', function($scope) {
-  console.log('HomeTabCtrl');
+  $urlRouterProvider.otherwise('/tab/map');
 });
 
 //controller manipulating map
