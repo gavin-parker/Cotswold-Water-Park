@@ -38,9 +38,9 @@
 
  <ion-nav-bar class="bar-balanced" align-title="center">
     <ion-nav-buttons side = "left">
-      <a class="button button-icon button-clear ion-navicon" href="#/tab/home"></a> 
+      <a class="button button-icon button-clear ion-navicon" href="#/tab/home"></a>
     </ion-nav-buttons>
-    <ion-nav-buttons side="right">        
+    <ion-nav-buttons side="right">
       <a class="button button-icon button-clear icon ion-map" href="#/tab/map"></a>
     </ion-nav-buttons>
   </ion-nav-bar>
@@ -54,7 +54,7 @@
 
       <ion-tab> <!--title="Map" icon="ion-map" href="#/tab/map"> -->
         <ion-nav-view name="map-tab"></ion-nav-view>
-      </ion-tab> 
+      </ion-tab>
     </ion-tabs>
   </script>
 
@@ -86,7 +86,7 @@
           </div>
 
         </ion-list>
-      </ion-content> 
+      </ion-content>
     </ion-view>
   </script>
 
@@ -94,7 +94,7 @@
     <ion-view title="Cotswold Water Park" hide-tabs='true'>
       <ion-content>
           <div id="map" ng-controller="MapCtrl"></div>
-        </ion-content> 
+        </ion-content>
     </ion-view>
   </script>
 
@@ -148,7 +148,7 @@
                           <i class="icon ion-ios-navigate-outline"></i>
                           Show Location on Map
                         </button>
-                        <button class="button button-energized", ng-click="addToFavourites({{activity}})">Add to Favourites</button>
+                        <button class="button button-assertive" ng-click="removeFromFavourites({{activity}})">Remove From Favourites</button>
                       </a>
                     </div>
                   </div>
@@ -157,7 +157,7 @@
               </ion-item>
             </div>
           </ion-list>
-        </ion-content> 
+        </ion-content>
     </ion-view>
   </script>
 
@@ -267,6 +267,9 @@
                           <i class="icon ion-ios-navigate-outline"></i>
                           Show Location on Map
                         </button>
+                        <button class="button button-energized" ng-click="addToFavourites({{activity}})">
+                          Add to Favourites
+                        </button>
                       </a>
                     </div>
                   </div>
@@ -308,7 +311,7 @@
               </ion-item>
             </div>
           </ion-list>
-        </ion-content>> 
+        </ion-content>>
     </ion-view>
   </script>
 
@@ -333,7 +336,7 @@
           <ion-list>
             <div class="card" href="#" ng-bind-html="bird.contentSnippet" ng-repeat="bird in birds | filter:searchQuery">
           </ion-list>
-        </ion-content> 
+        </ion-content>
     </ion-view>
   </script>
 

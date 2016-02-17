@@ -27,7 +27,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: "/activities",
       views: {
         'home-tab': {
-          templateUrl: "templates/activities.html", 
+          templateUrl: "templates/activities.html",
           controller : "ActivitiesCtrl"
         }
       }
@@ -36,7 +36,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: "/events",
       views: {
         'home-tab': {
-          templateUrl: "templates/events.html", 
+          templateUrl: "templates/events.html",
           controller : 'EventsCtrl'
         }
       }
@@ -45,7 +45,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: "/birds",
       views: {
         'home-tab': {
-          templateUrl: "templates/birds.html", 
+          templateUrl: "templates/birds.html",
           controller : "BirdsCtrl"
         }
       }
@@ -54,7 +54,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: "/news",
       views: {
         'home-tab': {
-          templateUrl: "templates/news.html", 
+          templateUrl: "templates/news.html",
           controller : "NewsCtrl"
         }
       }
@@ -63,7 +63,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: "/favs",
       views: {
         'home-tab': {
-          templateUrl: "templates/favs.html", 
+          templateUrl: "templates/favs.html",
           controller : "FavsCtrl"
         }
       }
@@ -78,13 +78,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 //controller manipulating map
 app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersDataService){
-
+  //Initialize new layers and map
   var activityLayer = new L.layerGroup();
   var waterLayer = new L.layerGroup();
   var foodLayer = new L.layerGroup();
   var groupLayer = new L.layerGroup();
   var local='img/mapTiles/{z}/{x}/{y}.jpg';
-
   var offlineLayer = new L.TileLayer(local, {minZoom: 12, maxZoom: 16});
   var map = new L.Map('map', {
     layers: [activityLayer, waterLayer, foodLayer, groupLayer]
@@ -225,7 +224,7 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
   parkDataService.activities().then(function(result){
     console.log(result);
     $scope.activities = result;
-  })
+  });
   $scope.num = parkDataService.activities.length;
   //console.log($scope.activities);
 
@@ -247,6 +246,9 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
     favs.push(fav);
     window.localStorage['favs'] = JSON.stringify(favs);
   }
+
+
+
 
   $scope.isGroupShown = function(activity) {
     return $scope.shownGroup === activity;
@@ -294,6 +296,20 @@ app.controller('FavsCtrl', function($scope){
   $scope.isGroupShown = function(activity) {
     return $scope.shownGroup === activity;
   };
+  $scope.removeFromFavourites = function(fav){
+    console.log("Removing from favourites");
+    var favs = JSON.parse(window.localStorage['favs'] || '{}');
+    if(Object.keys(favs).length == 0){
+      return;
+    }
+    for(var i =0; i < favs.length;i++){
+      if(favs[i].Name == fav.Name){
+        favs.splice(i, 1);
+        $scope.favourites.splice(i,1);
+      }
+    }
+    window.localStorage['favs'] = JSON.stringify(favs);
+  }
 
 });
 
