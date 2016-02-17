@@ -20,6 +20,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
   .state('tabs.activities', {
       url: "/activities",
       views: {
+
         'activities-tab': {
           templateUrl: "templates/activities.html",
           controller : "ActivitiesCtrl"
@@ -29,6 +30,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('tabs.events', {
       url: "/events",
       views: {
+
         'events-tab': {
           templateUrl: "templates/events.html",
           controller : 'EventsCtrl'
@@ -38,6 +40,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('tabs.birds', {
       url: "/birds",
       views: {
+
         'birds-tab': {
           templateUrl: "templates/birds.html",
           controller : "BirdsCtrl"
@@ -47,6 +50,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('tabs.news', {
       url: "/news",
       views: {
+
         'news-tab': {
           templateUrl: "templates/news.html",
           controller : "NewsCtrl"
@@ -56,8 +60,9 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('tabs.favs', {
       url: "/favs",
       views: {
+
         'favs-tab': {
-          templateUrl: "templates/favs.html", 
+          templateUrl: "templates/favs.html",
           controller : "FavsCtrl"
         }
       }
@@ -67,13 +72,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 //controller manipulating map
 app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersDataService){
-
+  //Initialize new layers and map
   var activityLayer = new L.layerGroup();
   var waterLayer = new L.layerGroup();
   var foodLayer = new L.layerGroup();
   var groupLayer = new L.layerGroup();
   var local='img/mapTiles/{z}/{x}/{y}.jpg';
-
   var offlineLayer = new L.TileLayer(local, {minZoom: 12, maxZoom: 16});
   var map = new L.Map('map', {
     layers: [activityLayer, waterLayer, foodLayer, groupLayer]
@@ -164,8 +168,8 @@ function loadLocations(){
               break;
 
             case "Boat":
-              waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
-              break;
+                waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
+                break;
 
             case "Groups":
               groupLayer.addLayer(L.marker(loc, {icon: greenIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
@@ -194,7 +198,7 @@ function loadLocations(){
     map.setView(new L.LatLng(x, y), 14);
     var bounds = map.getBounds();
     map.setMaxBounds(bounds);
-    map.addLayer(offlineLayer);
+    //map.addLayer(offlineLayer);
     map.addLayer(osm);
 
     //var activities = parkDataService.activities();
@@ -210,7 +214,12 @@ function loadLocations(){
 
 //function to control activities tab
 app.controller('ActivitiesCtrl', function($scope, parkDataService){
-  $scope.activities = parkDataService.activities();
+  $scope.activities = [];
+  parkDataService.activities().then(function(result){
+    console.log(result);
+    $scope.activities = result;
+  });
+
   $scope.num = parkDataService.activities.length;
 
   $scope.toggleGroup = function(activity) {
@@ -227,10 +236,23 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
     if(Object.keys(favs).length == 0){
       console.log("no favourites");
       favs = [];
+      favs.push(fav);
+    } else {
+      var alreadyfav = 0;
+      for(var i =0; i < favs.length;i++){
+        if((favs[i].Name == fav.Name)){
+          alreadyfav = 1;
+        }
+      }
+      if (alreadyfav == 0){
+        favs.push(fav)
+      }
     }
-    favs.push(fav);
     window.localStorage['favs'] = JSON.stringify(favs);
   }
+
+
+
 
   $scope.isGroupShown = function(activity) {
     return $scope.shownGroup === activity;
@@ -278,6 +300,20 @@ app.controller('FavsCtrl', function($scope){
   $scope.isGroupShown = function(activity) {
     return $scope.shownGroup === activity;
   };
+  $scope.removeFromFavourites = function(fav){
+    console.log("Removing from favourites");
+    var favs = JSON.parse(window.localStorage['favs'] || '{}');
+    if(Object.keys(favs).length == 0){
+      return;
+    }
+    for(var i =0; i < favs.length;i++){
+      if(favs[i].Name == fav.Name){
+        favs.splice(i, 1);
+        $scope.favourites.splice(i,1);
+      }
+    }
+    window.localStorage['favs'] = JSON.stringify(favs);
+  }
 
 });
 

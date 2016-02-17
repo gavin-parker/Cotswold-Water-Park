@@ -32,7 +32,7 @@
 
 
 </head>
-<body ng-app="starter"> 
+<body ng-app="starter">
 
   <script id="templates/menu.html" type="text/ng-template">
     <ion-side-menus enable-menu-with-back-views="false">
@@ -98,6 +98,7 @@
             </ion-item>
             <ion-item menu-close href="#/tab/favs">
               Favourites
+
             </ion-item>
           </ion-list>
         </ion-content>
@@ -111,7 +112,7 @@
     <ion-view title="Cotswold Water Park" hide-tabs='true'>
       <ion-content>
           <div id="map" ng-controller="MapCtrl"></div>
-        </ion-content> 
+        </ion-content>
     </ion-view>
   </script>
 
@@ -165,7 +166,7 @@
                           <i class="icon ion-ios-navigate-outline"></i>
                           Show Location on Map
                         </button>
-                        <button class="button button-energized", ng-click="addToFavourites({{activity}})">Add to Favourites</button>
+                        <button class="button button-assertive" ng-click="removeFromFavourites({{activity}})">Remove From Favourites</button>
                       </a>
                       <a
                     </div>
@@ -175,7 +176,7 @@
               </ion-item>
             </div>
           </ion-list>
-        </ion-content> 
+        </ion-content>
     </ion-view>
   </script>
 
@@ -285,12 +286,13 @@
                           <i class="icon ion-ios-navigate-outline"></i>
                           Show Location on Map
                         </button>
-                        <button class="button button-energized", ng-click="addToFavourites({{activity}})">Add to Favourites</button>
+                        <button class="button button-energized" ng-click="addToFavourites({{activity}})">
+                          Add to Favourites
+                        </button>
                       </a>
                     </div>
                   </div>
                 </ion-list>
-
               </ion-item>
             </div>
           </ion-list>
@@ -328,7 +330,7 @@
               </ion-item>
             </div>
           </ion-list>
-        </ion-content>> 
+        </ion-content>>
     </ion-view>
   </script>
 
@@ -353,7 +355,7 @@
           <ion-list>
             <div class="card" href="#" ng-bind-html="bird.contentSnippet" ng-repeat="bird in birds | filter:searchQuery">
           </ion-list>
-        </ion-content> 
+        </ion-content>
     </ion-view>
   </script>
 
