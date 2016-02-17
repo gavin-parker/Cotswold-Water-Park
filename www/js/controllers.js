@@ -316,7 +316,6 @@ app.controller('BirdsCtrl', function($scope, birdService){
 
 //controls news tab
 app.controller('NewsCtrl', function($scope, newsService){
-  $rootScope.hideTabs = 'tabs-item-hide';
   console.log('IN NEWS CTRL');
   function initialize(){
     newsService.Feed().then(function(result){
