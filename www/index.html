@@ -77,9 +77,9 @@
         </ion-header-bar>
         <ion-content>
           <ion-list>
-            <ion-item menu-close href="#/tab/map">
+            <!-- <ion-item menu-close href="#/tab/map">
               Map
-            </ion-item>
+            </ion-item> -->
             <ion-item menu-close href="#/tab/activities">
               Activities
             </ion-item>
@@ -114,6 +114,9 @@
 
   <script id = "templates/favs.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" align-title="center" hide-tabs="true">
+      <ion-nav-buttons side="right">
+        <a class="button button-icon button-clear ion-map" href="#/tab/map"></a> 
+      </ion-nav-buttons>
       <div class="bar bar-subheader item-input-inset has-footer">
           <label class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
@@ -178,6 +181,9 @@
 
   <script id = "templates/events.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
+      <ion-nav-buttons side="right">
+        <a class="button button-icon button-clear ion-map" href="#/tab/map"></a> 
+      </ion-nav-buttons>
       <div class="bar bar-subheader item-input-inset has-footer">
         <label class="item-input-wrapper">
           <i class="icon ion-ios-search placeholder-icon"></i>
@@ -220,6 +226,9 @@
 
   <script id = "templates/activities.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
+      <ion-nav-buttons side="right">
+        <a class="button button-icon button-clear ion-map" href="#/tab/map"></a> 
+      </ion-nav-buttons>
       <div class="bar bar-subheader item-input-inset">
           <label class="item item-input item-select">
             <div class="input-label">
@@ -300,6 +309,9 @@
 
   <script id = "templates/news.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
+      <ion-nav-buttons side="right">
+        <a class="button button-icon button-clear ion-map" href="#/tab/map"></a> 
+      </ion-nav-buttons>
       <div class="bar bar-subheader item-input-inset has-footer">
           <label class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
@@ -334,6 +346,9 @@
 
   <script id = "templates/birds.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
+      <ion-nav-buttons side="right">
+        <a class="button button-icon button-clear ion-map" href="#/tab/map"></a> 
+      </ion-nav-buttons>
       <div class="bar bar-subheader item-input-inset has-footer">
           <label class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
