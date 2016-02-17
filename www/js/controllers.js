@@ -206,6 +206,7 @@ function loadLocations(){
   //map.on('contextmenu', routeTo);
   console.log("added event handler");
   addAllActivitiesToMap();
+  console.log("control of layers set");
 
 });
 
