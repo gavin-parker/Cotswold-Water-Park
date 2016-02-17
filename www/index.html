@@ -40,7 +40,6 @@
         <ion-nav-bar class="bar-balanced">
           <ion-nav-back-button>
           </ion-nav-back-button>
-
           <ion-nav-buttons side="left">
             <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
             </button>
@@ -78,9 +77,9 @@
         </ion-header-bar>
         <ion-content>
           <ion-list>
-            <ion-item menu-close href="#/tab/map">
+            <!-- <ion-item menu-close href="#/tab/map">
               Map
-            </ion-item>
+            </ion-item> -->
             <ion-item menu-close href="#/tab/activities">
               Activities
             </ion-item>
@@ -109,12 +108,15 @@
     <ion-view title="Cotswold Water Park" hide-tabs="true">
       <ion-content>
           <div id="map" data-tap-disabled="true"></div>
-        </ion-content> 
+        </ion-content>
     </ion-view>
   </script>
 
   <script id = "templates/favs.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" align-title="center" hide-tabs="true">
+      <ion-nav-buttons side="right">
+        <a class="button button-icon button-clear ion-map" href="#/tab/map"></a> 
+      </ion-nav-buttons>
       <div class="bar bar-subheader item-input-inset has-footer">
           <label class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
@@ -179,6 +181,9 @@
 
   <script id = "templates/events.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
+      <ion-nav-buttons side="right">
+        <a class="button button-icon button-clear ion-map" href="#/tab/map"></a> 
+      </ion-nav-buttons>
       <div class="bar bar-subheader item-input-inset has-footer">
         <label class="item-input-wrapper">
           <i class="icon ion-ios-search placeholder-icon"></i>
@@ -221,6 +226,9 @@
 
   <script id = "templates/activities.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
+      <ion-nav-buttons side="right">
+        <a class="button button-icon button-clear ion-map" href="#/tab/map"></a> 
+      </ion-nav-buttons>
       <div class="bar bar-subheader item-input-inset">
           <label class="item item-input item-select">
             <div class="input-label">
@@ -277,6 +285,7 @@
                         <i class="icon ion-information-circled"></i>
                         {{activity.Description}}
                       </a>
+                      
                       <a class= "item item-icon-center" href="#/tab/map">
                         <button class="button" ng-click="showOnMap({{activity}})">
                           <i class="icon ion-ios-navigate-outline"></i>
@@ -301,6 +310,9 @@
 
   <script id = "templates/news.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
+      <ion-nav-buttons side="right">
+        <a class="button button-icon button-clear ion-map" href="#/tab/map"></a> 
+      </ion-nav-buttons>
       <div class="bar bar-subheader item-input-inset has-footer">
           <label class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
@@ -335,6 +347,9 @@
 
   <script id = "templates/birds.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
+      <ion-nav-buttons side="right">
+        <a class="button button-icon button-clear ion-map" href="#/tab/map"></a> 
+      </ion-nav-buttons>
       <div class="bar bar-subheader item-input-inset has-footer">
           <label class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
@@ -352,8 +367,16 @@
         </strong>
         <ion-content class="has-subheader">
           <ion-list>
-            <div class="card" href="#" ng-bind-html="bird.contentSnippet" ng-repeat="bird in birds | filter:searchQuery">
-          </ion-list>
+            <div class="card" href="#" ng-repeat="bird in birds | filter:searchQuery">
+            <div class="item item-avatar">
+              <img src="img/twitter-bird.svg" />
+              <h2>BIRD SIGHTING</h2>
+              <p>{{bird["postedon_link/_text"]}} </p>
+            </div>
+            <img  class="card-img" src="{{bird.entrycontent_image}}"/>
+            <p ng-bind-html="bird.entry_content">
+
+            </p>
         </ion-content>
     </ion-view>
   </script>

@@ -11,7 +11,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: "/map",
     views: {
       'map-tab': {
-        templateUrl: "templates/map.html", 
+        templateUrl: "templates/map.html",
         controller : "MapCtrl"
       }
     }
@@ -78,7 +78,12 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersD
   var waterLayer = new L.layerGroup();
   var foodLayer = new L.layerGroup();
   var groupLayer = new L.layerGroup();
+<<<<<<< HEAD
   var markers = new L.layerGroup();
+=======
+  var birdLayer = new L.layerGroup();
+
+>>>>>>> 7e3782410b04716256845fd995e80d4aecb0a036
   var local='img/mapTiles/{z}/{x}/{y}.jpg';
   var offlineLayer = new L.TileLayer(local, {minZoom: 12, maxZoom: 16});
   var map = new L.Map('map', {
@@ -89,9 +94,11 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersD
   var overlayMaps = {
     "General Activities": activityLayer,
     "Water Activities": waterLayer,
-    "Food": foodLayer,
+    "Food and Hotels": foodLayer,
     "Group Activities": groupLayer,
+    "Birds": birdLayer,
     "offline" : offlineLayer
+
   };
 
   var x = 51.65; //Temporary start location, change to user location
@@ -109,7 +116,9 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersD
   var blueIcon = new markerIcon({iconUrl: 'img/blueMarker.png'});
   var greenIcon = new markerIcon({iconUrl: 'img/greenMarker.png'});
   var redIcon = new markerIcon({iconUrl: 'img/redMarker.png'});
-  var foodIcon = new markerIcon({iconUrl: 'img/restaurant.png'})
+  var foodIcon = new markerIcon({iconUrl: 'img/restaurant.png'});
+  var hotelIcon = new markerIcon({iconUrl: 'img/hotel.png'});
+  var birdIcon = new markerIcon({iconUrl: 'img/bird.png'});
   var pinPoint = new markerIcon({iconUrl: 'img/pinpoint.png'});
   var getLoc = function(position) {
     /*
@@ -166,16 +175,21 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersD
               foodLayer.addLayer(L.marker(loc, {icon: foodIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
               break;
 
-            case "Angling":
-              waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
+            case "Hotel":
+              foodLayer.addLayer(L.marker(loc, {icon: hotelIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+'Phone: '+(result[i].Number)+'</br>'+'Website: '+(result[i].URL)+'</br>'+'Email: '+(result[i].Email)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
               break;
 
+            case "Angling":
             case "Boat":
-                waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
-                break;
+              waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
+              break;    
 
             case "Groups":
               groupLayer.addLayer(L.marker(loc, {icon: greenIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
+              break;
+
+            case "Bird":
+              birdLayer.addLayer(L.marker(loc, {icon: birdIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
               break;
 
             default:
@@ -183,7 +197,6 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersD
           }
       }
     });
-
 
   };
   $rootScope.removeMarkersAndShowActivity = function(e){ // removes all other markers from map and shows activity marker
@@ -373,9 +386,16 @@ app.controller('FavsCtrl', function($scope){
 app.controller('BirdsCtrl', function($scope, birdService){
   console.log('IN BIRDS CTRL');
   function initialize(){
+    /*
     birdService.Feed().then(function(result){
       $scope.birds = result.feed.entries;
       console.log($scope.birds);
+    });
+    */
+    birdService.Import().then(function(result){
+      $scope.birds = result;
+      console.log($scope.birds);
+      //console.log($scope.birds[0]["postedon_link/_text"]);
     });
   }
   superfeedr.auth('gp14958','df172f3202b13c654d4777881720c9cd');
