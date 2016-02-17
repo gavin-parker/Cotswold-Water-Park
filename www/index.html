@@ -160,12 +160,18 @@
                         <i class="icon ion-information-circled"></i>
                         {{activity.Description}}
                       </a>
-                      <a class= "item item-icon-center" href="#" ng-controller="LocationCtrl">
-                        <button class="button" ng-click="selectTabWithIndexandRouteTo(0, {{activity.Location}})">
-                          <i class="icon ion-ios-navigate-outline"></i>
-                          Show Location on Map
-                        </button>
-                        <button class="button button-assertive" ng-click="removeFromFavourites({{activity}})">Remove From Favourites</button>
+                      <a class= "item item-icon-center" href="#/tab/map">
+                        <div>
+                          <button class="button button-act" ng-click="selectTabWithIndexandRouteTo(0, {{activity.Location}})">
+                            <i class="icon ion-ios-navigate-outline"></i>
+                            Show Location on Map
+                          </button>
+                        </div>
+                      </a>
+                      <a class= "item item-icon-center" href="#">
+                        <div>
+                            <button class="button button-assertive button-act" ng-click="removeFromFavourites({{activity}})">Remove From Favourites</button>
+                        </div>
                       </a>
                       <a
                     </div>
@@ -293,8 +299,11 @@
                             Show Location on Map
                           </button>
                         </div>
+                      </a>
+
+                      <a class= "item item-icon-center" href="#">
                         <div>
-                          <button class="button button-energized button-act"  ng-hide="activity.fav"ng-click="addToFavourites({{activity}})">
+                          <button class="button button-energized button-act"  ng-hide="activity.fav" ng-click="addToFavourites({{activity}})">
                             Add to Favourites
                           </button>
                         </div>
