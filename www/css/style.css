@@ -20,6 +20,12 @@ hyper{
   text-decoration: underline;
 }
 
+
+.button-tabs{
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
 .button-fab {
 
 background-color:#ef473a;
@@ -533,7 +539,8 @@ z-index: 1000;
   }
 */
 
-.menu.menu-left, .list a {
+/*.menu.menu-left, .list a {
     border-color: solid;
     vertical-align: middle;
 }
+*/

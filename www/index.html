@@ -32,63 +32,80 @@
 
 
 </head>
-<body ng-app="starter">
+<body ng-app="starter"> 
 
+  <script id="templates/menu.html" type="text/ng-template">
+    <ion-side-menus enable-menu-with-back-views="false">
+      <ion-side-menu-content>
+        <ion-nav-bar class="bar-balanced">
+          <ion-nav-back-button>
+          </ion-nav-back-button>
 
+          <ion-nav-buttons side="left">
+            <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+            </button>
+          </ion-nav-buttons>
+        </ion-nav-bar>
 
- <ion-nav-bar class="bar-balanced" align-title="center">
-    <ion-nav-buttons side = "left">
-      <a class="button button-icon button-clear ion-navicon" href="#/tab/home"></a> 
-    </ion-nav-buttons>
-    <ion-nav-buttons side="right">        
-      <a class="button button-icon button-clear icon ion-map" href="#/tab/map"></a>
-    </ion-nav-buttons>
-  </ion-nav-bar>
-  <ion-nav-view></ion-nav-view>
+        <!-- TABS -->
+        <ion-tabs hide-tabs="true">
+<!--           <ion-tab>
+            <ion-nav-view name="home-tab"></ion-nav-view>
+          </ion-tab> -->
+          <ion-tab>
+            <ion-nav-view name="activities-tab"></ion-nav-view>
+          </ion-tab>
+          <ion-tab>
+            <ion-nav-view name="events-tab"></ion-nav-view>
+          </ion-tab>
+          <ion-tab>
+            <ion-nav-view name="birds-tab"></ion-nav-view>
+          </ion-tab>
+          <ion-tab>
+            <ion-nav-view name="news-tab"></ion-nav-view>
+          </ion-tab>
+          <ion-tab>
+            <ion-nav-view name="favs-tab"></ion-nav-view>
+          </ion-tab>
+          <ion-tab>
+            <ion-nav-view name="map-tab"></ion-nav-view>
+          </ion-tab>
+        </ion-tabs>
 
-  <script id="templates/tabs.html" type="text/ng-template">
-    <ion-tabs class="tabs-icon-top tabs-balanced" hide-tabs="true">
-      <ion-tab> <!-- title="Home" icon="ion-home" href="#/tab/home"> -->
-        <ion-nav-view name="home-tab"></ion-nav-view>
-      </ion-tab>
+      </ion-side-menu-content>
 
-      <ion-tab> <!--title="Map" icon="ion-map" href="#/tab/map"> -->
-        <ion-nav-view name="map-tab"></ion-nav-view>
-      </ion-tab> 
-    </ion-tabs>
-  </script>
-
-  <script id = "templates/home.html" type="text/ng-template">
-    <ion-view title="Home">
-      <ion-content>
-        <ion-list>
-          <div class="list">
-            <a class="item item-icon-right, item item-text-wrap" href="#/tab/activities">
+       <!-- Side Menu (left) -->
+      <ion-side-menu side="left">
+        <ion-header-bar class="bar-stable">
+          <h1 class="title">Menu</h1>
+        </ion-header-bar>
+        <ion-content>
+          <ion-list>
+            <ion-item menu-close href="#/tab/map">
+              Map
+            </ion-item>
+            <ion-item menu-close href="#/tab/activities">
               Activities
-              <i class="ion-ios-arrow-forward" side="right"></i>
-            </a>
-            <a class="item item-icon-right, item item-text-wrap" href="#/tab/events">
+            </ion-item>
+            <ion-item menu-close href="#/tab/events">
               Events
-              <i class="ion-ios-arrow-forward"></i>
-            </a>
-            <a class="item item-icon-right, item item-text-wrap" href="#/tab/birds">
-              Birds
-               <i class="ion-ios-arrow-forward"></i>
-            </a>
-            <a class="item item-icon-right, item item-text-wrap" href="#/tab/news">
+            </ion-item>
+            <ion-item menu-close href="#/tab/news">
               News
-               <i class="ion-ios-arrow-forward"></i>
-            </a>
-            <a class="item item-icon-right, item item-text-wrap" href="#/tab/favs">
+            </ion-item>
+            <ion-item menu-close href="#/tab/birds">
+              Birds
+            </ion-item>
+            <ion-item menu-close href="#/tab/favs">
               Favourites
-               <i class="ion-ios-arrow-forward"></i>
-            </a>
-          </div>
-
-        </ion-list>
-      </ion-content> 
-    </ion-view>
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-side-menu>
+    </ion-side-menus>
   </script>
+
+  <ion-nav-view></ion-nav-view>
 
   <script id = "templates/map.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs='true'>
@@ -150,6 +167,7 @@
                         </button>
                         <button class="button button-energized", ng-click="addToFavourites({{activity}})">Add to Favourites</button>
                       </a>
+                      <a
                     </div>
                   </div>
                 </ion-list>
