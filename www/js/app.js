@@ -19,7 +19,6 @@ app.run(function($ionicPlatform) {
       StatusBar.styleDefault();
     }
 
-
     // onError Callback receives a PositionError object
     //
 

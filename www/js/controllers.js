@@ -351,8 +351,14 @@ app.controller('FavsCtrl', function($scope){
 //controls birds tab
 app.controller('BirdsCtrl', function($scope, birdService){
   function initialize(){
+    /*
     birdService.Feed().then(function(result){
       $scope.birds = result.feed.entries;
+      console.log($scope.birds);
+    });
+    */
+    birdService.Import().then(function(result){
+      $scope.birds = result;
       console.log($scope.birds);
     });
   }
