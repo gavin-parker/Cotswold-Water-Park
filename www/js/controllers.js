@@ -5,14 +5,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: "/tab",
     abstract: true,
     templateUrl: "templates/menu.html",
-  //  controller: 'AppCtrl'
   })
 
   .state('tabs.map', {
     url: "/map",
     views: {
       'map-tab': {
-        templateUrl: "templates/map.html"
+        templateUrl: "templates/map.html", 
+        controller : "MapCtrl"
       }
     }
   })
@@ -65,9 +65,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('/tab/map');
 });
 
+
 //controller manipulating map
 app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersDataService){
-
+  console.log('IN MAP CTRL');
   var activityLayer = new L.layerGroup();
   var waterLayer = new L.layerGroup();
   var foodLayer = new L.layerGroup();
@@ -210,6 +211,7 @@ function loadLocations(){
 
 //function to control activities tab
 app.controller('ActivitiesCtrl', function($scope, parkDataService){
+  console.log('IN ACTIVITIES CTRL');
   $scope.activities = [];
   parkDataService.activities().then(function(result){
     console.log(result);
@@ -247,6 +249,7 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
 
 //controls events tab
 app.controller('EventsCtrl', function($scope, eventService){
+  console.log('IN EVENTS CTRL');
   function initialize(){
     eventService.Feed().then(function(result){
       $scope.events = result.feed.entries;
@@ -288,6 +291,7 @@ app.controller('FavsCtrl', function($scope){
 
 //controls birds tab
 app.controller('BirdsCtrl', function($scope, birdService){
+  console.log('IN BIRDS CTRL');
   function initialize(){
     birdService.Feed().then(function(result){
       $scope.birds = result.feed.entries;
@@ -312,6 +316,8 @@ app.controller('BirdsCtrl', function($scope, birdService){
 
 //controls news tab
 app.controller('NewsCtrl', function($scope, newsService){
+  $rootScope.hideTabs = 'tabs-item-hide';
+  console.log('IN NEWS CTRL');
   function initialize(){
     newsService.Feed().then(function(result){
       $scope.news = result.feed.entries;
@@ -340,4 +346,19 @@ app.controller('LocationCtrl', function($scope, $rootScope, $ionicTabsDelegate){
     console.log(coords);
     /*$scope.routeTo(coords);*/
   }
+});
+
+app.directive('hideTabs', function($rootScope) {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attributes) {
+      scope.$watch(attributes.hideTabs, function(value){
+        $rootScope.hideTabs = value;
+      });
+
+      scope.$on('$destroy', function() {
+        $rootScope.hideTabs = false;
+      });
+    }
+  };
 });
