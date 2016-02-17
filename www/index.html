@@ -36,11 +36,10 @@
 
   <script id="templates/menu.html" type="text/ng-template">
     <ion-side-menus enable-menu-with-back-views="false">
-      <ion-side-menu-content>
+      <ion-side-menu-content >
         <ion-nav-bar class="bar-balanced">
           <ion-nav-back-button>
           </ion-nav-back-button>
-
           <ion-nav-buttons side="left">
             <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
             </button>
@@ -48,10 +47,7 @@
         </ion-nav-bar>
 
         <!-- TABS -->
-        <ion-tabs hide-tabs="true">
-<!--           <ion-tab>
-            <ion-nav-view name="home-tab"></ion-nav-view>
-          </ion-tab> -->
+        <ion-tabs ng-class="{'tabs-item-hide': $root.hideTabs}">
           <ion-tab>
             <ion-nav-view name="activities-tab"></ion-nav-view>
           </ion-tab>
@@ -109,15 +105,15 @@
   <ion-nav-view></ion-nav-view>
 
   <script id = "templates/map.html" type="text/ng-template">
-    <ion-view title="Cotswold Water Park" hide-tabs='true'>
+    <ion-view title="Cotswold Water Park" hide-tabs="true">
       <ion-content>
-          <div id="map" ng-controller="MapCtrl"></div>
-        </ion-content>
+          <div id="map" data-tap-disabled="true"></div>
+        </ion-content> 
     </ion-view>
   </script>
 
   <script id = "templates/favs.html" type="text/ng-template">
-    <ion-view title="Cotswold Water Park" align-title="center">
+    <ion-view title="Cotswold Water Park" align-title="center" hide-tabs="true">
       <div class="bar bar-subheader item-input-inset has-footer">
           <label class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
@@ -181,7 +177,7 @@
   </script>
 
   <script id = "templates/events.html" type="text/ng-template">
-    <ion-view title="Cotswold Water Park">
+    <ion-view title="Cotswold Water Park" hide-tabs="true">
       <div class="bar bar-subheader item-input-inset has-footer">
         <label class="item-input-wrapper">
           <i class="icon ion-ios-search placeholder-icon"></i>
@@ -201,7 +197,6 @@
             </ion-item>
             <ion-item class="item-accordion" ng-show="isGroupShown(event)">
               <div class="list">
-
 
                 <div class="item item-icon-left" href="#" ng-bind-html="event.contentSnippet">
 
@@ -224,7 +219,7 @@
   </script>
 
   <script id = "templates/activities.html" type="text/ng-template">
-    <ion-view title="Cotswold Water Park">
+    <ion-view title="Cotswold Water Park" hide-tabs="true">
       <div class="bar bar-subheader item-input-inset">
           <label class="item item-input item-select">
             <div class="input-label">
@@ -286,8 +281,11 @@
                           <i class="icon ion-ios-navigate-outline"></i>
                           Show Location on Map
                         </button>
-                        <button class="button button-energized" ng-click="addToFavourites({{activity}})">
+                        <button class="button button-energized"  ng-hide="activity.fav"ng-click="addToFavourites({{activity}})">
                           Add to Favourites
+                        </button>
+                        <button class="button button-assertive" ng-show="activity.fav"  ng-click="removeFromFavourites({{activity}})">
+                          Remove From Favourites
                         </button>
                       </a>
                     </div>
@@ -301,7 +299,7 @@
   </script>
 
   <script id = "templates/news.html" type="text/ng-template">
-    <ion-view title="Cotswold Water Park">
+    <ion-view title="Cotswold Water Park" hide-tabs="true">
       <div class="bar bar-subheader item-input-inset has-footer">
           <label class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
@@ -330,12 +328,12 @@
               </ion-item>
             </div>
           </ion-list>
-        </ion-content>>
+        </ion-content>
     </ion-view>
   </script>
 
   <script id = "templates/birds.html" type="text/ng-template">
-    <ion-view title="Cotswold Water Park">
+    <ion-view title="Cotswold Water Park" hide-tabs="true">
       <div class="bar bar-subheader item-input-inset has-footer">
           <label class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
@@ -353,7 +351,12 @@
         </strong>
         <ion-content class="has-subheader">
           <ion-list>
-            <div class="card" href="#" ng-bind-html="bird.contentSnippet" ng-repeat="bird in birds | filter:searchQuery">
+            <div class="card" href="#" ng-repeat="bird in birds | filter:searchQuery">
+            <img  class="card-img" src="{{bird.entrycontent_image}}"/>
+            {{bird.entry_content}}
+
+            </div>
+
           </ion-list>
         </ion-content>
     </ion-view>

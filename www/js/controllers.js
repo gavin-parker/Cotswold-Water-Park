@@ -4,71 +4,72 @@ app.config(function($stateProvider, $urlRouterProvider) {
   .state('tabs', {
     url: "/tab",
     abstract: true,
-    templateUrl: "templates/menu.html",
-  //  controller: 'AppCtrl'
+    templateUrl: "templates/menu.html"
   })
 
   .state('tabs.map', {
     url: "/map",
     views: {
       'map-tab': {
-        templateUrl: "templates/map.html"
+        templateUrl: "templates/map.html", 
+        controller : "MapCtrl"
       }
     }
   })
 
   .state('tabs.activities', {
-      url: "/activities",
-      views: {
+    url: "/activities",
+    views: {
 
-        'activities-tab': {
-          templateUrl: "templates/activities.html",
-          controller : "ActivitiesCtrl"
-        }
+      'activities-tab': {
+        templateUrl: "templates/activities.html",
+        controller : "ActivitiesCtrl"
       }
-    })
-    .state('tabs.events', {
-      url: "/events",
-      views: {
+    }
+  })
+  .state('tabs.events', {
+    url: "/events",
+    views: {
 
-        'events-tab': {
-          templateUrl: "templates/events.html",
-          controller : 'EventsCtrl'
-        }
+      'events-tab': {
+        templateUrl: "templates/events.html",
+        controller : 'EventsCtrl'
       }
-    })
-    .state('tabs.birds', {
-      url: "/birds",
-      views: {
+    }
+  })
+  .state('tabs.birds', {
+    url: "/birds",
+    views: {
 
-        'birds-tab': {
-          templateUrl: "templates/birds.html",
-          controller : "BirdsCtrl"
-        }
+      'birds-tab': {
+        templateUrl: "templates/birds.html",
+        controller : "BirdsCtrl"
       }
-    })
-    .state('tabs.news', {
-      url: "/news",
-      views: {
+    }
+  })
+  .state('tabs.news', {
+    url: "/news",
+    views: {
 
-        'news-tab': {
-          templateUrl: "templates/news.html",
-          controller : "NewsCtrl"
-        }
+      'news-tab': {
+        templateUrl: "templates/news.html",
+        controller : "NewsCtrl"
       }
-    })
-    .state('tabs.favs', {
-      url: "/favs",
-      views: {
+    }
+  })
+  .state('tabs.favs', {
+    url: "/favs",
+    views: {
 
-        'favs-tab': {
-          templateUrl: "templates/favs.html",
-          controller : "FavsCtrl"
-        }
+      'favs-tab': {
+        templateUrl: "templates/favs.html",
+        controller : "FavsCtrl"
       }
-    });
+    }
+  });
   $urlRouterProvider.otherwise('/tab/map');
 });
+
 
 //controller manipulating map
 app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersDataService){
@@ -127,40 +128,41 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersD
 
   $rootScope.routeTo = function(e){
     if(control == null){
-    console.log(e);
-    control = L.Routing.control({
-      waypoints: [
-        L.latLng(x, y), //change x,y to user location
-        e.latlng
-      ],
-      routeWhileDragging: true
-    }).addTo(map);
-  }else{
-    control.spliceWaypoints(1,1, e.latlng);
-  }
+      console.log(e);
+      control = L.Routing.control({
+        waypoints: [
+          L.latLng(x, y), //change x,y to user location
+          e.latlng
+        ],
+        routeWhileDragging: true
+      }).addTo(map);
+    }else{
+      control.spliceWaypoints(1,1, e.latlng);
+    }
     console.log("Added routing control to map");
     L.Routing.errorControl(control).addTo(map);
   };
 
-function saveLocations(locs){
-  window.localStorage['locs'] = JSON.stringify(locs);
-}
-function loadLocations(){
-  var locs = JSON.parse(window.localStorage['locs'] || '{}');
+  function saveLocations(locs){
+    window.localStorage['locs'] = JSON.stringify(locs);
+  }
+  function loadLocations(){
+    var locs = JSON.parse(window.localStorage['locs'] || '{}');
 
-}
+  }
 
   function onError(error) {
     alert('code: '    + error.code    + '\n' +
     'message: ' + error.message + '\n');
   };
 
-//Adds all the activities and food locations to the map from the JSON file
+  //Adds all the activities and food locations to the map from the JSON file
   var addAllActivitiesToMap = function(){
     parkDataService.activities().then(function(result){
       $scope.activities = result;
       console.log("yay");
       for(var i = 0;i < result.length;i++) {
+
           console.log(result[i].Name);
           var loc = JSON.parse(result[i].Location);
           var button = '</br><button class="button">Directions</button>';
@@ -190,7 +192,7 @@ function loadLocations(){
               activityLayer.addLayer(L.marker(loc, {icon: redIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
           }
       }
-    })
+    });
 
   };
 
@@ -219,18 +221,25 @@ function loadLocations(){
   //map.on('contextmenu', routeTo);
   console.log("added event handler");
   addAllActivitiesToMap();
+  console.log("control of layers set");
 
 });
 
 //function to control activities tab
 app.controller('ActivitiesCtrl', function($scope, parkDataService){
+  console.log('IN ACTIVITIES CTRL');
   $scope.activities = [];
   parkDataService.activities().then(function(result){
     console.log(result);
     $scope.activities = result;
+    checkFavourites();
+    $scope.$on('$ionicView.enter', function() {
+      checkFavourites();
+      console.log("hi");
+    });
   });
+
   $scope.num = parkDataService.activities.length;
-  //console.log($scope.activities);
 
   $scope.toggleGroup = function(activity) {
     if ($scope.isGroupShown(activity)) {
@@ -240,30 +249,63 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
     }
     $scope.shownEntry = null;
   };
+
   $scope.addToFavourites = function(fav){
-    console.log("Adding to favourites");
     var favs = JSON.parse(window.localStorage['favs'] || '{}');
-    if(Object.keys(favs).length == 0){
+    if(Object.keys(favs).length === 0){
       console.log("no favourites");
       favs = [];
     }
     favs.push(fav);
+    for(var i=0;i<$scope.activities.length;i++){
+      if($scope.activities[i].Name == fav.Name){
+        $scope.activities[i].fav = true;
+      }
+    }
+    window.localStorage['favs'] = JSON.stringify(favs);
+  };
+  $scope.removeFromFavourites = function(fav){
+    console.log("Removing from favourites");
+    var favs = JSON.parse(window.localStorage['favs'] || '{}');
+    if(Object.keys(favs).length == 0){
+      return;
+    }
+    for(var i =0; i < favs.length;i++){
+      if(favs[i].Name == fav.Name){
+        favs.splice(i, 1);
+      }
+    }
+    for(var i=0;i<$scope.activities.length;i++){
+      if($scope.activities[i].Name == fav.Name){
+        $scope.activities[i].fav = false;
+      }
+    }
+
     window.localStorage['favs'] = JSON.stringify(favs);
   }
 
-
-
+  checkFavourites = function(){
+    var favs = JSON.parse(window.localStorage['favs'] || '{}');
+    for(var i=0;i<$scope.activities.length;i++){
+      $scope.activities[i].fav = false;
+      for(var j=0;j<favs.length;j++){
+        if($scope.activities[i].Name == favs[j].Name){
+          $scope.activities[i].fav = true;
+        }
+      }
+    }
+  };
 
   $scope.isGroupShown = function(activity) {
     return $scope.shownGroup === activity;
   };
-
   $scope.activityOptions = ['All', 'Aerial', 'Angling', 'Beach\n', 'Boat ', 'Groups', 'Horse v', 'Rally', 'Shooting', 'Wilderness', 'Food'];
   $scope.selectedActivity = "All";
 });
 
 //controls events tab
 app.controller('EventsCtrl', function($scope, eventService){
+  console.log('IN EVENTS CTRL');
   function initialize(){
     eventService.Feed().then(function(result){
       $scope.events = result.feed.entries;
@@ -288,8 +330,11 @@ app.controller('EventsCtrl', function($scope, eventService){
 
 app.controller('FavsCtrl', function($scope){
   $scope.favourites = [];
+  $scope.$on('$ionicView.enter', function() {
     $scope.favourites = JSON.parse(window.localStorage['favs'] || {});
-    console.log($scope.favourites);
+    console.log("hi");
+  });
+  console.log($scope.favourites);
   $scope.toggleGroup = function(activity) {
     if ($scope.isGroupShown(activity)) {
       $scope.shownGroup = null;
@@ -319,9 +364,16 @@ app.controller('FavsCtrl', function($scope){
 
 //controls birds tab
 app.controller('BirdsCtrl', function($scope, birdService){
+  console.log('IN BIRDS CTRL');
   function initialize(){
+    /*
     birdService.Feed().then(function(result){
       $scope.birds = result.feed.entries;
+      console.log($scope.birds);
+    });
+    */
+    birdService.Import().then(function(result){
+      $scope.birds = result;
       console.log($scope.birds);
     });
   }
@@ -343,6 +395,7 @@ app.controller('BirdsCtrl', function($scope, birdService){
 
 //controls news tab
 app.controller('NewsCtrl', function($scope, newsService){
+  console.log('IN NEWS CTRL');
   function initialize(){
     newsService.Feed().then(function(result){
       $scope.news = result.feed.entries;
@@ -371,4 +424,19 @@ app.controller('LocationCtrl', function($scope, $rootScope, $ionicTabsDelegate){
     console.log(coords);
     /*$scope.routeTo(coords);*/
   }
+});
+
+app.directive('hideTabs', function($rootScope) {
+  return {
+    restrict: 'A',
+    link: function(scope, element, attributes) {
+      scope.$watch(attributes.hideTabs, function(value){
+        $rootScope.hideTabs = value;
+      });
+
+      scope.$on('$destroy', function() {
+        $rootScope.hideTabs = false;
+      });
+    }
+  };
 });
