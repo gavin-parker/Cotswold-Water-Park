@@ -287,18 +287,18 @@
                       </a>
                       <a class= "item item-icon-center" href="#" ng-controller="LocationCtrl">
                         <div>
-                          <button class="button" ng-click="selectTabWithIndexandRouteTo(0, {{activity.Location}})">
+                          <button class="button button-act" ng-click="selectTabWithIndexandRouteTo(0, {{activity.Location}})">
                             <i class="icon ion-ios-navigate-outline"></i>
                             Show Location on Map
                           </button>
                         </div>
                         <div>
-                          <button class="button button-energized"  ng-hide="activity.fav"ng-click="addToFavourites({{activity}})">
+                          <button class="button button-energized button-act"  ng-hide="activity.fav"ng-click="addToFavourites({{activity}})">
                             Add to Favourites
                           </button>
                         </div>
                         <div>
-                          <button class="button button-assertive" ng-show="activity.fav"  ng-click="removeFromFavourites({{activity}})">
+                          <button class="button button-assertive button-act" ng-show="activity.fav"  ng-click="removeFromFavourites({{activity}})">
                             Remove From Favourites
                           </button>
                         </div>
