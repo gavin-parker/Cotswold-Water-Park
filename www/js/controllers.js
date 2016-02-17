@@ -128,7 +128,7 @@ function loadLocations(){
     map.setView(new L.LatLng(x, y), 14);
     var bounds = map.getBounds();
     map.setMaxBounds(bounds);
-    map.addLayer(offlineLayer);
+    //map.addLayer(offlineLayer);
     map.addLayer(osm);
 
     //var activities = parkDataService.activities();
