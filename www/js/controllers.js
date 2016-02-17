@@ -377,6 +377,11 @@ app.controller('FavsCtrl', function($scope){
     window.localStorage['favs'] = JSON.stringify(favs);
   }
 
+   $scope.showOnMap = function(coords) {
+    console.log("Pressed show on map");
+    $scope.removeMarkersAndShowActivity(coords);
+  };
+
 });
 
 //controls birds tab
