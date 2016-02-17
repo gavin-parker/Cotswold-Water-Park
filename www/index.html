@@ -285,16 +285,16 @@
                         <i class="icon ion-information-circled"></i>
                         {{activity.Description}}
                       </a>
-                      
+
                       <a class= "item item-icon-center" href="#/tab/map">
-                        <button class="button" ng-click="showOnMap({{activity}})">
+                        <button class="button button-act" ng-click="showOnMap({{activity}})">
                           <i class="icon ion-ios-navigate-outline"></i>
                           Show Location on Map
                         </button>
-                        <button class="button button-energized"  ng-hide="activity.fav"ng-click="addToFavourites({{activity}})">
+                        <button class="button button-energized button-act"  ng-hide="activity.fav"ng-click="addToFavourites({{activity}})">
                           Add to Favourites
                         </button>
-                        <button class="button button-assertive" ng-show="activity.fav"  ng-click="removeFromFavourites({{activity}})">
+                        <button class="button button-assertive button-act" ng-show="activity.fav"  ng-click="removeFromFavourites({{activity}})">
                           Remove From Favourites
                         </button>
                       </a>

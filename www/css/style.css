@@ -49,6 +49,10 @@ right: 5%; /* Adjust position */
 z-index: 1000;
 }
 
+.button-act{
+	width: 100%;
+}
+
 
 /* required styles */
 
