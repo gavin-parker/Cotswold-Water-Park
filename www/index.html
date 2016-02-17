@@ -81,18 +81,23 @@
               Map
             </ion-item> -->
             <ion-item menu-close href="#/tab/activities">
+              <i class="icon ion-android-bicycle"></i>
               Activities
             </ion-item>
             <ion-item menu-close href="#/tab/events">
+              <i class="icon ion-calendar"></i>
               Events
             </ion-item>
             <ion-item menu-close href="#/tab/news">
+              <i class="icon ion-ios-book-outline"></i>
               News
             </ion-item>
             <ion-item menu-close href="#/tab/birds">
+              <i class="icon ion-egg"></i>
               Birds
             </ion-item>
             <ion-item menu-close href="#/tab/favs">
+              <i class="icon ion-heart"></i>
               Favourites
             </ion-item>
           </ion-list>
@@ -170,7 +175,10 @@
                       </a>
                       <a class= "item item-icon-center" href="#">
                         <div>
-                            <button class="button button-assertive button-act" ng-click="removeFromFavourites({{activity}})">Remove From Favourites</button>
+                            <button class="button button-assertive button-act" ng-click="removeFromFavourites({{activity}})">
+                            <i class="icon ion-heart-broken"></i>
+                            Remove From Favourites
+                            </button>
                         </div>
                       </a>
                       <a
@@ -304,11 +312,13 @@
                         <a class= "item item-icon-center" href="#">
                           <div>
                           <button class="button button-energized button-act"  ng-hide="activity.fav"ng-click="addToFavourites({{activity}})">
+                            <i class="icon ion-heart"></i>
                             Add to Favourites
                           </button>
                         </div>
                         <div>
                           <button class="button button-assertive button-act" ng-show="activity.fav"  ng-click="removeFromFavourites({{activity}})">
+                            <i class="icon ion-heart-broken"></i>
                             Remove From Favourites
                           </button>
                         </div>
