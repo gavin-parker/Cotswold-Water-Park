@@ -196,7 +196,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService){
 
   };
   $rootScope.removeMarkersAndShowActivity = function(e){ // removes all other markers from map and shows activity marker
-    map.removeLayer(foodLayer); 
+    map.removeLayer(foodLayer);
     map.removeLayer(waterLayer);
     map.removeLayer(activityLayer);
     map.removeLayer(groupLayer);
@@ -323,10 +323,16 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
 //controls events tab
 app.controller('EventsCtrl', function($scope, eventService){
   console.log('IN EVENTS CTRL');
+
   function initialize(){
     eventService.Feed().then(function(result){
       $scope.events = result.feed.entries;
       console.log($scope.events);
+      if($scope.events == {} || $scope.events == null){
+        $scope.events = JSON.parse(window.localStorage['events']);
+      }else{
+      window.localStorage['events'] = JSON.stringify($scope.events);
+    }
     });
   }
   superfeedr.auth('gp14958','df172f3202b13c654d4777881720c9cd');
