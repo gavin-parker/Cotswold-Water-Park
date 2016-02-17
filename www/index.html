@@ -94,7 +94,6 @@
             </ion-item>
             <ion-item menu-close href="#/tab/favs">
               Favourites
-
             </ion-item>
           </ion-list>
         </ion-content>
@@ -160,12 +159,27 @@
                         <i class="icon ion-information-circled"></i>
                         {{activity.Description}}
                       </a>
+<<<<<<< HEAD
                       <a class= "item item-icon-center" href="#">
                         <button class="button" ng-click="selectTabWithIndexandRouteTo(0, {{activity.Location}})">
                           <i class="icon ion-ios-navigate-outline"></i>
                           Show Location on Map
                         </button>
                         <button class="button button-assertive" ng-click="removeFromFavourites({{activity}})">Remove From Favourites</button>
+=======
+                      <a class= "item item-icon-center" href="#/tab/map">
+                        <div>
+                          <button class="button button-act" ng-click="showOnMap({{activity}})">
+                            <i class="icon ion-ios-navigate-outline"></i>
+                            Show Location on Map
+                          </button>
+                        </div>
+                      </a>
+                      <a class= "item item-icon-center" href="#">
+                        <div>
+                            <button class="button button-assertive button-act" ng-click="removeFromFavourites({{activity}})">Remove From Favourites</button>
+                        </div>
+>>>>>>> 084f795a8310bf24387681a20b57b2b87c7a4fd9
                       </a>
                       <a
                     </div>
@@ -285,17 +299,27 @@
                         <i class="icon ion-information-circled"></i>
                         {{activity.Description}}
                       </a>
+
+                      <a class= "item item-icon-center" href="#/tab/map">
+                        <div>
+                          <button class="button button-act" ng-click="showOnMap({{activity}})">
+                            <i class="icon ion-ios-navigate-outline"></i>
+                            Show Location on Map
+                          </button>
+                        </div>
+                      </a>
+
                       <a class= "item item-icon-center" href="#">
-                        <button class="button" ng-click="selectTabWithIndexandRouteTo(0, {{activity.Location}})">
-                          <i class="icon ion-ios-navigate-outline"></i>
-                          Show Location on Map
-                        </button>
-                        <button class="button button-energized"  ng-hide="activity.fav"ng-click="addToFavourites({{activity}})">
-                          Add to Favourites
-                        </button>
-                        <button class="button button-assertive" ng-show="activity.fav"  ng-click="removeFromFavourites({{activity}})">
-                          Remove From Favourites
-                        </button>
+                        <div>
+                          <button class="button button-energized button-act"  ng-hide="activity.fav" ng-click="addToFavourites({{activity}})">
+                            Add to Favourites
+                          </button>
+                        </div>
+                        <div>
+                          <button class="button button-assertive button-act" ng-show="activity.fav"  ng-click="removeFromFavourites({{activity}})">
+                            Remove From Favourites
+                          </button>
+                        </div>
                       </a>
                     </div>
                   </div>
