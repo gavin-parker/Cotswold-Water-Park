@@ -78,16 +78,12 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersD
   var waterLayer = new L.layerGroup();
   var foodLayer = new L.layerGroup();
   var groupLayer = new L.layerGroup();
-<<<<<<< HEAD
-  var markers = new L.layerGroup();
-=======
   var birdLayer = new L.layerGroup();
-
->>>>>>> 7e3782410b04716256845fd995e80d4aecb0a036
+  var markers = new L.layerGroup();
   var local='img/mapTiles/{z}/{x}/{y}.jpg';
   var offlineLayer = new L.TileLayer(local, {minZoom: 12, maxZoom: 16});
   var map = new L.Map('map', {
-    layers: [activityLayer, waterLayer, foodLayer, groupLayer]
+    layers: [activityLayer, waterLayer, foodLayer, groupLayer, birdLayer]
   });
 
   //Layer Options
@@ -204,6 +200,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersD
     map.removeLayer(waterLayer);
     map.removeLayer(activityLayer);
     map.removeLayer(groupLayer);
+    map.removeLayer(birdLayer);
     markers.clearLayers();
     console.log(e.Name);
     var marker = L.marker(JSON.parse(e.Location), {icon: redIcon}).addTo(map).bindPopup((e.Name)+'</br>'+(e.Description)).on('dblclick', $scope.routeTo);
