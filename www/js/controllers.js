@@ -72,7 +72,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 
 //controller manipulating map
-app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersDataService){
+app.controller('MapCtrl', function($scope, $rootScope, parkDataService){
   //Initialize new layers and map
   var activityLayer = new L.layerGroup();
   var waterLayer = new L.layerGroup();
@@ -178,7 +178,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersD
             case "Angling":
             case "Boat":
               waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
-              break;    
+              break;
 
             case "Groups":
               groupLayer.addLayer(L.marker(loc, {icon: greenIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
