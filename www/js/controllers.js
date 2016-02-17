@@ -72,7 +72,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
 
 //controller manipulating map
-app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersDataService){
+app.controller('MapCtrl', function($scope, $rootScope, parkDataService){
   //Initialize new layers and map
   var activityLayer = new L.layerGroup();
   var waterLayer = new L.layerGroup();
@@ -178,7 +178,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersD
             case "Angling":
             case "Boat":
               waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
-              break;    
+              break;
 
             case "Groups":
               groupLayer.addLayer(L.marker(loc, {icon: greenIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
@@ -196,7 +196,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersD
 
   };
   $rootScope.removeMarkersAndShowActivity = function(e){ // removes all other markers from map and shows activity marker
-    map.removeLayer(foodLayer); 
+    map.removeLayer(foodLayer);
     map.removeLayer(waterLayer);
     map.removeLayer(activityLayer);
     map.removeLayer(groupLayer);
@@ -323,10 +323,16 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
 //controls events tab
 app.controller('EventsCtrl', function($scope, eventService){
   console.log('IN EVENTS CTRL');
+
   function initialize(){
     eventService.Feed().then(function(result){
       $scope.events = result.feed.entries;
       console.log($scope.events);
+      if($scope.events == {} || $scope.events == null){
+        $scope.events = JSON.parse(window.localStorage['events']);
+      }else{
+      window.localStorage['events'] = JSON.stringify($scope.events);
+    }
     });
   }
   superfeedr.auth('gp14958','df172f3202b13c654d4777881720c9cd');
@@ -377,7 +383,7 @@ app.controller('FavsCtrl', function($scope){
     window.localStorage['favs'] = JSON.stringify(favs);
   }
 
-   $scope.showOnMap = function(coords) {
+  $scope.showOnMap = function(coords) {
     console.log("Pressed show on map");
     $scope.removeMarkersAndShowActivity(coords);
   };
