@@ -7,8 +7,8 @@
   <link href="lib/ionic/css/ionic.css" rel="stylesheet">
   <link href="lib/ionic-material/dist/ionic.material.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/leaflet-routing-machine.css" />
-  <link href='https://fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="css/leaflet-routing-machine.css">
+  <link href="https://fonts.googleapis.com/css?family=RobotoDraft%3A400%2C500%2C700%2C400italic" rel="stylesheet" type="text/css">
 
   <!-- ionic/angularjs js -->
   <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -81,18 +81,23 @@
               Map
             </ion-item> -->
             <ion-item menu-close href="#/tab/activities">
+              <i class="icon ion-android-bicycle"></i>
               Activities
             </ion-item>
             <ion-item menu-close href="#/tab/events">
+              <i class="icon ion-calendar"></i>
               Events
             </ion-item>
             <ion-item menu-close href="#/tab/news">
+              <i class="icon ion-ios-book-outline"></i>
               News
             </ion-item>
             <ion-item menu-close href="#/tab/birds">
+              <i class="icon ion-egg"></i>
               Birds
             </ion-item>
             <ion-item menu-close href="#/tab/favs">
+              <i class="icon ion-heart"></i>
               Favourites
             </ion-item>
           </ion-list>
@@ -103,7 +108,7 @@
 
   <ion-nav-view></ion-nav-view>
 
-  <script id = "templates/map.html" type="text/ng-template">
+  <script id="templates/map.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
       <ion-content>
           <div id="map" data-tap-disabled="true"></div>
@@ -111,7 +116,7 @@
     </ion-view>
   </script>
 
-  <script id = "templates/favs.html" type="text/ng-template">
+  <script id="templates/favs.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" align-title="center" hide-tabs="true">
       <ion-nav-buttons side="right">
         <a class="button button-icon button-clear ion-map" href="#/tab/map"></a>
@@ -159,7 +164,6 @@
                         <i class="icon ion-information-circled"></i>
                         {{activity.Description}}
                       </a>
-                      
                       <a class= "item item-icon-center" href="#/tab/map">
                         <div>
                           <button class="button button-act" ng-click="showOnMap({{activity}})">
@@ -170,11 +174,12 @@
                       </a>
                       <a class= "item item-icon-center" href="#">
                         <div>
-                            <button class="button button-assertive button-act" ng-click="removeFromFavourites({{activity}})">Remove From Favourites</button>
+                            <button class="button button-assertive button-act" ng-click="removeFromFavourites({{activity}})">
+                            <i class="icon ion-heart-broken"></i>
+                            Remove From Favourites
+                            </button>
                         </div>
-
                       </a>
-                      <a
                     </div>
                   </div>
                 </ion-list>
@@ -186,7 +191,7 @@
     </ion-view>
   </script>
 
-  <script id = "templates/events.html" type="text/ng-template">
+  <script id="templates/events.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
       <ion-nav-buttons side="right">
         <a class="button button-icon button-clear ion-map" href="#/tab/map"></a>
@@ -231,7 +236,7 @@
     </ion-view>
   </script>
 
-  <script id = "templates/activities.html" type="text/ng-template">
+  <script id="templates/activities.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
       <ion-nav-buttons side="right">
         <a class="button button-icon button-clear ion-map" href="#/tab/map"></a>
@@ -300,16 +305,18 @@
                             Show Location on Map
                           </button>
                         </div>
-                      </a>
 
-                      <a class= "item item-icon-center" href="#">
-                        <div>
-                          <button class="button button-energized button-act"  ng-hide="activity.fav" ng-click="addToFavourites({{activity}})">
+                        </a>
+                        <a class= "item item-icon-center" href="#">
+                          <div>
+                          <button class="button button-energized button-act"  ng-hide="activity.fav"ng-click="addToFavourites({{activity}})">
+                            <i class="icon ion-heart"></i>
                             Add to Favourites
                           </button>
                         </div>
                         <div>
                           <button class="button button-assertive button-act" ng-show="activity.fav"  ng-click="removeFromFavourites({{activity}})">
+                            <i class="icon ion-heart-broken"></i>
                             Remove From Favourites
                           </button>
                         </div>
@@ -324,7 +331,7 @@
     </ion-view>
   </script>
 
-  <script id = "templates/news.html" type="text/ng-template">
+  <script id="templates/news.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
       <ion-nav-buttons side="right">
         <a class="button button-icon button-clear ion-map" href="#/tab/map"></a>
@@ -361,7 +368,7 @@
     </ion-view>
   </script>
 
-  <script id = "templates/birds.html" type="text/ng-template">
+  <script id="templates/birds.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
       <ion-nav-buttons side="right">
         <a class="button button-icon button-clear ion-map" href="#/tab/map"></a>
