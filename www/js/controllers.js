@@ -155,31 +155,32 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersD
       $scope.activities = result;
       console.log("yay");
       for(var i = 0;i < result.length;i++) {
-        console.log(result[i].Name);
-        var loc = JSON.parse(result[i].Location);
-        var button = '</br><button class="button">Directions</button>';
-        switch(result[i].Type){
-          case "Food":
-          foodLayer.addLayer(L.marker(loc, {icon: foodIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
-          break;
 
-          case "Angling":
-          waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
-          break;
+          console.log(result[i].Name);
+          var loc = JSON.parse(result[i].Location);
+          var button = '</br><button class="button">Directions</button>';
+          switch(result[i].Type){
+            case "Food":
+              foodLayer.addLayer(L.marker(loc, {icon: foodIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
+              break;
 
-          case "Boat":
-          waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
-          break;
+            case "Angling":
+              waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
+              break;
 
-          case "Groups":
-          groupLayer.addLayer(L.marker(loc, {icon: greenIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
-          break;
+            case "Boat":
+                waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
+                break;
 
-          default:
-          activityLayer.addLayer(L.marker(loc, {icon: redIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
-        }
+            case "Groups":
+              groupLayer.addLayer(L.marker(loc, {icon: greenIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
+              break;
+
+            default:
+              activityLayer.addLayer(L.marker(loc, {icon: redIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
+          }
       }
-    })
+    });
 
 
   };
@@ -224,8 +225,8 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
       console.log("hi");
     });
   });
+
   $scope.num = parkDataService.activities.length;
-  //console.log($scope.activities);
 
   $scope.toggleGroup = function(activity) {
     if ($scope.isGroupShown(activity)) {
@@ -237,7 +238,6 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
   };
 
   $scope.addToFavourites = function(fav){
-    console.log("Adding to favourites");
     var favs = JSON.parse(window.localStorage['favs'] || '{}');
     if(Object.keys(favs).length === 0){
       console.log("no favourites");
@@ -267,6 +267,7 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
         $scope.activities[i].fav = false;
       }
     }
+
     window.localStorage['favs'] = JSON.stringify(favs);
   }
 
