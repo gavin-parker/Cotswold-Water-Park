@@ -532,3 +532,8 @@ z-index: 1000;
     display: block !important;
   }
 */
+
+.menu.menu-left, .list a {
+    border-color: solid;
+    vertical-align: middle;
+}

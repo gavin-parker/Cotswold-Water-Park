@@ -1,4 +1,81 @@
 
+app.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+    .state('tabs', {
+      url: "/tab",
+      abstract: true,
+      templateUrl: "templates/tabs.html"
+    })
+    .state('tabs.map', {
+      url: "/map",
+      views: {
+        'map-tab': {
+          templateUrl: "templates/map.html"
+        }
+      }
+    })
+    .state('tabs.home', {
+      url: "/home",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/home.html",
+          controller: 'HomeTabCtrl'
+        }
+      }
+    })
+    .state('tabs.activities', {
+      url: "/activities",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/activities.html", 
+          controller : "ActivitiesCtrl"
+        }
+      }
+    })
+    .state('tabs.events', {
+      url: "/events",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/events.html", 
+          controller : 'EventsCtrl'
+        }
+      }
+    })
+    .state('tabs.birds', {
+      url: "/birds",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/birds.html", 
+          controller : "BirdsCtrl"
+        }
+      }
+    })
+    .state('tabs.news', {
+      url: "/news",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/news.html", 
+          controller : "NewsCtrl"
+        }
+      }
+    })
+    .state('tabs.favs', {
+      url: "/favs",
+      views: {
+        'home-tab': {
+          templateUrl: "templates/favs.html", 
+          controller : "FavsCtrl"
+        }
+      }
+    });
+
+   $urlRouterProvider.otherwise("/tab/map");
+})
+
+.controller('HomeTabCtrl', function($scope) {
+  console.log('HomeTabCtrl');
+});
+
 //controller manipulating map
 app.controller('MapCtrl', function($scope, $rootScope, parkDataService, markersDataService){
 
@@ -142,8 +219,6 @@ function loadLocations(){
 
 });
 
-
-
 //function to control activities tab
 app.controller('ActivitiesCtrl', function($scope, parkDataService){
   $scope.activities = [];
@@ -245,6 +320,7 @@ app.controller('BirdsCtrl', function($scope, birdService){
   };
 
 });
+
 //controls news tab
 app.controller('NewsCtrl', function($scope, newsService){
   function initialize(){
