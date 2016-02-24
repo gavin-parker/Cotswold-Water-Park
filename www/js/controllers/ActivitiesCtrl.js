@@ -7,7 +7,13 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
   parkDataService.activities().then(function(result){
     console.log(result);
     $scope.activities = result;
+    if($scope.activities == {} || $scope.activities == null){
+      $scope.activities = JSON.parse(window.localStorage['activities']);
+    }else{
+    window.localStorage['activities'] = JSON.stringify($scope.activities);
+  }
     checkFavourites();
+
     $scope.$on('$ionicView.enter', function() {
       checkFavourites();
       console.log("hi");

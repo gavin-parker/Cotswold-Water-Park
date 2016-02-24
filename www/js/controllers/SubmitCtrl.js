@@ -1,11 +1,4 @@
-app.controller('SubmitCtrl', function($scope, $cordovaCamera){
-    if (typeof Camera !== "undefined") {
-        console.log("yaya camera");
-        } else {
-            console.log("Camera unavailable");
-        
-    }
-
+app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http){
     console.log('IN SUBMIT CTRL');
     $scope.sighting = {};
    // document.addEventListener("deviceready", function () {
@@ -37,8 +30,15 @@ app.controller('SubmitCtrl', function($scope, $cordovaCamera){
       postSighting($scope.sighting);
     };
 
-    var postSighting = function(sighting){
-
+    var yay = function(){
+      console.log("yay");
     }
+    var nay = function(){
+      console.log("nay");
+    }
+
+    var postSighting = function(sighting){
+      $http.get('http://localhost:8080').then(yay,nay);
+    };
    // }
 });
