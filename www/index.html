@@ -95,13 +95,13 @@
               <i class="icon ion-ios-book-outline"></i>
               News
             </ion-item>
-            <ion-item menu-close href="#/tab/birds">
-              <i class="icon ion-egg"></i>
-              Birds
-            </ion-item>
             <ion-item menu-close href="#/tab/favs">
               <i class="icon ion-heart"></i>
               Favourites
+            </ion-item>
+            <ion-item menu-close href="#/tab/birds">
+              <i class="icon ion-egg"></i>
+              Birds
             </ion-item>
             <ion-item menu-close href="#/tab/submit">
               <i class="icon ion-heart"></i>
@@ -398,7 +398,7 @@
               <ion-item class="item-accordion" ng-show="isGroupShown(item)">
                 <div class="list">
                   <div class="item item-icon-left, item item-text-wrap" href="#">
-                    <pre ng-bind-html="item.contentSnippet"></pre>
+                    <a ng-bind-html="item.contentSnippet"></a>
 
                   </div>
 
