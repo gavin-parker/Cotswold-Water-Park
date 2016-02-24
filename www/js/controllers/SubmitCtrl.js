@@ -1,4 +1,11 @@
 app.controller('SubmitCtrl', function($scope, $cordovaCamera){
+    if (typeof Camera !== "undefined") {
+        console.log("yaya camera");
+        } else {
+            console.log("Camera unavailable");
+        
+    }
+
     console.log('IN SUBMIT CTRL');
     $scope.sighting = {};
    // document.addEventListener("deviceready", function () {
