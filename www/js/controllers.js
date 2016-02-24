@@ -37,6 +37,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
+  .state('tabs.submit', {
+    url: "/submit",
+    views: {
+      'submit-tab': {
+        templateUrl: "templates/submit.html",
+        controller : "submitCtrl"
+      }
+    }
+  })
   .state('tabs.birds', {
     url: "/birds",
     views: {
