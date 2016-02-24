@@ -21,9 +21,6 @@ app.run(function($ionicPlatform) {
 
     // onError Callback receives a PositionError object
     //
-
-
-
   });
 });
 

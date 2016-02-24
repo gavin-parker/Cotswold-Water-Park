@@ -54,6 +54,9 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService){
   };
 
   $rootScope.routeTo = function(e){
+    if(e.latlng == null){
+      e.latlng = e.target.latlng;
+    }
     if(control == null){
       console.log(e);
       control = L.Routing.control({
@@ -66,6 +69,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService){
     }else{
       control.spliceWaypoints(1,1, e.latlng);
     }
+    console.log(e.latlng);
     console.log("Added routing control to map");
     L.Routing.errorControl(control).addTo(map);
   };
@@ -92,31 +96,41 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService){
 
           console.log(result[i].Name);
           var loc = JSON.parse(result[i].Location);
-          var button = '</br><button class="button">Directions</button>';
+          //Create marker popup
+          var container = L.DomUtil.create('div');
+          container.innerHTML = '<h4>' + result[i].Name + '</h4> <p>' + result[i].Description + '</p>';
+          //Create marker directions button
+          var btn  = L.DomUtil.create('button', 'button', container);
+          btn.setAttribute('type', 'button');
+          btn.innerHTML = "Directions";
+          btn.latlng = loc;
+          L.DomEvent.on(btn, 'click', $scope.routeTo);
+
           switch(result[i].Type){
             case "Food":
-              foodLayer.addLayer(L.marker(loc, {icon: foodIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
+              //foodLayer.addLayer(L.marker(loc, {icon: foodIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
+              foodLayer.addLayer(L.marker(loc, {icon: foodIcon}).addTo(map).bindPopup(container));
               break;
 
             case "Hotel":
-              foodLayer.addLayer(L.marker(loc, {icon: hotelIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+'Phone: '+(result[i].Number)+'</br>'+'Website: '+(result[i].URL)+'</br>'+'Email: '+(result[i].Email)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
+              foodLayer.addLayer(L.marker(loc, {icon: foodIcon}).addTo(map).bindPopup(container));
               break;
 
             case "Angling":
             case "Boat":
-              waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
+              waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup(container));
               break;
 
             case "Groups":
-              groupLayer.addLayer(L.marker(loc, {icon: greenIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
+              groupLayer.addLayer(L.marker(loc, {icon: greenIcon}).addTo(map).bindPopup(container));
               break;
 
             case "Bird":
-              birdLayer.addLayer(L.marker(loc, {icon: birdIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
+              birdLayer.addLayer(L.marker(loc, {icon: birdIcon}).addTo(map).bindPopup(container));
               break;
 
             default:
-              activityLayer.addLayer(L.marker(loc, {icon: redIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
+              activityLayer.addLayer(L.marker(loc, {icon: redIcon}).addTo(map).bindPopup(container));
           }
       }
     });
