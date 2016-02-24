@@ -66,6 +66,9 @@
           <ion-tab>
             <ion-nav-view name="map-tab"></ion-nav-view>
           </ion-tab>
+          <ion-tab>
+            <ion-nav-view name="submit-tab"></ion-nav-view>
+          </ion-tab>
         </ion-tabs>
 
       </ion-side-menu-content>
@@ -99,6 +102,10 @@
             <ion-item menu-close href="#/tab/favs">
               <i class="icon ion-heart"></i>
               Favourites
+            </ion-item>
+            <ion-item menu-close href="#/tab/submit">
+              <i class="icon ion-heart"></i>
+              Submit Sighting
             </ion-item>
           </ion-list>
         </ion-content>
@@ -235,6 +242,18 @@
       </ion-content>
     </ion-view>
   </script>
+
+<script id="templates/submit.html" type="text/ng-template">
+  <ion-view title="Cotswold Water Park" hide-tabs="true">
+    <ion-nav-buttons side="right">
+      <a class="button button-icon button-clear ion-map" href="#/tab/map"></a>
+    </ion-nav-buttons>
+      <ion-content class="has-subheader" ng-controller="SubmitCtrl">
+        Hello
+      </ion-content>
+  </ion-view>
+
+</script>
 
   <script id="templates/activities.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
@@ -383,7 +402,7 @@
           </button>
         </div>
         <strong>
-          <a class="content" href="https://cotswoldwaterpark.wordpress.com/sightings-or-comments/">
+          <a class="content" href="#/tab/submit">
           <button class="button button-fab button-assertive icon ion-android-add">
           </button>
         </a>

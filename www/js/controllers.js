@@ -37,6 +37,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
+  .state('tabs.submit', {
+    url: "/submit",
+    views: {
+      'submit-tab': {
+        templateUrl: "templates/submit.html",
+        controller : "submitCtrl"
+      }
+    }
+  })
   .state('tabs.birds', {
     url: "/birds",
     views: {
@@ -388,6 +397,11 @@ app.controller('FavsCtrl', function($scope){
     $scope.removeMarkersAndShowActivity(coords);
   };
 
+});
+
+app.controller('SubmitCtrl', function($scope){
+
+  console.log("hello");
 });
 
 //controls birds tab
