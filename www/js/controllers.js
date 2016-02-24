@@ -1,7 +1,3 @@
-
-app.controller('SubmitCtrl', function($scope){
-  console.log("hello");
-});
 app.directive('hideTabs', function($rootScope) {
   return {
     restrict: 'A',
