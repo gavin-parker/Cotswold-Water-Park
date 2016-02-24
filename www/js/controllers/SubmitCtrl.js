@@ -1,5 +1,6 @@
 app.controller('SubmitCtrl', function($scope, $cordovaCamera){
     console.log('IN SUBMIT CTRL');
+    $scope.sighting = {};
    // document.addEventListener("deviceready", function () {
     $scope.takePicture = function() {
         var options = {
@@ -22,8 +23,15 @@ app.controller('SubmitCtrl', function($scope, $cordovaCamera){
         });
     }
 
-    $scope.submit = function(){
+    $scope.submit = function(sighting){
       console.log("submit");
+      $scope.sighting = angular.copy(sighting);
+      console.log($scope.sighting);
+      postSighting($scope.sighting);
     };
+
+    var postSighting = function(sighting){
+
+    }
    // }
 });
