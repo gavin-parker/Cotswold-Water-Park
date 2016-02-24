@@ -1,5 +1,3 @@
-
-
 app.controller('FavsCtrl', function($scope){
   $scope.favourites = [];
   $scope.$on('$ionicView.enter', function() {
