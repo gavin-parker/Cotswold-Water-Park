@@ -42,7 +42,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     views: {
       'submit-tab': {
         templateUrl: "templates/submit.html",
-        controller : "submitCtrl"
+        controller : "SubmitCtrl"
       }
     }
   })
