@@ -399,6 +399,11 @@ app.controller('FavsCtrl', function($scope){
 
 });
 
+app.controller('SubmitCtrl', function($scope){
+
+  console.log("hello");
+});
+
 //controls birds tab
 app.controller('BirdsCtrl', function($scope, birdService){
   console.log('IN BIRDS CTRL');
