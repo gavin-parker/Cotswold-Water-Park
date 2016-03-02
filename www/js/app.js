@@ -92,6 +92,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
+  .state('tabs.facebook', {
+    url: "/facebook",
+    views: {
+
+      'facebook-tab': {
+        templateUrl: "templates/facebook.html",
+        controller : "FacebookCtrl"
+      }
+    }
+  })
   .state('tabs.favs', {
     url: "/favs",
     views: {
