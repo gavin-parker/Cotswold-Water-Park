@@ -1,6 +1,6 @@
 /* Empty. Add your own CSS if you like */
 #map {
-    height: 1200px; /*absolute value - very naughty! */
+    height: 100vh; /* was 1200px */
     margin: 0px;
     padding: 0px;
 }
