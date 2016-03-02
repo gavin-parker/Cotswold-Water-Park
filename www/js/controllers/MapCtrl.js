@@ -170,8 +170,12 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService){
     var osmAttrib='locals';
     //var offlineLayer = new L.TileLayer(local, {minZoom: 12, maxZoom: 16, attribution: osmAttrib});
     var osm = new L.TileLayer(osmUrl, {minZoom: 12, maxZoom: 16, attribution: osmAttrib});
-    map.setView(new L.LatLng(x, y), 14);
-    var bounds = map.getBounds();
+    map.setView(new L.LatLng(x, y), 13);
+    /*var bounds = map.getBounds();
+    map.setMaxBounds(bounds);*/
+    var southWest = L.latLng(51.59, -2.05);
+    var northEast = L.latLng(51.73, -1.63);
+    bounds = L.latLngBounds(southWest, northEast);
     map.setMaxBounds(bounds);
     //map.addLayer(offlineLayer);
     map.addLayer(osm);
