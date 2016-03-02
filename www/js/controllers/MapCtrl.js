@@ -25,6 +25,8 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService){
     "lake numbers" : lakeLayer
   };
 
+  bounds = {north: 51.73, south: 51.59, east: -1.63, west: -2.05};
+
   var x = 51.65; //Temporary start location, change to user location
   var y = -1.91; //
 
@@ -44,14 +46,20 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService){
   var hotelIcon = new markerIcon({iconUrl: 'img/hotel.png'});
   var birdIcon = new markerIcon({iconUrl: 'img/bird.png'});
   var pinPoint = new markerIcon({iconUrl: 'img/pinpoint.png'});
+
+  //get current location, if not in water park then set view to default location
   var getLoc = function(position) {
     /*
     var x = position.coords.latitude;
     var y = position.coords.longitude;
     */
-
-    map.setView(new L.LatLng(x, y), 13);
-    L.marker([x,y], {icon: pinPoint}).addTo(map).bindPopup('You Are Here');
+    if(x < bounds.north && x > bounds.south && y < bounds.east && y > bounds.west) {
+      map.setView(new L.LatLng(x, y), 13);
+      L.marker([x,y], {icon: pinPoint}).addTo(map).bindPopup('You Are Here');
+    } else {
+      map.setView(new L.LatLng(51.655, -1.92), 13);
+      //alert("You are not in the water park!");
+    }
   };
 
   $rootScope.routeTo = function(e){
@@ -167,22 +175,22 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService){
 
 
   var init = function(){
+    //add button to find current location
+    L.easyButton('<img src="/img/ppoint.png">', function(btn, map){
+      map.setView([x, y]);
+    }).addTo(map);
+
     //navigator.geolocation.getCurrentPosition(getLoc, onError);
-    getLoc();
     var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     var osmAttrib='locals';
     //var offlineLayer = new L.TileLayer(local, {minZoom: 12, maxZoom: 16, attribution: osmAttrib});
     var osm = new L.TileLayer(osmUrl, {minZoom: 12, maxZoom: 16, attribution: osmAttrib});
-    map.setView(new L.LatLng(x, y), 13);
-    /*var bounds = map.getBounds();
-    map.setMaxBounds(bounds);*/
-    var southWest = L.latLng(51.59, -2.05);
-    var northEast = L.latLng(51.73, -1.63);
-    bounds = L.latLngBounds(southWest, northEast);
-    map.setMaxBounds(bounds);
+    var southWest = L.latLng(bounds.south, bounds.west);
+    var northEast = L.latLng(bounds.north, bounds.east);
+    map.setMaxBounds(L.latLngBounds(southWest, northEast));
     //map.addLayer(offlineLayer);
     map.addLayer(osm);
-
+    getLoc();
     //var activities = parkDataService.activities();
   };
 
