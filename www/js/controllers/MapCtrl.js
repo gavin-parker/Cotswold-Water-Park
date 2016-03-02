@@ -25,7 +25,10 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     "lake numbers" : lakeLayer
   };
 
-  bounds = {north: 51.73, south: 51.59, east: -1.63, west: -2.05};
+  //boundaries for the map
+  var southWest = L.latLng(51.59, -2.05);
+  var northEast = L.latLng(51.73, -1.63);
+  bounds = L.latLngBounds(southWest, northEast)
 
   var x = 51.65; //Temporary start location, change to user location
   var y = -1.91; //
@@ -53,7 +56,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     var x = position.coords.latitude;
     var y = position.coords.longitude;
     */
-    if(x < bounds.north && x > bounds.south && y < bounds.east && y > bounds.west) {
+    if(bounds.contains(new L.LatLng(x,y))) {
       map.setView(new L.LatLng(x, y), 13);
       L.marker([x,y], {icon: pinPoint}).addTo(map).bindPopup('You Are Here');
     } else {
@@ -63,24 +66,27 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   };
 
   $rootScope.routeTo = function(e){
-    if(e.latlng == null){
-      e.latlng = e.target.latlng;
+    //if you are not in the water park then routing is switched off
+    if(bounds.contains(new L.latLng(x,y))) {
+      if(e.latlng == null){
+        e.latlng = e.target.latlng;
+      }
+      if(control == null){
+        console.log(e);
+        control = L.Routing.control({
+          waypoints: [
+            L.latLng(x, y), //change x,y to user location
+            e.latlng
+          ],
+          routeWhileDragging: true
+        }).addTo(map);
+      }else{
+        control.spliceWaypoints(1,1, e.latlng);
+      }
+      console.log(e.latlng);
+      console.log("Added routing control to map");
+      L.Routing.errorControl(control).addTo(map);
     }
-    if(control == null){
-      console.log(e);
-      control = L.Routing.control({
-        waypoints: [
-          L.latLng(x, y), //change x,y to user location
-          e.latlng
-        ],
-        routeWhileDragging: true
-      }).addTo(map);
-    }else{
-      control.spliceWaypoints(1,1, e.latlng);
-    }
-    console.log(e.latlng);
-    console.log("Added routing control to map");
-    L.Routing.errorControl(control).addTo(map);
   };
 
   function saveLocations(locs){
@@ -188,8 +194,8 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
 
 
   var init = function(){
-    //add button to find current location
-    L.easyButton('<img src="/img/ppoint.png">', function(btn, map){
+    //add button which finds current location
+    L.easyButton('&target;', function(btn, map){
       map.setView([x, y]);
     }).addTo(map);
 
@@ -198,9 +204,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     var osmAttrib='locals';
     //var offlineLayer = new L.TileLayer(local, {minZoom: 12, maxZoom: 16, attribution: osmAttrib});
     var osm = new L.TileLayer(osmUrl, {minZoom: 12, maxZoom: 16, attribution: osmAttrib});
-    var southWest = L.latLng(bounds.south, bounds.west);
-    var northEast = L.latLng(bounds.north, bounds.east);
-    map.setMaxBounds(L.latLngBounds(southWest, northEast));
+    map.setMaxBounds(bounds);
     //map.addLayer(offlineLayer);
     map.addLayer(osm);
     getLoc();
