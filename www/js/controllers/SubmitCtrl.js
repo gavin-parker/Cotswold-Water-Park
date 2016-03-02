@@ -1,6 +1,7 @@
 app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaToast){
     $scope.pictureUrl = 'http://placehold.it/300x300';
     $scope.takePicture = function() {
+      console.log("taking pic");
       var options = {
         destinationType : Camera.DestinationType.DATA_URL,
         encodingType: Camera.EncodingType.JPEG,
@@ -12,10 +13,11 @@ app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaToa
         $scope.pictureUrl = "data:image/jpeg;base64," + data;
       }, function(err){
         // there was an error
+        console.log("error");
       })
     };
 
-    
+
     $scope.showToast = function(message, duration, location) {
       $cordovaToast.show(message, duration, location).then(function(success) {
         console.log("The toast was shown");

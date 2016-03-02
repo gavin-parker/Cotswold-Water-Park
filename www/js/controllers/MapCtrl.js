@@ -1,5 +1,5 @@
 //controller manipulating map
-app.controller('MapCtrl', function($scope, $rootScope, parkDataService){
+app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdService){
   //Initialize new layers and map
   var activityLayer = new L.layerGroup();
   var waterLayer = new L.layerGroup();
@@ -153,11 +153,24 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService){
         if(result[i].Loc != "[]"){
         lakeLayer.addLayer(L.marker(JSON.parse(result[i].Loc), {icon : lakeIcon}).addTo(map));
       }
-      }
+    }
+    addBirdsToMap(result);
     });
-
-
   };
+
+  var addBirdsToMap = function(lakes){
+    birdService.Locations().then(function(birds){
+      var container = L.DomUtil.create('div');
+      container.innerHTML = '<h4>' + result[i].Name + '</h4> <p>' + result[i].Description + '</p>';
+      //Create marker directions button
+      var btn  = L.DomUtil.create('button', 'button', container);
+      btn.setAttribute('type', 'button');
+      btn.innerHTML = "Directions";
+      btn.latlng = loc;
+      L.DomEvent.on(btn, 'click', $scope.routeTo);
+      birdLayer.addLayer(L.marker(loc, {icon: birdIcon}).addTo(map).bindPopup(container));
+      });
+    };
   $rootScope.removeMarkersAndShowActivity = function(e){ // removes all other markers from map and shows activity marker
     map.removeLayer(foodLayer);
     map.removeLayer(waterLayer);
@@ -200,6 +213,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService){
   console.log("added event handler");
   addAllActivitiesToMap();
   addLakesToMap();
+
   console.log("control of layers set");
 
 });
