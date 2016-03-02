@@ -12,7 +12,7 @@ app.factory('parkDataService', function($http, $q){
               console.log(res);
             });
       return defer.promise;
-    }
+    },
     lakes : function(){
       var activities;
       var defer = $q.defer();
@@ -23,7 +23,7 @@ app.factory('parkDataService', function($http, $q){
             });
       return defer.promise;
     }
-  }
+  };
 });
 
 //gets live event data via RSS feed (superfeedr API)

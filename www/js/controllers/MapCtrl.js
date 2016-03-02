@@ -6,6 +6,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService){
   var foodLayer = new L.layerGroup();
   var groupLayer = new L.layerGroup();
   var birdLayer = new L.layerGroup();
+  var lakeLayer = new L.layerGroup();
   var markers = new L.layerGroup();
   var local='img/mapTiles/{z}/{x}/{y}.jpg';
   var offlineLayer = new L.TileLayer(local, {minZoom: 12, maxZoom: 16});
@@ -20,8 +21,8 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService){
     "Food and Hotels": foodLayer,
     "Group Activities": groupLayer,
     "Birds": birdLayer,
-    "offline" : offlineLayer
-
+    "offline" : offlineLayer,
+    "lake numbers" : lakeLayer
   };
 
   var x = 51.65; //Temporary start location, change to user location
@@ -136,6 +137,16 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService){
     });
 
   };
+  var addLakesToMap = function(){
+    parkDataService.lakes().then(function(result){
+      for(var i = 0; i < result.length;i++){
+        console.log(result[i]);
+
+      }
+    });
+
+
+  };
   $rootScope.removeMarkersAndShowActivity = function(e){ // removes all other markers from map and shows activity marker
     map.removeLayer(foodLayer);
     map.removeLayer(waterLayer);
@@ -173,6 +184,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService){
   //map.on('contextmenu', routeTo);
   console.log("added event handler");
   addAllActivitiesToMap();
+  addLakesToMap();
   console.log("control of layers set");
 
 });
