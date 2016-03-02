@@ -181,8 +181,8 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService){
 
 
   var init = function(){
-    //add button to find current location
-    L.easyButton('<img src="/img/ppoint.png">', function(btn, map){
+    //add button which finds current location
+    L.easyButton('&target;', function(btn, map){
       map.setView([x, y]);
     }).addTo(map);
 
