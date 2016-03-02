@@ -11,7 +11,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService){
   var local='img/mapTiles/{z}/{x}/{y}.jpg';
   var offlineLayer = new L.TileLayer(local, {minZoom: 12, maxZoom: 16});
   var map = new L.Map('map', {
-    layers: [activityLayer, waterLayer, foodLayer, groupLayer, birdLayer]
+    layers: [activityLayer, waterLayer, foodLayer, groupLayer, birdLayer, lakeLayer]
   });
 
   //Layer Options
@@ -141,7 +141,10 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService){
     parkDataService.lakes().then(function(result){
       for(var i = 0; i < result.length;i++){
         console.log(result[i]);
-
+        var lakeIcon = L.divIcon({className: 'lakeIcon', html : JSON.parse(result[i].Lake), iconSize : [24,24]});
+        if(result[i].Loc != "[]"){
+        lakeLayer.addLayer(L.marker(JSON.parse(result[i].Loc), {icon : lakeIcon}).addTo(map));
+      }
       }
     });
 

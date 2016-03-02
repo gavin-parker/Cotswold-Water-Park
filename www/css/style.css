@@ -31,7 +31,12 @@ hyper{
 card{
 
 }
-
+.lakeIcon{
+  text-align: justify;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
 .button-fab {
 
 background-color:#ef473a;
