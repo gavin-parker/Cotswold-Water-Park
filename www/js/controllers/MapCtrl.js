@@ -175,6 +175,11 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService){
 
 
   var init = function(){
+    //add button to find current location
+    L.easyButton('<img src="/img/ppoint.png">', function(btn, map){
+      map.setView([x, y]);
+    }).addTo(map);
+
     //navigator.geolocation.getCurrentPosition(getLoc, onError);
     var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     var osmAttrib='locals';
