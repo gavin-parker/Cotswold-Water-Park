@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <meta http-equiv="Content-Security-Policy" content="default-src *">
   <title></title>
   <link href="lib/ionic/css/ionic.css" rel="stylesheet">
   <link href="lib/ionic-material/dist/ionic.material.min.css" rel="stylesheet">
@@ -42,7 +43,7 @@
 
 
 </head>
-<body ng-app="starter">
+<body ng-app="starter" ng-csp>
 
   <script id="templates/menu.html" type="text/ng-template">
     <ion-side-menus enable-menu-with-back-views="false">
@@ -60,7 +61,7 @@
         <ion-tabs ng-class="{'tabs-item-hide': $root.hideTabs}">
           <ion-tab>
             <ion-nav-view name="activities-tab"></ion-nav-view>
-          </ion-tab>  
+          </ion-tab>
           <ion-tab>
             <ion-nav-view name="events-tab"></ion-nav-view>
           </ion-tab>
@@ -78,13 +79,13 @@
           </ion-tab>
           <ion-tab>
             <ion-nav-view name="facebook-tab"></ion-nav-view>
-          </ion-tab>  
+          </ion-tab>
           <ion-tab>
             <ion-nav-view name="submit-tab"></ion-nav-view>
           </ion-tab>
         </ion-tabs>
 
-      </ion-side-menu-content>  
+      </ion-side-menu-content>
 
        <!-- Side Menu (left) -->
       <ion-side-menu side="left">
@@ -284,7 +285,7 @@
           </label>
           <button class="button button-positive" ng-click="submit(sighting); showToast('Sighting sent', 'long', 'bottom')">Submit</button>
         </div>
-      </div class="item item-image"><!-- 
+      </div class="item item-image"><!--
         <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
         <img ng-show="imgURI === undefined" ng-src="http://placehold.it/300x300"> -->
         <img ng-src='{{pictureUrl}}'>
@@ -469,7 +470,7 @@
       </ion-nav-buttons>
         <ion-content class="has-subheader">
           <div class="card" href="#" ng-repeat="post in facebook | filter:searchQuery">{{post.message}}</div>
-              
+
         </ion-content>
     </ion-view>
   </script>
@@ -478,4 +479,3 @@
   </script>
 </body>
 </html>
-
