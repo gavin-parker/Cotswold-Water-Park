@@ -13,10 +13,11 @@
   <!-- ionic/angularjs js -->
   <script src="lib/ionic/js/ionic.bundle.js"></script>
   <script src="lib/ionic-platform-web-client/dist/ionic.io.bundle.min.js"></script>
-<script src="lib/ionic-material/dist/ionic.material.min.js"></script>
+  <script src="lib/ionic-material/dist/ionic.material.min.js"></script>
   <!-- cordova script (this will be a 404 during development) -->
   <!-- Cordova is bootstrapped by ionic-platform-web-client, uncomment this if you remove ionic-platform-web-client... -->
-  <!-- <script src="cordova.js"></script> -->
+  <script src="lib/ngCordova/dist/ng-cordova.js"></script>
+  <script src="cordova.js"></script>
 
   <!-- your app's js -->
 
@@ -25,6 +26,14 @@
   <script src="js/app.js"></script>
   <script src="js/factories.js"></script>
   <script src="js/controllers.js"></script>
+  <script src="js/controllers/ActivitiesCtrl.js"></script>
+  <script src="js/controllers/BirdsCtrl.js"></script>
+  <script src="js/controllers/EventsCtrl.js"></script>
+  <script src="js/controllers/FavsCtrl.js"></script>
+  <script src="js/controllers/MapCtrl.js"></script>
+  <script src="js/controllers/NewsCtrl.js"></script>
+  <script src="js/controllers/SubmitCtrl.js"></script>
+
 
   <script src="js/leaflet-src.js"></script>
   <script src="js/leaflet-routing-machine.js"></script>
@@ -50,7 +59,7 @@
         <ion-tabs ng-class="{'tabs-item-hide': $root.hideTabs}">
           <ion-tab>
             <ion-nav-view name="activities-tab"></ion-nav-view>
-          </ion-tab>
+          </ion-tab>  
           <ion-tab>
             <ion-nav-view name="events-tab"></ion-nav-view>
           </ion-tab>
@@ -68,10 +77,13 @@
           </ion-tab>
           <ion-tab>
             <ion-nav-view name="facebook-tab"></ion-nav-view>
+          </ion-tab>  
+          <ion-tab>
+            <ion-nav-view name="submit-tab"></ion-nav-view>
           </ion-tab>
         </ion-tabs>
 
-      </ion-side-menu-content>
+      </ion-side-menu-content>  
 
        <!-- Side Menu (left) -->
       <ion-side-menu side="left">
@@ -95,13 +107,17 @@
               <i class="icon ion-ios-book-outline"></i>
               News
             </ion-item>
+            <ion-item menu-close href="#/tab/favs">
+              <i class="icon ion-heart"></i>
+              Favourites
+            </ion-item>
             <ion-item menu-close href="#/tab/birds">
               <i class="icon ion-egg"></i>
               Birds
             </ion-item>
-            <ion-item menu-close href="#/tab/favs">
-              <i class="icon ion-heart"></i>
-              Favourites
+            <ion-item menu-close href="#/tab/submit">
+              <i class="icon ion-eye"></i>
+              Submit Sighting
             </ion-item>
             <ion-item menu-close href="#/tab/facebook">
               <i class="icon ion-social-facebook"></i>
@@ -171,7 +187,6 @@
                         <i class="icon ion-information-circled"></i>
                         {{activity.Description}}
                       </a>
-
                       <a class= "item item-icon-center" href="#/tab/map">
                         <div>
                           <button class="button button-act" ng-click="showOnMap({{activity}})">
@@ -187,8 +202,7 @@
                             Remove From Favourites
                             </button>
                         </div>
-                        </a>
-                      <a
+                      </a>
                     </div>
                   </div>
                 </ion-list>
@@ -244,6 +258,41 @@
       </ion-content>
     </ion-view>
   </script>
+
+<script id="templates/submit.html" type="text/ng-template">
+  <ion-view title="Cotswold Water Park" hide-tabs="true">
+    <ion-nav-buttons side="right">
+      <a class="button button-icon button-clear ion-map" href="#/tab/map"></a>
+    </ion-nav-buttons>
+
+      <ion-content class="has-subheader">
+        <div class="list" margin="auto" float="center" padding="auto" margin="auto">
+          <div class="row">
+          <div class="col text-center">
+          <label class="item item-input">
+            <input type="text" placeholder="Name" ng-model="sighting.Name" />
+          </label>
+          <label class="item item-input">
+            <input type="text" placeholder="Email" ng-model="sighting.Email"/>
+          </label>
+          <label class="item item-input">
+            <input type="text" placeholder="Date" ng-model="sighting.Date"/>
+          </label>
+          <label class="item item-input">
+            <input type="text" placeholder="Sightings or Comments" ng-model="sighting.Text"/>
+          </label>
+          <button class="button button-positive" ng-click="submit(sighting); showToast('Sighting sent', 'long', 'bottom')">Submit</button>
+        </div>
+      </div class="item item-image"><!-- 
+        <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
+        <img ng-show="imgURI === undefined" ng-src="http://placehold.it/300x300"> -->
+        <img ng-src='{{pictureUrl}}'>
+      </div>
+      <button class="button" ng-click="takePicture()">Take Picture</button>
+      </ion-content>
+  </ion-view>
+
+</script>
 
   <script id="templates/activities.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
@@ -324,7 +373,7 @@
                           </button>
                         </div>
                         <div>
-                          <button class="button button-assertive button-act" ng-show="activity.fav"  ng-click="removeFromFavourites({{activity}})">
+                          <button class="button button button-assertive button-act" ng-show="activity.fav"  ng-click="removeFromFavourites({{activity}})">
                             <i class="icon ion-heart-broken"></i>
                             Remove From Favourites
                           </button>
@@ -365,7 +414,7 @@
               <ion-item class="item-accordion" ng-show="isGroupShown(item)">
                 <div class="list">
                   <div class="item item-icon-left, item item-text-wrap" href="#">
-                    <pre ng-bind-html="item.contentSnippet"></pre>
+                    <a ng-bind-html="item.contentSnippet"></a>
 
                   </div>
 
@@ -392,7 +441,7 @@
           </button>
         </div>
         <strong>
-          <a class="content" href="https://cotswoldwaterpark.wordpress.com/sightings-or-comments/">
+          <a class="content" href="#/tab/submit">
           <button class="button button-fab button-assertive icon ion-android-add">
           </button>
         </a>
@@ -403,11 +452,10 @@
             <div class="item item-avatar">
               <img src="img/twitter-bird.svg" />
               <h2>{{bird["by_link/_text"]}}</h2>
-              <p>{{bird["postedon_link/_text"]}} </p>
+              <p>{{<big>  </big>rd["postedon_link/_text"]}} </p>
             </div>
             <img  class="card-img" src="{{bird.entrycontent_image}}"/>
             <p ng-bind-html="bird.entry_content">
-
             </p>
         </ion-content>
     </ion-view>

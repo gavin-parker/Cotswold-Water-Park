@@ -1,4 +1,4 @@
-var app = angular.module('starter', ['ionic','ionic-material'])
+var app = angular.module('starter', ['ionic','ionic-material', 'ngCordova'])
 
 app.config(['$ionicConfigProvider', function($ionicConfigProvider) {
 
@@ -21,8 +21,86 @@ app.run(function($ionicPlatform) {
 
     // onError Callback receives a PositionError object
     //
-
-
-
   });
+});
+
+app.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+
+  .state('tabs', {
+    url: "/tab",
+    abstract: true,
+    templateUrl: "templates/menu.html"
+  })
+
+  .state('tabs.map', {
+    url: "/map",
+    views: {
+      'map-tab': {
+        templateUrl: "templates/map.html",
+        controller : "MapCtrl"
+      }
+    }
+  })
+
+  .state('tabs.activities', {
+    url: "/activities",
+    views: {
+
+      'activities-tab': {
+        templateUrl: "templates/activities.html",
+        controller : "ActivitiesCtrl"
+      }
+    }
+  })
+  .state('tabs.events', {
+    url: "/events",
+    views: {
+
+      'events-tab': {
+        templateUrl: "templates/events.html",
+        controller : 'EventsCtrl'
+      }
+    }
+  })
+  .state('tabs.submit', {
+    url: "/submit",
+    views: {
+      'submit-tab': {
+        templateUrl: "templates/submit.html",
+        controller : "SubmitCtrl"
+      }
+    }
+  })
+  .state('tabs.birds', {
+    url: "/birds",
+    views: {
+
+      'birds-tab': {
+        templateUrl: "templates/birds.html",
+        controller : "BirdsCtrl"
+      }
+    }
+  })
+  .state('tabs.news', {
+    url: "/news",
+    views: {
+
+      'news-tab': {
+        templateUrl: "templates/news.html",
+        controller : "NewsCtrl"
+      }
+    }
+  })
+  .state('tabs.favs', {
+    url: "/favs",
+    views: {
+
+      'favs-tab': {
+        templateUrl: "templates/favs.html",
+        controller : "FavsCtrl"
+      }
+    }
+  });
+  $urlRouterProvider.otherwise('/tab/map');
 });

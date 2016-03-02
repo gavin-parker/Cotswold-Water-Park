@@ -12,8 +12,18 @@ app.factory('parkDataService', function($http, $q){
               console.log(res);
             });
       return defer.promise;
+    },
+    lakes : function(){
+      var activities;
+      var defer = $q.defer();
+      $http.get('js/lakes.json')
+           .success(function(res){
+              defer.resolve(res);
+              console.log(res);
+            });
+      return defer.promise;
     }
-  }
+  };
 });
 
 //gets live event data via RSS feed (superfeedr API)
@@ -104,3 +114,35 @@ app.factory('facebookService', function($q, $http){
      return defer.promise;
   }
 }});
+
+app.factory('tweetService', function($q){
+  return{
+    Tweets : function(){
+      var defer = $q.defer();
+      $http.get('https://stream.twitter.com/1/statuses/sample.json')
+      .success(function(data){
+
+      });
+
+    }
+  }
+
+});
+
+app.factory('Camera', ['$q', function($q) {
+
+  return {
+    getPicture: function(options) {
+      var q = $q.defer();
+
+      navigator.camera.getPicture(function(result) {
+        // Do any magic you need
+        q.resolve(result);
+      }, function(err) {
+        q.reject(err);
+      }, options);
+
+      return q.promise;
+    }
+  }
+}]);
