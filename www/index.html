@@ -66,6 +66,9 @@
           <ion-tab>
             <ion-nav-view name="map-tab"></ion-nav-view>
           </ion-tab>
+          <ion-tab>
+            <ion-nav-view name="facebook-tab"></ion-nav-view>
+          </ion-tab>
         </ion-tabs>
 
       </ion-side-menu-content>
@@ -99,6 +102,10 @@
             <ion-item menu-close href="#/tab/favs">
               <i class="icon ion-heart"></i>
               Favourites
+            </ion-item>
+            <ion-item menu-close href="#/tab/facebook">
+              <i class="icon ion-social-facebook"></i>
+              facebook
             </ion-item>
           </ion-list>
         </ion-content>
@@ -406,7 +413,20 @@
     </ion-view>
   </script>
 
+  <script id="templates/facebook.html" type="text/ng-template">
+    <ion-view title="Cotswold Water Park" hide-tabs="true">
+      <ion-nav-buttons side="right">
+        <a class="button button-icon button-clear ion-map" href="#/tab/map"></a>
+      </ion-nav-buttons>
+        <ion-content class="has-subheader">
+          <div class="card" href="#" ng-repeat="post in facebook | filter:searchQuery">{{post.message}}</div>
+              
+        </ion-content>
+    </ion-view>
+  </script>
+
   <script>
   </script>
 </body>
 </html>
+

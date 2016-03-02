@@ -57,6 +57,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
+  .state('tabs.facebook', {
+    url: "/facebook",
+    views: {
+
+      'facebook-tab': {
+        templateUrl: "templates/facebook.html",
+        controller : "FacebookCtrl"
+      }
+    }
+  })
+
   .state('tabs.favs', {
     url: "/favs",
     views: {
@@ -460,4 +471,16 @@ app.directive('hideTabs', function($rootScope) {
       });
     }
   };
+});
+
+app.controller('FacebookCtrl', function($scope, facebookService){
+  console.log('IN FACE CTRL');
+  function initialize(){
+      facebookService.Import().then(function(result){
+      $scope.facebook = result;
+      console.log($scope.facebook);
+      //console.log($scope.birds[0]["postedon_link/_text"]);
+    });
+  }
+  initialize();
 });
