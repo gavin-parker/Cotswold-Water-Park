@@ -23,7 +23,7 @@ app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http){
         });
     }
 
-    $scope.submit = function(sighting){
+    $scope.submit = function(sighting, $cordovaEmailComposer){
       console.log("submit");
       $scope.sighting = angular.copy(sighting);
       console.log($scope.sighting);
@@ -38,7 +38,19 @@ app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http){
     }
 
     var postSighting = function(sighting){
-      $http.get('http://localhost:8080').then(yay,nay);
+      var email = {
+         to: 'gp14958@bristol.ac.uk',
+         cc: sighting.Email,
+         bcc: [],
+         attachments: [
+         ],
+         subject: 'Bird Sighting:' + sighting.Name,
+         body: sighting.Text,
+         isHtml: true
+ };
+
+      $cordovaEmailComposer.open(email);
+      alert(email);
     };
    // }
 });
