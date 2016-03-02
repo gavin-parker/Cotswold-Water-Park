@@ -13,6 +13,16 @@ app.factory('parkDataService', function($http, $q){
             });
       return defer.promise;
     }
+    lakes : function(){
+      var activities;
+      var defer = $q.defer();
+      $http.get('js/lakes.json')
+           .success(function(res){
+              defer.resolve(res);
+              console.log(res);
+            });
+      return defer.promise;
+    }
   }
 });
 
