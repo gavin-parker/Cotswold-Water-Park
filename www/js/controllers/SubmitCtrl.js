@@ -1,27 +1,29 @@
-app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http){
-    console.log('IN SUBMIT CTRL');
-    $scope.sighting = {};
-   // document.addEventListener("deviceready", function () {
+app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaToast){
+    $scope.pictureUrl = 'http://placehold.it/300x300';
     $scope.takePicture = function() {
-        var options = {
-            quality : 75,
-            destinationType : Camera.DestinationType.DATA_URL,
-            sourceType : Camera.PictureSourceType.CAMERA,
-            allowEdit : true,
-            encodingType: Camera.EncodingType.JPEG,
-            targetWidth: 300,
-            targetHeight: 300,
-            popoverOptions: CameraPopoverOptions,
-            saveToPhotoAlbum: false
-        };
+      var options = {
+        destinationType : Camera.DestinationType.DATA_URL,
+        encodingType: Camera.EncodingType.JPEG,
+        targetWidth: 300,
+        targetHeight: 300
+      };
+      $cordovaCamera.getPicture(options).then(function(data){
+        console.log('camera data: ' + angular.toJson(data));
+        $scope.pictureUrl = "data:image/jpeg;base64," + data;
+      }, function(err){
+        // there was an error
+      })
+    };
 
-        $cordovaCamera.getPicture(options).then(function(imageData) {
-            console.log("succeddddd");
-            $scope.imgURI = "data:image/jpeg;base64," + imageData;
-        }, function(err) {
-            // An error occured. Show a message to the user
-        });
+    
+    $scope.showToast = function(message, duration, location) {
+      $cordovaToast.show(message, duration, location).then(function(success) {
+        console.log("The toast was shown");
+      }, function (error) {
+         console.log("The toast was not shown due to " + error);
+      });
     }
+
 
     $scope.submit = function(sighting){
       console.log("submit");

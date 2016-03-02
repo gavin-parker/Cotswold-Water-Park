@@ -59,7 +59,7 @@
         <ion-tabs ng-class="{'tabs-item-hide': $root.hideTabs}">
           <ion-tab>
             <ion-nav-view name="activities-tab"></ion-nav-view>
-          </ion-tab>
+          </ion-tab>  
           <ion-tab>
             <ion-nav-view name="events-tab"></ion-nav-view>
           </ion-tab>
@@ -80,7 +80,7 @@
           </ion-tab>
         </ion-tabs>
 
-      </ion-side-menu-content>
+      </ion-side-menu-content>  
 
        <!-- Side Menu (left) -->
       <ion-side-menu side="left">
@@ -274,13 +274,14 @@
           <label class="item item-input">
             <input type="text" placeholder="Sightings or Comments" ng-model="sighting.Text"/>
           </label>
-          <button class="button button-positive" ng-click="submit(sighting)">Submit</button>
+          <button class="button button-positive" ng-click="submit(sighting); showToast('Sighting sent', 'long', 'bottom')">Submit</button>
         </div>
-      </div>
+      </div class="item item-image"><!-- 
         <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
-        <img ng-show="imgURI === undefined" ng-src="http://placehold.it/300x300">
-        <button class="button" ng-click="takePicture()">Take Picture</button>
+        <img ng-show="imgURI === undefined" ng-src="http://placehold.it/300x300"> -->
+        <img ng-src='{{pictureUrl}}'>
       </div>
+      <button class="button" ng-click="takePicture()">Take Picture</button>
       </ion-content>
   </ion-view>
 
@@ -365,7 +366,7 @@
                           </button>
                         </div>
                         <div>
-                          <button class="button button-assertive button-act" ng-show="activity.fav"  ng-click="removeFromFavourites({{activity}})">
+                          <button class="button button button-assertive button-act" ng-show="activity.fav"  ng-click="removeFromFavourites({{activity}})">
                             <i class="icon ion-heart-broken"></i>
                             Remove From Favourites
                           </button>
@@ -444,11 +445,10 @@
             <div class="item item-avatar">
               <img src="img/twitter-bird.svg" />
               <h2>{{bird["by_link/_text"]}}</h2>
-              <p>{{bird["postedon_link/_text"]}} </p>
+              <p>{{<big>  </big>rd["postedon_link/_text"]}} </p>
             </div>
             <img  class="card-img" src="{{bird.entrycontent_image}}"/>
             <p ng-bind-html="bird.entry_content">
-
             </p>
         </ion-content>
     </ion-view>
