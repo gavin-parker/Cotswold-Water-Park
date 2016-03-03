@@ -1,4 +1,4 @@
-app.directive('hideTabs', function($rootScope) {
+  app.directive('hideTabs', function($rootScope) {
   return {
     restrict: 'A',
     link: function(scope, element, attributes) {

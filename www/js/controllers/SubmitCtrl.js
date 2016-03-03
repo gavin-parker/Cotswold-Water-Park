@@ -1,4 +1,4 @@
-app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaToast){
+app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaToast, $cordovaEmailComposer){
     $scope.pictureUrl = 'http://placehold.it/300x300';
     $scope.takePicture = function() {
       console.log("taking pic");
@@ -27,7 +27,7 @@ app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaToa
     }
 
 
-    $scope.submit = function(sighting, $cordovaEmailComposer){
+    $scope.submit = function(sighting){
       console.log("submit");
       $scope.sighting = angular.copy(sighting);
       console.log($scope.sighting);
@@ -52,9 +52,14 @@ app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaToa
          body: sighting.Text,
          isHtml: true
  };
+      $cordovaEmailComposer.isAvailable(function(){
+        console.log("email is available");
+        $cordovaEmailComposer.open(email, function(){
+          console.log("opened email");
+        });
+      });
 
-      $cordovaEmailComposer.open(email);
-      alert(email);
+
     };
    // }
 });

@@ -3,6 +3,7 @@ var app = angular.module('starter', ['ionic','ionic-material', 'ngCordova'])
 app.config(['$ionicConfigProvider', function($ionicConfigProvider) {
 
   $ionicConfigProvider.tabs.position('bottom');
+  $ionicConfigProvider.scrolling.jsScrolling(false);
 
 }]);
 
