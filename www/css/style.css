@@ -16,8 +16,8 @@ img{
   display:"block";
 }
 .custom-fb {
-  background-color : rgb(76,102,164);
-  color: white;
+  color : rgb(76,102,164);
+  background-color: white;
 }
 .custom-twitter {
   color : rgb(64,153,255);
