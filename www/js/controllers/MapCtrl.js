@@ -2,7 +2,7 @@
 app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdService, $ionicPopover, Scopes){
   //Saving scopes -- important : used for sharing scope functions with other controllers
   Scopes.store('MapCtrl', $scope);
-  
+
   //Initialize new layers and map
   var activityLayer = new L.layerGroup();
   var waterLayer = new L.layerGroup();
@@ -169,15 +169,21 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
 
   var addBirdsToMap = function(lakes){
     birdService.Locations().then(function(birds){
+      console.log(birds);
+      for(var i=0;i< birds.length;i++){
       var container = L.DomUtil.create('div');
-      container.innerHTML = '<h4>' + result[i].Name + '</h4> <p>' + result[i].Description + '</p>';
-      //Create marker directions button
+      console.log(birds[i]);
+      container.innerHTML = '<h4>' + birds[i][0] + '</h4> <p>' + birds[i].input + '</p>';
       var btn  = L.DomUtil.create('button', 'button', container);
       btn.setAttribute('type', 'button');
       btn.innerHTML = "Directions";
+      var lakeNum = birds[i][0].replace( /^\D+/g, '');
+      if(lakeNum > 66){lakeNum = 2;};
+      var loc = JSON.parse(lakes[lakeNum].Loc);
       btn.latlng = loc;
       L.DomEvent.on(btn, 'click', $scope.routeTo);
       birdLayer.addLayer(L.marker(loc, {icon: birdIcon}).addTo(map).bindPopup(container));
+    }
       });
     };
   $rootScope.removeMarkersAndShowActivity = function(e){ // removes all other markers from map and shows activity marker
@@ -204,28 +210,28 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   //Layer toggle for activities and sites
   //L.control.layers("",overlayMaps).addTo(map);
   $scope.controlLayers = function(toggledLayer){
-    var toToggle = activityLayer; 
+    var toToggle = activityLayer;
     var toggle   = activityToggle;
 
     //getting toggle id and correct layer
     if (toggledLayer === 'waterLayer') {
-      toToggle = waterLayer; 
+      toToggle = waterLayer;
       toggle = waterToggle;
     }else if (toggledLayer === 'foodLayer') {
-      toToggle = foodLayer; 
+      toToggle = foodLayer;
       toggle = foodToggle;
     }else if (toggledLayer === 'birdLayer') {
-      toToggle = birdLayer; 
+      toToggle = birdLayer;
       toggle = birdToggle;
     }else if (toggledLayer === 'lakeLayer') {
-      toToggle = lakeLayer; 
+      toToggle = lakeLayer;
       toggle = lakeToggle;
     }else if (toggledLayer === 'offlineLayer') {
-      toToggle = offlineLayer; 
+      toToggle = offlineLayer;
       toggle = offlineToggle;
     }
     else if (toggledLayer === 'groupLayer') {
-      toToggle = groupLayer; 
+      toToggle = groupLayer;
       toggle = groupToggle;
     }
 
@@ -246,7 +252,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     else activityToggle = !toggle;
   };
 
-  var init = function(){  
+  var init = function(){
     //add button which finds current location
     L.easyButton('&target;', function(btn, map){
       map.setView([x, y]);
