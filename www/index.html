@@ -24,6 +24,7 @@
 
   <script type="text/javascript" src="js/superfeedr.js"></script>
   <script stc="js/datahandler.js"></script>
+  <script src="plugins/cordova-plugin-email-composer/www/email_composer.js"></script>
   <script src="js/app.js"></script>
   <script src="js/factories/birdService.js"></script>
   <script src="js/factories/cameraService.js"></script>
@@ -154,8 +155,9 @@
     <ion-popover-view>
       <ion-content ng-controller="PopoverCtrl">
         <div class="list">
-          <ion-toggle ng-click = "controlLayers('activityLayer')" ng-checked="true">General activities</ion-toggle>
-          <ion-toggle ng-click = "controlLayers('waterLayer')" ng-checked="true">Water activities</ion-toggle>
+          <ion-toggle ng-click = "controlLayers('activityLayer')" ng-checked="true">General Activities</ion-toggle>
+          <ion-toggle ng-click = "controlLayers('waterLayer')" ng-checked="true">Water Activities</ion-toggle>
+          <ion-toggle ng-click = "controlLayers('groupLayer')" ng-checked="true">Group Activities</ion-toggle>
           <ion-toggle ng-click = "controlLayers('foodLayer')" ng-checked="true">Food and Hotels</ion-toggle>
           <ion-toggle ng-click = "controlLayers('birdLayer')" ng-checked="true">Birds</ion-toggle>
           <ion-toggle ng-click = "controlLayers('lakeLayer')" ng-checked="true">Lake numbers</ion-toggle>
@@ -295,15 +297,6 @@
         <div class="list" margin="auto" float="center" padding="auto" margin="auto">
           <div class="row">
           <div class="col text-center">
-          <label class="item item-input">
-            <input type="text" placeholder="Name" ng-model="sighting.Name" />
-          </label>
-          <label class="item item-input">
-            <input type="text" placeholder="Email" ng-model="sighting.Email"/>
-          </label>
-          <label class="item item-input">
-            <input type="text" placeholder="Date" ng-model="sighting.Date"/>
-          </label>
           <label class="item item-input">
             <input type="text" placeholder="Sightings or Comments" ng-model="sighting.Text"/>
           </label>

@@ -1,8 +1,9 @@
 //controller manipulating map
 app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdService, $ionicPopover, Scopes){
-  //Initialize new layers and map
+  //Saving scopes -- important : used for sharing scope functions with other controllers
   Scopes.store('MapCtrl', $scope);
-
+  
+  //Initialize new layers and map
   var activityLayer = new L.layerGroup();
   var waterLayer = new L.layerGroup();
   var foodLayer = new L.layerGroup();
@@ -199,12 +200,14 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   var lakeToggle      = false;
   var offlineToggle   = true;
   var foodToggle      = false;
-  
+  var groupToggle      = false;
   //Layer toggle for activities and sites
   //L.control.layers("",overlayMaps).addTo(map);
   $scope.controlLayers = function(toggledLayer){
     var toToggle = activityLayer; 
     var toggle   = activityToggle;
+
+    //getting toggle id and correct layer
     if (toggledLayer === 'waterLayer') {
       toToggle = waterLayer; 
       toggle = waterToggle;
@@ -221,22 +224,25 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
       toToggle = offlineLayer; 
       toggle = offlineToggle;
     }
-
-
-    console.log('layer to toggle: ',toToggle);
-    if(!toggle) {
-      map.removeLayer(toToggle);
-      console.log('removedlayer ',toggledLayer);
-    } else {
-      map.addLayer(toToggle);
-      console.log('addedlayer ',toggledLayer);
+    else if (toggledLayer === 'groupLayer') {
+      toToggle = groupLayer; 
+      toggle = groupToggle;
     }
 
+    //Controlling the layers
+    if(!toggle) {
+      map.removeLayer(toToggle);
+    } else {
+      map.addLayer(toToggle);
+    }
+
+    //Setting the toggle to correct value
     if (toggledLayer === 'waterLayer') waterToggle = !toggle;
     else if (toggledLayer === 'foodLayer') foodToggle = !toggle;
     else if (toggledLayer === 'birdLayer') birdToggle = !toggle;
     else if (toggledLayer === 'lakeLayer') lakeToggle = !toggle;
     else if (toggledLayer === 'offlineLayer') offlineToggle = !toggle;
+    else if (toggledLayer === 'groupLayer') groupToggle = !toggle;
     else activityToggle = !toggle;
   };
 
@@ -267,6 +273,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
 
   console.log("control of layers set");
 
+  //Popover display
   $ionicPopover.fromTemplateUrl('templates/popover.html', {
     scope: $scope,
   }).then(function(popover) {
