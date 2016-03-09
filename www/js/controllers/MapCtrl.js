@@ -157,8 +157,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   var addLakesToMap = function(){
     parkDataService.lakes().then(function(result){
       for(var i = 0; i < result.length;i++){
-        console.log(result[i]);
-        var lakeIcon = L.divIcon({className: 'lakeIcon', html : JSON.parse(result[i].Lake), iconSize : [24,24]});
+          var lakeIcon = L.divIcon({className: 'lakeIcon', html : JSON.parse(result[i].Lake), iconSize : [24,24]});
         if(result[i].Loc != "[]"){
         lakeLayer.addLayer(L.marker(JSON.parse(result[i].Loc), {icon : lakeIcon}).addTo(map));
       }
@@ -172,17 +171,34 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
       console.log(birds);
       for(var i=0;i< birds.length;i++){
       var container = L.DomUtil.create('div');
-      console.log(birds[i]);
-      container.innerHTML = '<h4>' + birds[i][0] + '</h4> <p>' + birds[i].input + '</p>';
+      //console.log(birds[i]);
+      var text = birds[i].input;
+      if(birds[i+1] !== null){
+        try{
+        text = text.substring( birds[i].index, birds[i+1].index);
+      }catch(err){
+        console.log(err);
+        text = "a bird was seen here";
+      }
+      }
+      container.innerHTML = '<h4>' + birds[i][0] + '</h4> <p>' + text + '</p>';
       var btn  = L.DomUtil.create('button', 'button', container);
       btn.setAttribute('type', 'button');
       btn.innerHTML = "Directions";
       var lakeNum = birds[i][0].replace( /^\D+/g, '');
-      if(lakeNum > 66){lakeNum = 2;};
-      var loc = JSON.parse(lakes[lakeNum].Loc);
+      var loc = 0;
+      try{
+      loc = JSON.parse(lakes[lakeNum].Loc);
+    }catch(err){
+      loc = JSON.parse(lakes[2].Loc);
+    }
+      if(loc.length === 0){
+        loc = JSON.parse(lakes[2].Loc);
+      }
       btn.latlng = loc;
       L.DomEvent.on(btn, 'click', $scope.routeTo);
       birdLayer.addLayer(L.marker(loc, {icon: birdIcon}).addTo(map).bindPopup(container));
+
     }
       });
     };
