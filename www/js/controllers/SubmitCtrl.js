@@ -44,7 +44,7 @@ app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaToa
     var postSighting = function(sighting){
       console.log("posting a signting");
       var email = {
-         to: 'gp14958@bristol.ac.uk',
+         to: 'ab14188@bristol.ac.uk',
          cc: sighting.Email,
          bcc: [],
          attachments: [

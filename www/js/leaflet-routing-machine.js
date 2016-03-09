@@ -407,7 +407,7 @@ if (typeof module !== undefined) module.exports = polyline;
 	L.Routing.Control = L.Routing.Itinerary.extend({
 		options: {
 			fitSelectedRoutes: 'smart',
-			routeLine: function(route, options) { return L.Routing.line(route, options); },
+			routeLine: function(route, options) { return L.Routing.line( route, options); },
 			autoRoute: true,
 			routeWhileDragging: false,
 			routeDragInterval: 500,
