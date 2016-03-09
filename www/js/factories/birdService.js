@@ -41,7 +41,6 @@ app.factory('birdService', function($q, $http){
           content = content.replace(".", ".<br/>");
           var expression = /CWP[]?[0-9]+/g;
           var lakes = expression.exec(content);
-
           console.log("lake:");
           console.log(lakes);
         }
