@@ -14,7 +14,7 @@ app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaToa
       }, function(err){
         // there was an error
         console.log("error");
-      })
+      });
     };
 
 
@@ -24,7 +24,7 @@ app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaToa
       }, function (error) {
          console.log("The toast was not shown due to " + error);
       });
-    }
+    };
 
 
     $scope.submit = function(sighting){
@@ -36,12 +36,13 @@ app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaToa
 
     var yay = function(){
       console.log("yay");
-    }
+    };
     var nay = function(){
       console.log("nay");
-    }
+    };
 
     var postSighting = function(sighting){
+      console.log("posting a signting");
       var email = {
          to: 'gp14958@bristol.ac.uk',
          cc: sighting.Email,
@@ -56,6 +57,8 @@ app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaToa
         console.log("email is available");
         $cordovaEmailComposer.open(email, function(){
           console.log("opened email");
+        }, function(){
+          console.log("email is down");
         });
       });
 

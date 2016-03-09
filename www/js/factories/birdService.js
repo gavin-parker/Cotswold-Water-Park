@@ -15,10 +15,17 @@ app.factory('birdService', function($q, $http){
             data.results[i].entry_content = content;
 
           }
+          if(data.results != null){
           window.localStorage['birds'] = JSON.stringify(data.results);
+        }else{
+          var res = JSON.parse(window.localStorage['birds']);
+          defer.resolve(res);
+        }
           defer.resolve(data.results);
         }, function(err){
           var res = JSON.parse(window.localStorage['birds']);
+          console.log(err);
+          console.log("loading cached data instead");
           defer.resolve(res);
         });
         return defer.promise;
