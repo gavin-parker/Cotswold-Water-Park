@@ -37,8 +37,9 @@ app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaToa
 
 
     $scope.submit = function(sighting){
-      var body = sighting.Text.replace(" ", "%20");
-      window.open('mailto:gp14958@bristol.ac.uk?Subject=Bird%20Sighting&body='+sighting,'_blank');
+      var body = decodeURIComponent(sighting.Text);
+      var Subject = "Bird%20Sighting";
+      $window.location.href = 'mailto:gp14958@my.bristol.ac.uk?subject=' + Subject + '&body=' + body;
     };
 
     var yay = function(){
