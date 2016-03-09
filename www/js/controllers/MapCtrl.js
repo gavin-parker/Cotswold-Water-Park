@@ -39,7 +39,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   var control = null;
   var markerIcon = L.Icon.extend({
     options: {
-      iconSize:     [45, 45],
+      iconSize:     [30, 30],
       iconAnchor:   [10, 40],
       popupAnchor:  [10, -20]
     }
