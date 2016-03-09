@@ -1,15 +1,8 @@
-app.controller('FacebookCtrl', function($scope, facebookService){
-  console.log('IN FACE CTRL');
-  function initialize(){
-    facebookService.Page().then(function(result){
-      console.log("yay");
-    });
-      facebookService.Import().then(function(result){
-      $scope.facebook = result;
-      console.log($scope.facebook);
-      //console.log($scope.birds[0]["postedon_link/_text"]);
-    });
 
-  }
-  initialize();
+app.controller('FacebookCtrl', function($scope){
+	$scope.openCordovaWebView = function()
+	{
+	 // Open cordova webview if the url is in the whitelist otherwise opens in app browser
+	 window.open('https://www.facebook.com/CotswoldWaterParkTrust','_self');
+	};
 });
