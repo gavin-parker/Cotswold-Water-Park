@@ -24,6 +24,7 @@
 
   <script type="text/javascript" src="js/superfeedr.js"></script>
   <script stc="js/datahandler.js"></script>
+  <script src="plugins/cordova-plugin-email-composer/www/email_composer.js"></script>
   <script src="js/app.js"></script>
   <script src="js/factories/birdService.js"></script>
   <script src="js/factories/cameraService.js"></script>
@@ -87,12 +88,10 @@
             <ion-nav-view name="map-tab"></ion-nav-view>
           </ion-tab>
           <ion-tab>
-            <ion-nav-view name="facebook-tab"></ion-nav-view>
-          </ion-tab>
-          <ion-tab>
             <ion-nav-view name="submit-tab"></ion-nav-view>
           </ion-tab>
         </ion-tabs>
+
 
       </ion-side-menu-content>
 
@@ -130,10 +129,9 @@
               <i class="icon ion-eye"></i>
               Submit Sighting
             </ion-item>
-            <ion-item menu-close href="#/tab/facebook">
-              <i class="icon ion-social-facebook"></i>
+            <button class="button button-clear icon icon-left ion-social-facebook" ng-click="openCordovaWebView()">
               facebook
-            </ion-item>
+            </button>
           </ion-list>
         </ion-content>
       </ion-side-menu>
@@ -299,15 +297,6 @@
         <div class="list" margin="auto" float="center" padding="auto" margin="auto">
           <div class="row">
           <div class="col text-center">
-          <label class="item item-input">
-            <input type="text" placeholder="Name" ng-model="sighting.Name" />
-          </label>
-          <label class="item item-input">
-            <input type="text" placeholder="Email" ng-model="sighting.Email"/>
-          </label>
-          <label class="item item-input">
-            <input type="text" placeholder="Date" ng-model="sighting.Date"/>
-          </label>
           <label class="item item-input">
             <input type="text" placeholder="Sightings or Comments" ng-model="sighting.Text"/>
           </label>
@@ -491,16 +480,6 @@
     </ion-view>
   </script>
 
-  <script id="templates/facebook.html" type="text/ng-template">
-    <ion-view title="Cotswold Water Park" hide-tabs="true" ng-init="openCordovaWebView()">
-      <ion-nav-buttons side="right">
-        <a class="button button-icon button-clear ion-map" href="#/tab/map"></a>
-      </ion-nav-buttons>
-        <ion-content class="has-subheader">
-          <div ng-init="openCordovaWebView()"></div>
-        </ion-content>
-    </ion-view>
-  </script>
 
   <script>
   </script>
