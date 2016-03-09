@@ -103,9 +103,10 @@
         </ion-header-bar>
         <ion-content>
           <ion-list>
-            <!-- <ion-item menu-close href="#/tab/map">
+            <ion-item menu-close href="#/tab/map">
+              <i class ="icon ion-map"></i>
               Map
-            </ion-item> -->
+            </ion-item>
             <ion-item menu-close href="#/tab/activities">
               <i class="icon ion-android-bicycle"></i>
               Activities
@@ -130,10 +131,8 @@
               <i class="icon ion-eye"></i>
               Submit Sighting
             </ion-item>
-            <ion-item menu-close href="#/tab/facebook">
-              <i class="icon ion-social-facebook"></i>
-              facebook
-            </ion-item>
+            <button class="button button-clear button-icon" ng-click="openCordovaWebView()"> <i class = "icon ion-social-facebook custom-fb"></i></button>
+            <button class="button button-clear button-icon" ng-click="openCordovaWebViewTwitter()"><i class = "icon ion-social-twitter custom-twitter"></i></button>
           </ion-list>
         </ion-content>
       </ion-side-menu>
