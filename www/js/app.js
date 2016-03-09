@@ -35,7 +35,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
   .state('tabs', {
     url: "/tab",
     abstract: true,
-    templateUrl: "templates/menu.html"
+    templateUrl: "templates/menu.html",
+    controller:"FacebookCtrl"
   })
 
   .state('tabs.map', {
