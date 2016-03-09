@@ -87,12 +87,10 @@
             <ion-nav-view name="map-tab"></ion-nav-view>
           </ion-tab>
           <ion-tab>
-            <ion-nav-view name="facebook-tab"></ion-nav-view>
-          </ion-tab>
-          <ion-tab>
             <ion-nav-view name="submit-tab"></ion-nav-view>
           </ion-tab>
         </ion-tabs>
+
 
       </ion-side-menu-content>
 
@@ -130,10 +128,9 @@
               <i class="icon ion-eye"></i>
               Submit Sighting
             </ion-item>
-            <ion-item menu-close href="#/tab/facebook">
-              <i class="icon ion-social-facebook"></i>
+            <button class="button button-clear icon icon-left ion-social-facebook" ng-click="openCordovaWebView()">
               facebook
-            </ion-item>
+            </button>
           </ion-list>
         </ion-content>
       </ion-side-menu>
@@ -490,16 +487,6 @@
     </ion-view>
   </script>
 
-  <script id="templates/facebook.html" type="text/ng-template">
-    <ion-view title="Cotswold Water Park" hide-tabs="true" ng-init="openCordovaWebView()">
-      <ion-nav-buttons side="right">
-        <a class="button button-icon button-clear ion-map" href="#/tab/map"></a>
-      </ion-nav-buttons>
-        <ion-content class="has-subheader">
-          <div ng-init="openCordovaWebView()"></div>
-        </ion-content>
-    </ion-view>
-  </script>
 
   <script>
   </script>
