@@ -157,7 +157,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   var addLakesToMap = function(){
     parkDataService.lakes().then(function(result){
       for(var i = 0; i < result.length;i++){
-          var lakeIcon = L.divIcon({className: 'lakeIcon', html : JSON.parse(result[i].Lake), iconSize : [24,24]});
+          var lakeIcon = L.divIcon({className: 'lakeIcon', html : JSON.parse(result[i].Lake), iconSize : [24,24], iconAnchor : [12,12]});
         if(result[i].Loc != "[]"){
         lakeLayer.addLayer(L.marker(JSON.parse(result[i].Loc), {icon : lakeIcon}).addTo(map));
       }
