@@ -170,17 +170,20 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   var addBirdsToMap = function(lakes){
     birdService.Locations().then(function(birds){
       console.log(birds);
-      /*
+      for(var i=0;i< birds.length;i++){
       var container = L.DomUtil.create('div');
-      container.innerHTML = '<h4>' + result[i].Name + '</h4> <p>' + result[i].Description + '</p>';
-      //Create marker directions button
+      console.log(birds[i]);
+      container.innerHTML = '<h4>' + birds[i][0] + '</h4> <p>' + birds[i].input + '</p>';
       var btn  = L.DomUtil.create('button', 'button', container);
       btn.setAttribute('type', 'button');
       btn.innerHTML = "Directions";
+      var lakeNum = birds[i][0].replace( /^\D+/g, '');
+      if(lakeNum > 66){lakeNum = 2;};
+      var loc = JSON.parse(lakes[lakeNum].Loc);
       btn.latlng = loc;
       L.DomEvent.on(btn, 'click', $scope.routeTo);
       birdLayer.addLayer(L.marker(loc, {icon: birdIcon}).addTo(map).bindPopup(container));
-      */
+    }
       });
     };
   $rootScope.removeMarkersAndShowActivity = function(e){ // removes all other markers from map and shows activity marker

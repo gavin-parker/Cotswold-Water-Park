@@ -540,42 +540,6 @@
     "FIELD16":""
   },
   {
-    "Name":"3 male and 1 redhead smew\n",
-    "Type":"Bird",
-    "Number":"",
-    "Email":"",
-    "URL":"",
-    "Location":"[51.654683, -1.951748]",
-    "Description":"Jon Mercer",
-    "FIELD8":"",
-    "FIELD9":"",
-    "FIELD10":"",
-    "FIELD11":"",
-    "FIELD12":"",
-    "FIELD13":"",
-    "FIELD14":"",
-    "FIELD15":"",
-    "FIELD16":""
-  },
-  {
-    "Name":"Great Northern Diver still present\n",
-    "Type":"Bird",
-    "Number":"",
-    "Email":"",
-    "URL":"",
-    "Location":"[51.641353, -1.922006]",
-    "Description":"Jon Mercer",
-    "FIELD8":"",
-    "FIELD9":"",
-    "FIELD10":"",
-    "FIELD11":"",
-    "FIELD12":"",
-    "FIELD13":"",
-    "FIELD14":"",
-    "FIELD15":"",
-    "FIELD16":""
-  },
-  {
     "Name":"Cotswold Water Park Four Pillars Hotel",
     "Type":"Hotel",
     "Number":"01285 864 000\n",
@@ -628,7 +592,7 @@
     "FIELD14":"",
     "FIELD15":"",
     "FIELD16":""
-  }, 
+  },
   {
     "Name":"Orion Holidays\n",
     "Type":"Hotel",
@@ -646,7 +610,7 @@
     "FIELD14":"",
     "FIELD15":"",
     "FIELD16":""
-  },  
+  },
   {
     "Name":"Watermark Holidays\n",
     "Type":"Hotel",
@@ -700,5 +664,5 @@
     "FIELD14":"",
     "FIELD15":"",
     "FIELD16":""
-  } 
+  }
 ]
