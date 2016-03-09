@@ -1,6 +1,6 @@
 app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaToast, $cordovaEmailComposer){
     $scope.pictureUrl = 'http://placehold.it/300x300';
-
+      $cordovaEmailComposer.addAlias('gmail', 'com.google.android.gm');
       $cordovaEmailComposer.isAvailable().then(function() {
          // is available
          alert("available");
@@ -54,7 +54,7 @@ app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaToa
 
     var postSighting = function(sighting){
       console.log("posting a signting");
-      var email = {
+      /*var email = {
          to: 'gp14958@bristol.ac.uk',
          cc: sighting.Email,
          bcc: [],
@@ -63,8 +63,8 @@ app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaToa
          subject: 'Bird Sighting:' + sighting.Name,
          body: sighting.Text,
          isHtml: true
-    };
-     $cordovaEmailComposer.open(email).then(null, function(){
+    }; */
+     $cordovaEmailComposer.open({app: 'gmail', subject: 'birds'}).then(null, function(){
        console.log("user cancelled mail");
      });
     };
