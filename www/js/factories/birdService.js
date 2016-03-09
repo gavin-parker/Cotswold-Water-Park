@@ -41,8 +41,7 @@ app.factory('birdService', function($q, $http){
           var content = res["entry_content"];
           content = content.replace(".", ".<br/>");
           var expression = /CWP[/\s]?[0-9]+/g;
-          var lakes = expression.exec(content);
-          if(lakes !== null){
+          while((lakes = expression.exec(content)) !== null){
             sightings.push(lakes);
           }
         }
