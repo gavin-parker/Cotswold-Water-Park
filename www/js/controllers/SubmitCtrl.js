@@ -1,5 +1,16 @@
 app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaToast, $cordovaEmailComposer){
     $scope.pictureUrl = 'http://placehold.it/300x300';
+
+      $cordovaEmailComposer.isAvailable().then(function() {
+         // is available
+         alert("available");
+       }, function () {
+         // not available
+         alert("not available");
+       });
+
+
+
     $scope.takePicture = function() {
       console.log("taking pic");
       var options = {
@@ -52,17 +63,9 @@ app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaToa
          subject: 'Bird Sighting:' + sighting.Name,
          body: sighting.Text,
          isHtml: true
- };
-      $cordovaEmailComposer.isAvailable(function(){
-        console.log("email is available");
-        $cordovaEmailComposer.open(email, function(){
-          console.log("opened email");
-        }, function(){
-          console.log("email is down");
-        });
-      });
-
-
     };
-   // }
+     $cordovaEmailComposer.open(email).then(null, function(){
+       console.log("user cancelled mail");
+     });
+    };
 });
