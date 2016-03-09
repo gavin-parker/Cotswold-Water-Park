@@ -16,5 +16,21 @@ app.factory('facebookService', function($q, $http){
       }
     );
      return defer.promise;
+  },
+  Page : function(){
+    var defer = $q.defer();
+    $http.get("https://graph.facebook.com/v2.5/137518789602829/feed")
+    /*FB.api(
+    '/1580592965597214/feed',
+    'GET',
+    {},*/
+    .success(function(response) {
+        //console.log("Got Here");
+        defer.resolve(response);
+        console.log(response);
+        // Insert your code here
+    }
+  );
+   return defer.promise;
   }
 }});
