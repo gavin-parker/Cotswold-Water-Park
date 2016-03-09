@@ -15,6 +15,14 @@ body{
 img{
   display:"block";
 }
+.custom-fb {
+  color : rgb(76,102,164);
+  background-color: white;
+}
+.custom-twitter {
+  color : rgb(64,153,255);
+  backgrond-color: white;
+}
 hyper{
   color: blue;
   text-decoration: underline;
