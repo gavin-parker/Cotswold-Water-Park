@@ -471,13 +471,11 @@
   </script>
 
   <script id="templates/facebook.html" type="text/ng-template">
-    <ion-view title="Cotswold Water Park" hide-tabs="true">
+    <ion-view title="Cotswold Water Park" hide-tabs="true" ng-init="openCordovaWebView()">
       <ion-nav-buttons side="right">
         <a class="button button-icon button-clear ion-map" href="#/tab/map"></a>
       </ion-nav-buttons>
         <ion-content class="has-subheader">
-          <div class="card" href="#" ng-repeat="post in facebook | filter:searchQuery">{{post.message}}</div>
-
         </ion-content>
     </ion-view>
   </script>
