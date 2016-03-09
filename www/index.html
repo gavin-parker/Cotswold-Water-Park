@@ -32,6 +32,7 @@
   <script src="js/factories/newsService.js"></script>
   <script src="js/factories/parkDataService.js"></script>
   <script src="js/factories/tweetService.js"></script>
+  <script src="js/factories/scopeSaving.js"></script>
   <script src="js/controllers.js"></script>
   <script src="js/controllers/ActivitiesCtrl.js"></script>
   <script src="js/controllers/BirdsCtrl.js"></script>
@@ -41,6 +42,7 @@
   <script src="js/controllers/NewsCtrl.js"></script>
   <script src="js/controllers/FacebookCtrl.js"></script>
   <script src="js/controllers/SubmitCtrl.js"></script>
+  <script src="js/controllers/PopoverCtrl.js"></script>
 
 
   <script src="js/leaflet-src.js"></script>
@@ -142,10 +144,28 @@
 
   <script id="templates/map.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
+    <ion-nav-buttons side="right">
+        <a class="button button-icon icon ion-settings button-clear" ng-click="popover.show($event)"></a>
+      </ion-nav-buttons>
       <ion-content>
           <div id="map" data-tap-disabled="true"></div>
         </ion-content>
     </ion-view>
+  </script>
+
+  <script id="templates/popover.html" type="text/ng-template">
+    <ion-popover-view>
+      <ion-content ng-controller="PopoverCtrl">
+        <div class="list">
+          <button ng-click = "controlLayers('activityLayer')">General activities</button>
+          <button ng-click = "controlLayers('waterLayer')">Water activities</button>
+          <button ng-click = "controlLayers('foodLayer')">Food and Hotels</button>
+          <button ng-click = "controlLayers('birdLayer')">Birds</button>
+          <button ng-click = "controlLayers('lakeLayer')">Lake numbers</button>
+          <button ng-click = "controlLayers('offlineLayer')">Offline</button>
+        </div>
+      </ion-content>
+    </ion-popover-view>
   </script>
 
   <script id="templates/favs.html" type="text/ng-template">
