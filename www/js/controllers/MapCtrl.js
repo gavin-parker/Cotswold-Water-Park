@@ -210,7 +210,17 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     map.removeLayer(birdLayer);
     markers.clearLayers();
     console.log(e.Name);
-    var marker = L.marker(JSON.parse(e.Location), {icon: redIcon}).addTo(map).bindPopup((e.Name)+'</br>'+(e.Description)).on('dblclick', $scope.routeTo);
+    var loc = JSON.parse(e.Location);
+    //Create marker popup
+    var container = L.DomUtil.create('div');
+    container.innerHTML = '<h4>' + e.Name + '</h4> <p>' + e.Description + '</p>';
+    //Create marker directions button
+    var btn  = L.DomUtil.create('button', 'button', container);
+    btn.setAttribute('type', 'button');
+    btn.innerHTML = "Directions";
+    btn.latlng = loc;
+    L.DomEvent.on(btn, 'click', $scope.routeTo);
+    var marker = L.marker(loc, {icon: redIcon}).addTo(map).bindPopup(container);
     markers.addLayer(marker);
     map.addLayer(markers);
     control.spliceWaypoints(1,1, e.latlng);
@@ -224,7 +234,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   var lakeToggle      = false;
   var offlineToggle   = true;
   var foodToggle      = false;
-  var groupToggle      = false;
+  var groupToggle     = false;
   //Layer toggle for activities and sites
   //L.control.layers("",overlayMaps).addTo(map);
   $scope.controlLayers = function(toggledLayer){
