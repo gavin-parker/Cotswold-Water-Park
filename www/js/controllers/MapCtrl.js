@@ -213,6 +213,8 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     var marker = L.marker(JSON.parse(e.Location), {icon: redIcon}).addTo(map).bindPopup((e.Name)+'</br>'+(e.Description)).on('dblclick', $scope.routeTo);
     markers.addLayer(marker);
     map.addLayer(markers);
+    control.spliceWaypoints(1,1, e.latlng);
+
   };
 
   //Settings the toggle = true
