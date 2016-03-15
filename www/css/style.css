@@ -8,6 +8,7 @@
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
 body{
   padding:0;
   margin:0;
@@ -26,6 +27,12 @@ img{
 hyper{
   color: blue;
   text-decoration: underline;
+}
+
+textarea {
+  outline: none;
+  resize: none;
+  overflow: auto;
 }
 
 .button-tabs{
