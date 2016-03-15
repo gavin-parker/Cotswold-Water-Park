@@ -328,17 +328,7 @@
       <ion-nav-buttons side="right">
         <a class="button button-icon button-clear ion-map" href="#/tab/map"></a>
       </ion-nav-buttons>
-      <div class="bar bar-subheader item-input-inset">
-          <label class="item item-input item-select">
-            <div class="input-label">
-              Filter Activities
-            </div>
-            <select ng-model="selectedActivity" ng-options="a for a in activityOptions">
-            </select>
-          </label>
-        </div>
 
-        <!--
         <div class="bar bar-subheader item-input-inset has-footer">
           <label class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
@@ -348,7 +338,16 @@
             Cancel
           </button>
         </div>
-        -->
+
+        <div class="bar bar-subheader item-input-inset">
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Filter Activities
+            </div>
+            <select ng-model="selectedActivity" ng-options="a for a in activityOptions">
+            </select>
+          </label>
+        </div>        
 
         <ion-content class="has-subheader">
           <ion-list>
