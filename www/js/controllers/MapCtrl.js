@@ -81,11 +81,13 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
             L.latLng(x, y), //change x,y to user location
             e.latlng
           ],
-          routeWhileDragging: true
+          routeWhileDragging: false,
+          createMarker: function() { return null; }   //remove waypoints markers
         }).addTo(map);
       }else{
-        control.spliceWaypoints(1,1, e.latlng);
+        control.spliceWaypoints(1,1, e.latlng);   
       }
+      //control.setWaypoints(waypoints);
       console.log(e.latlng);
       console.log("Added routing control to map");
       L.Routing.errorControl(control).addTo(map);
@@ -203,18 +205,14 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
       });
     };
   $rootScope.removeMarkersAndShowActivity = function(e){ // removes all other markers from map and shows activity marker
-    // map.removeLayer(foodLayer);
-    // map.removeLayer(waterLayer);
-    // map.removeLayer(activityLayer);
-    // map.removeLayer(groupLayer);
-    // map.removeLayer(birdLayer);
-
+    // Automatically Removes layers only if they need to be removed
     if (map.hasLayer( foodLayer )) $scope.controlLayers('foodLayer');
     if (map.hasLayer( waterLayer )) $scope.controlLayers('waterLayer');
     if (map.hasLayer( activityLayer )) $scope.controlLayers('activityLayer');
     if (map.hasLayer( groupLayer )) $scope.controlLayers('groupLayer');
     if (map.hasLayer( birdLayer )) $scope.controlLayers('birdLayer');
 
+    // Turns of the viewable toggles    
     Scopes.get('PopoverCtrl').toggleShowLocat();
 
     markers.clearLayers();
@@ -232,8 +230,9 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     var marker = L.marker(loc, {icon: redIcon}).addTo(map).bindPopup(container);
     markers.addLayer(marker);
     map.addLayer(markers);
+    map.panTo( loc );
+    map.zoomIn( 10 );
     control.spliceWaypoints(1,1, e.latlng);
-
   };
 
   var activityToggle  = false;
@@ -248,7 +247,6 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   $scope.controlLayers = function(toggledLayer){
     var toToggle = activityLayer;
     var toggle   = activityToggle;
-    console.log('this is controllayers ', toggledLayer);
 
     //getting toggle id and correct layer
     if (toggledLayer === 'waterLayer') {
@@ -272,7 +270,6 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
       toggle = groupToggle;
     }
 
-    console.log('toggle value ', toggle);
     //Controlling the layers
     if(!toggle) {
       map.removeLayer(toToggle);
