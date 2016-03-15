@@ -539,6 +539,9 @@ z-index: 1000;
 	border: 1px solid #999;
 	}
 
+/*class used by the activities to stop the overlap of the subheaders*/
+.has-twosubheaders {
+  top: 132px; }
 
 /* div icon */
 /*
