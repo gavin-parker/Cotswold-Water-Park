@@ -86,6 +86,16 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
     $scope.removeMarkersAndShowActivity(coords);
   };
 
-  $scope.activityOptions = ['All', 'Aerial', 'Angling', 'Beach\n', 'Boat ', 'Groups', 'Horse v', 'Rally', 'Shooting', 'Wilderness', 'Food'];
+  function isInArray(value, array) {
+    return array.indexOf(value) > -1;
+  }
+
+  var copy = JSON.parse(window.localStorage['activities'])
+  $scope.activityOptions = ['All'];
   $scope.selectedActivity = "All";
+  for(var i in copy) {
+    if(!(isInArray(copy[i].Type, $scope.activityOptions))) { 
+      $scope.activityOptions.push(copy[i].Type);
+    }
+  }
 });
