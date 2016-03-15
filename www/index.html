@@ -330,17 +330,6 @@
       <ion-nav-buttons side="right">
         <a class="button button-icon button-clear ion-map" href="#/tab/map"></a>
       </ion-nav-buttons>
-        
-        <div class="bar bar-subheader item-input-inset">
-          <label class="item-input-wrapper">
-            <i class="icon ion-ios-search placeholder-icon"></i>
-            <input type="search" placeholder="Search" ng-model="searchQuery">
-          </label>
-          <button class="button button-clear">
-            Cancel
-          </button>
-        </div>
-
 
         <div class="bar bar-subheader item-input-inset">
           <label class="item item-input item-select">
@@ -350,7 +339,17 @@
             <select ng-model="selectedActivity" ng-options="a for a in activityOptions">
             </select>
           </label>
-        </div>        
+        </div>
+
+        <div class="bar bar-subheader item-input-inset">
+          <label class="item-input-wrapper">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="search" placeholder="Search" ng-model="searchQuery">
+          </label>
+          <button class="button button-clear">
+            Cancel
+          </button>
+        </div>       
 
         <ion-content class="has-twosubheaders">
           <ion-list>
