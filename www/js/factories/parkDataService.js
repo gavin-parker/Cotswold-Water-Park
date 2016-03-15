@@ -18,7 +18,6 @@ app.factory('parkDataService', function($http, $q){
       $http.get('js/lakes.json')
            .success(function(res){
               defer.resolve(res);
-              console.log(res);
             });
       return defer.promise;
     }

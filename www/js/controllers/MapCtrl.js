@@ -39,7 +39,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   var control = null;
   var markerIcon = L.Icon.extend({
     options: {
-      iconSize:     [45, 45],
+      iconSize:     [30, 30],
       iconAnchor:   [10, 40],
       popupAnchor:  [10, -20]
     }
@@ -157,8 +157,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   var addLakesToMap = function(){
     parkDataService.lakes().then(function(result){
       for(var i = 0; i < result.length;i++){
-        console.log(result[i]);
-        var lakeIcon = L.divIcon({className: 'lakeIcon', html : JSON.parse(result[i].Lake), iconSize : [24,24]});
+          var lakeIcon = L.divIcon({className: 'lakeIcon', html : JSON.parse(result[i].Lake), iconSize : [24,24], iconAnchor : [12,12]});
         if(result[i].Loc != "[]"){
         lakeLayer.addLayer(L.marker(JSON.parse(result[i].Loc), {icon : lakeIcon}).addTo(map));
       }
@@ -172,17 +171,34 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
       console.log(birds);
       for(var i=0;i< birds.length;i++){
       var container = L.DomUtil.create('div');
-      console.log(birds[i]);
-      container.innerHTML = '<h4>' + birds[i][0] + '</h4> <p>' + birds[i].input + '</p>';
+      //console.log(birds[i]);
+      var text = birds[i].input;
+      if(birds[i+1] !== null){
+        try{
+        text = text.substring( birds[i].index, birds[i+1].index);
+      }catch(err){
+        console.log(err);
+        text = "a bird was seen here";
+      }
+      }
+      container.innerHTML = '<h4>' + birds[i][0] + '</h4> <p>' + text + '</p>';
       var btn  = L.DomUtil.create('button', 'button', container);
       btn.setAttribute('type', 'button');
       btn.innerHTML = "Directions";
       var lakeNum = birds[i][0].replace( /^\D+/g, '');
-      if(lakeNum > 66){lakeNum = 2;};
-      var loc = JSON.parse(lakes[lakeNum].Loc);
+      var loc = 0;
+      try{
+      loc = JSON.parse(lakes[lakeNum].Loc);
+    }catch(err){
+      loc = JSON.parse(lakes[2].Loc);
+    }
+      if(loc.length === 0){
+        loc = JSON.parse(lakes[2].Loc);
+      }
       btn.latlng = loc;
       L.DomEvent.on(btn, 'click', $scope.routeTo);
       birdLayer.addLayer(L.marker(loc, {icon: birdIcon}).addTo(map).bindPopup(container));
+
     }
       });
     };
@@ -194,9 +210,21 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     map.removeLayer(birdLayer);
     markers.clearLayers();
     console.log(e.Name);
-    var marker = L.marker(JSON.parse(e.Location), {icon: redIcon}).addTo(map).bindPopup((e.Name)+'</br>'+(e.Description)).on('dblclick', $scope.routeTo);
+    var loc = JSON.parse(e.Location);
+    //Create marker popup
+    var container = L.DomUtil.create('div');
+    container.innerHTML = '<h4>' + e.Name + '</h4> <p>' + e.Description + '</p>';
+    //Create marker directions button
+    var btn  = L.DomUtil.create('button', 'button', container);
+    btn.setAttribute('type', 'button');
+    btn.innerHTML = "Directions";
+    btn.latlng = loc;
+    L.DomEvent.on(btn, 'click', $scope.routeTo);
+    var marker = L.marker(loc, {icon: redIcon}).addTo(map).bindPopup(container);
     markers.addLayer(marker);
     map.addLayer(markers);
+    control.spliceWaypoints(1,1, e.latlng);
+
   };
 
   //Settings the toggle = true
@@ -206,7 +234,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   var lakeToggle      = false;
   var offlineToggle   = true;
   var foodToggle      = false;
-  var groupToggle      = false;
+  var groupToggle     = false;
   //Layer toggle for activities and sites
   //L.control.layers("",overlayMaps).addTo(map);
   $scope.controlLayers = function(toggledLayer){
