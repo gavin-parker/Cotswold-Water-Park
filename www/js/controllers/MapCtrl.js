@@ -208,11 +208,12 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     // map.removeLayer(activityLayer);
     // map.removeLayer(groupLayer);
     // map.removeLayer(birdLayer);
-    $scope.controlLayers('foodLayer');
-    $scope.controlLayers('waterLayer');
-    $scope.controlLayers('activityLayer');
-    $scope.controlLayers('groupLayer');
-    $scope.controlLayers('birdLayer');
+
+    if (map.hasLayer( foodLayer )) $scope.controlLayers('foodLayer');
+    if (map.hasLayer( waterLayer )) $scope.controlLayers('waterLayer');
+    if (map.hasLayer( activityLayer )) $scope.controlLayers('activityLayer');
+    if (map.hasLayer( groupLayer )) $scope.controlLayers('groupLayer');
+    if (map.hasLayer( birdLayer )) $scope.controlLayers('birdLayer');
 
     Scopes.get('PopoverCtrl').toggleShowLocat();
 
