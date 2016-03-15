@@ -82,7 +82,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
             e.latlng
           ],
           routeWhileDragging: false,
-          createMarker: function() { return null; }   
+          createMarker: function() { return null; }   //remove waypoints markers
         }).addTo(map);
       }else{
         control.spliceWaypoints(1,1, e.latlng);   

@@ -1,4 +1,7 @@
-app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaToast, $cordovaEmailComposer){
+
+
+
+app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaEmailComposer, $ionicPopup){
     $scope.pictureUrl = 'http://placehold.it/300x300';
     $scope.takePicture = function() {
       console.log("taking pic");
@@ -17,21 +20,24 @@ app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaToa
       });
     };
 
-
-    $scope.showToast = function(message, duration, location) {
-      $cordovaToast.show(message, duration, location).then(function(success) {
-        console.log("The toast was shown");
-      }, function (error) {
-         console.log("The toast was not shown due to " + error);
-      });
-    };
-
-
     $scope.submit = function(sighting){
       console.log("submit");
       $scope.sighting = angular.copy(sighting);
       console.log($scope.sighting);
-      postSighting($scope.sighting);
+
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Submit Sighting?'
+      });
+
+      confirmPopup.then(function(res) {
+        if(res) {
+          console.log('submitted');
+          postSighting($scope.sighting);
+          clearSighting(sighting);
+        } else {
+          console.log('Cancel');
+        }
+      });
     };
 
     var yay = function(){
@@ -64,5 +70,11 @@ app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaToa
 
 
     };
-   // }
+
+    var clearSighting = function(sighting ) {
+        sighting.Email = "", 
+        sighting.Name = "", 
+        sighting.Text = "", 
+        sighting.Date = ""
+    };
 });
