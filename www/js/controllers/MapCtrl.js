@@ -203,11 +203,19 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
       });
     };
   $rootScope.removeMarkersAndShowActivity = function(e){ // removes all other markers from map and shows activity marker
-    map.removeLayer(foodLayer);
-    map.removeLayer(waterLayer);
-    map.removeLayer(activityLayer);
-    map.removeLayer(groupLayer);
-    map.removeLayer(birdLayer);
+    // map.removeLayer(foodLayer);
+    // map.removeLayer(waterLayer);
+    // map.removeLayer(activityLayer);
+    // map.removeLayer(groupLayer);
+    // map.removeLayer(birdLayer);
+    $scope.controlLayers('foodLayer');
+    $scope.controlLayers('waterLayer');
+    $scope.controlLayers('activityLayer');
+    $scope.controlLayers('groupLayer');
+    $scope.controlLayers('birdLayer');
+
+    Scopes.get('PopoverCtrl').toggleShowLocat();
+
     markers.clearLayers();
     console.log(e.Name);
     var loc = JSON.parse(e.Location);
@@ -227,7 +235,6 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
 
   };
 
-  //Settings the toggle = true
   var activityToggle  = false;
   var waterToggle     = false;
   var birdToggle      = false;
@@ -240,6 +247,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   $scope.controlLayers = function(toggledLayer){
     var toToggle = activityLayer;
     var toggle   = activityToggle;
+    console.log('this is controllayers ', toggledLayer);
 
     //getting toggle id and correct layer
     if (toggledLayer === 'waterLayer') {
@@ -263,6 +271,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
       toggle = groupToggle;
     }
 
+    console.log('toggle value ', toggle);
     //Controlling the layers
     if(!toggle) {
       map.removeLayer(toToggle);
@@ -278,6 +287,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     else if (toggledLayer === 'offlineLayer') offlineToggle = !toggle;
     else if (toggledLayer === 'groupLayer') groupToggle = !toggle;
     else activityToggle = !toggle;
+    //console.log(!toggle)
   };
 
   var init = function(){
@@ -295,6 +305,8 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     //map.addLayer(offlineLayer);
     map.addLayer(osm);
     getLoc();
+    
+    //Settings the toggle = true
     //var activities = parkDataService.activities();
   };
 

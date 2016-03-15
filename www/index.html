@@ -156,13 +156,13 @@
     <ion-popover-view>
       <ion-content ng-controller="PopoverCtrl">
         <div class="list">
-          <ion-toggle ng-click = "controlLayers('activityLayer')" ng-checked="true">General Activities</ion-toggle>
-          <ion-toggle ng-click = "controlLayers('waterLayer')" ng-checked="true">Water Activities</ion-toggle>
-          <ion-toggle ng-click = "controlLayers('groupLayer')" ng-checked="true">Group Activities</ion-toggle>
-          <ion-toggle ng-click = "controlLayers('foodLayer')" ng-checked="true">Food and Hotels</ion-toggle>
-          <ion-toggle ng-click = "controlLayers('birdLayer')" ng-checked="true">Birds</ion-toggle>
-          <ion-toggle ng-click = "controlLayers('lakeLayer')" ng-checked="true">Lake numbers</ion-toggle>
-          <ion-toggle ng-click = "controlLayers('offlineLayer')" ng-checked="false">Offline</ion-toggle>
+          <ion-toggle ng-click = "controlLayers('activityLayer')" ng-checked="true" ng-model="langToggle.Act">General Activities</ion-toggle>   
+          <ion-toggle ng-click = "controlLayers('waterLayer')" ng-checked="true" ng-model="langToggle.WaterAct">Water Activities</ion-toggle>
+          <ion-toggle ng-click = "controlLayers('groupLayer')" ng-checked="true" ng-model="langToggle.GroupAct">Group Activities</ion-toggle>
+          <ion-toggle ng-click = "controlLayers('foodLayer')" ng-checked="true" ng-model="langToggle.food">Food and Hotels</ion-toggle>
+          <ion-toggle ng-click = "controlLayers('birdLayer')" ng-checked="true" ng-model="langToggle.birds">Birds</ion-toggle>
+          <ion-toggle ng-click = "controlLayers('lakeLayer')" ng-checked="true" ng-model="langToggle.lakes">Lake numbers</ion-toggle>
+          <ion-toggle ng-click = "controlLayers('offlineLayer')" ng-checked="false" ng-model="langToggle.offline">Offline</ion-toggle>
         </div>
       </ion-content>
     </ion-popover-view>
