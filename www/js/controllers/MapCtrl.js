@@ -81,11 +81,13 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
             L.latLng(x, y), //change x,y to user location
             e.latlng
           ],
-          routeWhileDragging: true
+          routeWhileDragging: false,
+          createMarker: function() { return null; }   
         }).addTo(map);
       }else{
-        control.spliceWaypoints(1,1, e.latlng);
+        control.spliceWaypoints(1,1, e.latlng);   
       }
+      //control.setWaypoints(waypoints);
       console.log(e.latlng);
       console.log("Added routing control to map");
       L.Routing.errorControl(control).addTo(map);

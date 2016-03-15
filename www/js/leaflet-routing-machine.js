@@ -1381,7 +1381,7 @@ if (typeof module !== undefined) module.exports = polyline;
 				{color: 'white', opacity: 0.6, weight: 4},
 				{color: 'gray', opacity: 0.8, weight: 2, dashArray: '7,12'}
 			],
-			addWaypoints: true,
+			addWaypoints: false,
 			extendToWaypoints: true,
 			missingRouteTolerance: 10
 		},
