@@ -354,7 +354,7 @@
         <ion-content class="has-twosubheaders">
           <ion-list>
             <div ng-repeat="activity in activities | filter:searchQuery">
-              <ion-item class="item-stable" ng-click="toggleGroup(activity)" ng-class="{active: isGroupShown(activity)}" ng-show="selectedActivity == 'All' || activity.Type == selectedActivity">
+              <ion-item class="item-stable" ng-click="toggleGroup(activity)" ng-class="{active: isGroupShown(activity)}" ng-show="selectedActivity == 'All' || isSelected(activity)">
                 <i class="icon" ng-class="isGroupShown(activity) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
                 &#xA0;
                 {{activity.Name}}
@@ -363,7 +363,7 @@
 
                 <a class="item item-icon-left, item item-text-wrap" href="#">
                   <i class="icon ion-information-circled"></i>
-                  {{activity.Type}}
+                  {{activity.Type.join(", ")}}
                 </a>
                 <ion-list>
                   <div class="list">
