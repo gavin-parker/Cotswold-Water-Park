@@ -94,8 +94,20 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
   $scope.activityOptions = ['All'];
   $scope.selectedActivity = "All";
   for(var i in copy) {
-    if(!(isInArray(copy[i].Type, $scope.activityOptions))) { 
-      $scope.activityOptions.push(copy[i].Type);
+    for(var j = 0; j < copy[i].Type.length; j++) {
+      if(!(isInArray(copy[i].Type[j], $scope.activityOptions))) { 
+        $scope.activityOptions.push(copy[i].Type[j]);
+      }
     }
+  }
+
+  $scope.isSelected = function(activity) {
+    var result = false;
+    for(var i in activity.Type) {
+      if(activity.Type[i] == $scope.selectedActivity) {
+        result = true;
+      }
+    }
+    return result;
   }
 });

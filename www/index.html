@@ -131,8 +131,8 @@
               <i class="icon ion-eye"></i>
               Submit Sighting
             </ion-item>
-            <button class="button button-clear button-icon" ng-click="openCordovaWebView()"> <i class = "icon ion-social-facebook custom-fb"></i></button>
-            <button class="button button-clear button-icon" ng-click="openCordovaWebViewTwitter()"><i class = "icon ion-social-twitter custom-twitter"></i></button>
+            <button class="button button-clear button-icon" ng-click="openCordovaWebView('https://www.facebook.com/CotswoldWaterParkTrusts')"> <i class = "icon ion-social-facebook custom-fb"></i></button>
+            <button class="button button-clear button-icon" ng-click="openCordovaWebView('https://twitter.com/CotswoldWaterPk?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor')"><i class = "icon ion-social-twitter custom-twitter"></i></button>
           </ion-list>
         </ion-content>
       </ion-side-menu>
@@ -156,7 +156,7 @@
     <ion-popover-view>
       <ion-content ng-controller="PopoverCtrl">
         <div class="list">
-          <ion-toggle ng-click = "controlLayers('activityLayer')" ng-checked="true" ng-model="langToggle.Act">General Activities</ion-toggle>   
+          <ion-toggle ng-click = "controlLayers('activityLayer')" ng-checked="true" ng-model="langToggle.Act">General Activities</ion-toggle>
           <ion-toggle ng-click = "controlLayers('waterLayer')" ng-checked="true" ng-model="langToggle.WaterAct">Water Activities</ion-toggle>
           <ion-toggle ng-click = "controlLayers('groupLayer')" ng-checked="true" ng-model="langToggle.GroupAct">Group Activities</ion-toggle>
           <ion-toggle ng-click = "controlLayers('foodLayer')" ng-checked="true" ng-model="langToggle.food">Food and Hotels</ion-toggle>
@@ -178,7 +178,7 @@
             <i class="icon ion-ios-search placeholder-icon"></i>
             <input type="search" placeholder="Search" ng-model="searchQuery">
           </label>
-          <button class="button button-clear">
+          <button class="button button-clear" ng-click="searchQuery = ''">
             Cancel
           </button>
         </div>
@@ -248,13 +248,13 @@
       <ion-nav-buttons side="right">
         <a class="button button-icon button-clear ion-map" href="#/tab/map"></a>
       </ion-nav-buttons>
-      
+
       <div class="bar bar-subheader item-input-inset has-footer">
         <label class="item-input-wrapper">
           <i class="icon ion-ios-search placeholder-icon"></i>
           <input type="search" placeholder="Search" ng-model="searchQuery">
         </label>
-        <button class="button button-clear">
+        <button class="button button-clear" ng-click="searchQuery = ''">
           Cancel
         </button>
       </div>
@@ -331,17 +331,16 @@
       <ion-nav-buttons side="right">
         <a class="button button-icon button-clear ion-map" href="#/tab/map"></a>
       </ion-nav-buttons>
-        
+
         <div class="bar bar-subheader item-input-inset">
           <label class="item-input-wrapper">
             <i class="icon ion-ios-search placeholder-icon"></i>
             <input type="search" placeholder="Search" ng-model="searchQuery">
           </label>
-          <button class="button button-clear">
+          <button class="button button-clear" ng-click="searchQuery = ''">
             Cancel
           </button>
         </div>
-
 
         <div class="bar bar-subheader item-input-inset">
           <label class="item item-input item-select">
@@ -351,12 +350,12 @@
             <select ng-model="selectedActivity" ng-options="a for a in activityOptions">
             </select>
           </label>
-        </div>        
+        </div>
 
         <ion-content class="has-twosubheaders">
           <ion-list>
             <div ng-repeat="activity in activities | filter:searchQuery">
-              <ion-item class="item-stable" ng-click="toggleGroup(activity)" ng-class="{active: isGroupShown(activity)}" ng-show="selectedActivity == 'All' || activity.Type == selectedActivity">
+              <ion-item class="item-stable" ng-click="toggleGroup(activity)" ng-class="{active: isGroupShown(activity)}" ng-show="selectedActivity == 'All' || isSelected(activity)">
                 <i class="icon" ng-class="isGroupShown(activity) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
                 &#xA0;
                 {{activity.Name}}
@@ -365,7 +364,7 @@
 
                 <a class="item item-icon-left, item item-text-wrap" href="#">
                   <i class="icon ion-information-circled"></i>
-                  {{activity.Type}}
+                  {{activity.Type.join(", ")}}
                 </a>
                 <ion-list>
                   <div class="list">
@@ -431,7 +430,7 @@
             <i class="icon ion-ios-search placeholder-icon"></i>
             <input type="search" placeholder="Search" ng-model="searchQuery">
           </label>
-          <button class="button button-clear">
+          <button class="button button-clear" ng-click="searchQuery = ''">
             Cancel
           </button>
         </div>
@@ -468,7 +467,7 @@
             <i class="icon ion-ios-search placeholder-icon"></i>
             <input type="search" placeholder="Search" ng-model="searchQuery">
           </label>
-          <button class="button button-clear">
+          <button class="button button-clear" ng-click="searchQuery = ''">
             Cancel
           </button>
         </div>

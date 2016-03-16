@@ -1,7 +1,7 @@
 [
   {
     "Name":"Head 4 Heights Ltd",
-    "Type":"Aerial",
+    "Type":["Aerial Adventure"],
     "Number":"01285 770 007\n",
     "Email":"info@head4heights.net\n",
     "URL":"www.head4heights.net",
@@ -19,7 +19,7 @@
   },
   {
     "Name":"Lake Pochard\n",
-    "Type":"Angling",
+    "Type":["Angling"],
     "Number":"01793 751 513\n",
     "Email":"contact@lakepochard.co.uk\n",
     "URL":"www.lakepochard.co.uk",
@@ -37,7 +37,7 @@
   },
   {
     "Name":"Tackle Den\n",
-    "Type":"Angling",
+    "Type":["Angling"],
     "Number":"01285 862 716\n",
     "Email":"thetackleden@hotmail.co.uk\n",
     "URL":"www.tackleden.co.uk",
@@ -55,7 +55,7 @@
   },
   {
     "Name":"Lechlade & Bushyleaze Trout Fisheries\n",
-    "Type":"Angling",
+    "Type":["Angling"],
     "Number":"01367 253 266\n",
     "Email":"tim@timtrout.co.uk\n",
     "URL":"www.lechladetrout.co.uk",
@@ -73,7 +73,7 @@
   },
   {
     "Name":"South Cerney Angling Club\n",
-    "Type":"Angling",
+    "Type":["Angling","Wilderness Skills"],
     "Number":"01285 861 876 / 07989 973 217\n",
     "Email":"info@scac.org.uk\n",
     "URL":"www.scac.org.uk",
@@ -91,7 +91,7 @@
   },
   {
     "Name":"Cotswold Country Park and Beach\n",
-    "Type":"Beach\n",
+    "Type":["Beach"],
     "Number":"01285 868 096\n",
     "Email":"info@cotswoldcountrypark.co.uk\n",
     "URL":"www.cotswoldcountrypark.co.uk",
@@ -109,7 +109,7 @@
   },
   {
     "Name":"Cotswold Canals Trust Boat Trips",
-    "Type":"Boat",
+    "Type":["Boat Trips"],
     "Number":"07787 485 294\n",
     "Email":"mail@cotswoldcanals.com\n",
     "URL":"www.lechladetripboat.com",
@@ -127,7 +127,7 @@
   },
   {
     "Name":"Waterland",
-    "Type":"Groups",
+    "Type":["Groups","Wilderness Skills"],
     "Number":"01285 861 202\n",
     "Email":"admin@ukwatersports.co.uk\n",
     "URL":"www.ukwatersports.co.uk",
@@ -145,7 +145,7 @@
   },
   {
     "Name":"Cotswold Country Park and Beach\n",
-    "Type":"Groups",
+    "Type":["Groups"],
     "Number":"01285 868 096\n",
     "Email":"info@cotswoldcountrypark.co.uk\n",
     "URL":"www.cotswoldcountrypark.co.uk",
@@ -163,7 +163,7 @@
   },
   {
     "Name":"South Cerney Outdoor\n",
-    "Type":"Groups",
+    "Type":["Groups"],
     "Number":"01285 860 388\n",
     "Email":"southcerneyoutdoor@prospects.co.uk\n",
     "URL":"",
@@ -181,7 +181,7 @@
   },
   {
     "Name":"CWP Hire\n",
-    "Type":"Groups",
+    "Type":["Groups"],
     "Number":"01285 860 086\n",
     "Email":"communicate@cwptb.com\n",
     "URL":"",
@@ -199,7 +199,7 @@
   },
   {
     "Name":"Lakeside",
-    "Type":"Groups",
+    "Type":["Groups"],
     "Number":"01285 860 606 or 01285 862 894\n",
     "Email":"info@lakeside-bar.co.uk\n",
     "URL":"",
@@ -217,7 +217,7 @@
   },
   {
     "Name":"Cotswold Water Park Four Pillars Hotel\n",
-    "Type":"Groups",
+    "Type":["Groups"],
     "Number":"01285 864 000\n",
     "Email":"waterpark.reservations@four-pillars.co.uk\n",
     "URL":"",
@@ -235,7 +235,7 @@
   },
   {
     "Name":"Gloucestershire Rally School",
-    "Type":"Groups",
+    "Type":["Groups"],
     "Number":"01793 752 281\n",
     "Email":"info@glosrallyschool.co.uk\n",
     "URL":"",
@@ -253,7 +253,7 @@
   },
   {
     "Name":"Head 4 Heights Ltd\n",
-    "Type":"Groups",
+    "Type":["Groups"],
     "Number":"01285 770 007\n",
     "Email":"info@head4heights.net\n",
     "URL":"www.head4heights.net",
@@ -271,7 +271,7 @@
   },
   {
     "Name":"Rein and Shine\n",
-    "Type":"Horse v",
+    "Type":["Horse Riding"],
     "Number":"01666 860 068\n",
     "Email":"info@reinandshine.co.uk\n",
     "URL":"www.reinandshine.co.uk",
@@ -289,7 +289,7 @@
   },
   {
     "Name":"Gloucestershire Rally School\n",
-    "Type":"Rally",
+    "Type":["Rally Driving"],
     "Number":"01793 752 281\n",
     "Email":"info@glosrallyschool.co.uk\n",
     "URL":"",
@@ -307,7 +307,7 @@
   },
   {
     "Name":"Old Downs Pursuits\n",
-    "Type":"Shooting",
+    "Type":["Shooting"],
     "Number":"07597 093 708\n",
     "Email":"olddownspursuits@live.co.uk\n",
     "URL":"www.old-downs-pursuits.co.uk",
@@ -325,7 +325,7 @@
   },
   {
     "Name":"Cotswold Forest School\n",
-    "Type":"Wilderness",
+    "Type":["Wilderness Skills"],
     "Number":"07738 708 880\n",
     "Email":"enquiries@.cotswoldforestschool.co.uk\n",
     "URL":"www.cotswoldforestschool.co.uk",
@@ -343,7 +343,7 @@
   },
   {
     "Name":"The White Hart\n",
-    "Type":"Food",
+    "Type":["Food"],
     "Number":"01285 861 247\n",
     "Email":"enquiries@whitehartak.com\n",
     "URL":"www.whitehartak.com",
@@ -361,7 +361,7 @@
   },
   {
     "Name":"Old Boathouse Pub\n",
-    "Type":"Food",
+    "Type":["Food"],
     "Number":"01285 864 111\n",
     "Email":"oldboathouse@four-pillars.co.uk\n",
     "URL":"www.oldboathousepub.co.uk",
@@ -379,7 +379,7 @@
   },
   {
     "Name":"The Wild Duck Inn",
-    "Type":"Food",
+    "Type":["Food"],
     "Number":"01285 770 310\n",
     "Email":"duckreservations@aol.com\n",
     "URL":"www.thewildduckinn.co.uk",
@@ -397,7 +397,7 @@
   },
   {
     "Name":"Masons Arms",
-    "Type":"Food",
+    "Type":["Food"],
     "Number":"01285 850 164\n",
     "Email":"masonsatmeysey@gmail.com\n",
     "URL":"www.masonsarmsmeyseyhampton.com",
@@ -415,7 +415,7 @@
   },
   {
     "Name":"Royal Oak South Cerney",
-    "Type":"Food",
+    "Type":["Food"],
     "Number":"01285 860 900\n",
     "Email":"",
     "URL":"www.royaloakatsouthcerney.co.uk",
@@ -433,7 +433,7 @@
   },
   {
     "Name":"Cafe at the Gateway Centre",
-    "Type":"Food",
+    "Type":["Food"],
     "Number":"01285 862 627\n",
     "Email":"",
     "URL":"",
@@ -451,7 +451,7 @@
   },
   {
     "Name":"Lakeside",
-    "Type":"Food",
+    "Type":["Food"],
     "Number":"01285 860 606 or 01285 862 894\n",
     "Email":"info@lakeside-bar.co.uk\n",
     "URL":"www.lakeside-bar.co.uk",
@@ -469,7 +469,7 @@
   },
   {
     "Name":"Cotswold Water Park Four Pillars Hotel",
-    "Type":"Food",
+    "Type":["Food"],
     "Number":"01285 864 000\n",
     "Email":"waterpark.reservations@four-pillars.co.uk\n",
     "URL":"www.cotswoldwaterparkhotel.co.uk",
@@ -487,7 +487,7 @@
   },
   {
     "Name":"Cotswold Country Park and Beach",
-    "Type":"Food",
+    "Type":["Food"],
     "Number":"01285 868 096\n",
     "Email":"info@cotswoldcountrypark.co.uk\n",
     "URL":"www.cotswoldcountrypark.co.uk",
@@ -505,7 +505,7 @@
   },
   {
     "Name":"Lake Pochard",
-    "Type":"Food",
+    "Type":["Food"],
     "Number":"01793 751 513\n",
     "Email":"contact@lakepochard.co.uk\n",
     "URL":"www.lakepochard.co.uk",
@@ -523,7 +523,7 @@
   },
   {
     "Name":"South Cerney Fish & Chips\n",
-    "Type":"Food",
+    "Type":["Food"],
     "Number":"01285 861 007\n",
     "Email":"info@southcerneyfishandchips.co.uk\n",
     "URL":"http://southcerneyfishandchips.co.uk/",
@@ -541,7 +541,7 @@
   },
   {
     "Name":"Cotswold Water Park Four Pillars Hotel",
-    "Type":"Hotel",
+    "Type":["Hotel"],
     "Number":"01285 864 000\n",
     "Email":"waterpark.reservations@four-pillars.co.uk\n",
     "URL":"www.cotswoldwaterparkhotel.co.uk",
@@ -559,7 +559,7 @@
   },
   {
     "Name":"Lake Pochard\n",
-    "Type":"Hotel",
+    "Type":["Hotel"],
     "Number":"01793 751 513\n",
     "Email":"contact@lakepochard.co.uk\n",
     "URL":"www.lakepochard.co.uk",
@@ -577,7 +577,7 @@
   },
   {
     "Name":"Lower Mill Estate\n",
-    "Type":"Hotel",
+    "Type":["Hotel"],
     "Number":"01285 869 489\n",
     "Email":"info@lowermillestate.com\n",
     "URL":"www.lowermillestate.com",
@@ -595,7 +595,7 @@
   },
   {
     "Name":"Orion Holidays\n",
-    "Type":"Hotel",
+    "Type":["Hotel"],
     "Number":"01285 861 839\n",
     "Email":"contact@orionholidays.com\n",
     "URL":"www.orionholidays.com",
@@ -613,7 +613,7 @@
   },
   {
     "Name":"Watermark Holidays\n",
-    "Type":"Hotel",
+    "Type":["Hotel"],
     "Number":"01285 869 181\n",
     "Email":"philippa@watermarkcotswolds.com\n",
     "URL":"www.watermarkholidays.com",
@@ -631,7 +631,7 @@
   },
   {
     "Name":"Hoburne Cotswold\n",
-    "Type":"Hotel",
+    "Type":["Hotel"],
     "Number":"01285 860 216\n",
     "Email":"enquiries@hoburne.com\n",
     "URL":"www.hoburne.com",
@@ -649,7 +649,7 @@
   },
   {
     "Name":"Wheatleys Farm B&B\n",
-    "Type":"Hotel",
+    "Type":["Hotel"],
     "Number":"01285 861 310\n",
     "Email":"gill@wheatleysfarm.co.uk\n",
     "URL":"www.wheatleysfarm.co.uk",
