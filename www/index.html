@@ -131,8 +131,8 @@
               <i class="icon ion-eye"></i>
               Submit Sighting
             </ion-item>
-            <button class="button button-clear button-icon" ng-click="openCordovaWebView()"> <i class = "icon ion-social-facebook custom-fb"></i></button>
-            <button class="button button-clear button-icon" ng-click="openCordovaWebViewTwitter()"><i class = "icon ion-social-twitter custom-twitter"></i></button>
+            <button class="button button-clear button-icon" ng-click="openCordovaWebView('https://www.facebook.com/CotswoldWaterParkTrusts')"> <i class = "icon ion-social-facebook custom-fb"></i></button>
+            <button class="button button-clear button-icon" ng-click="openCordovaWebView('https://twitter.com/CotswoldWaterPk?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor')"><i class = "icon ion-social-twitter custom-twitter"></i></button>
           </ion-list>
         </ion-content>
       </ion-side-menu>
@@ -156,7 +156,7 @@
     <ion-popover-view>
       <ion-content ng-controller="PopoverCtrl">
         <div class="list">
-          <ion-toggle ng-click = "controlLayers('activityLayer')" ng-checked="true" ng-model="langToggle.Act">General Activities</ion-toggle>   
+          <ion-toggle ng-click = "controlLayers('activityLayer')" ng-checked="true" ng-model="langToggle.Act">General Activities</ion-toggle>
           <ion-toggle ng-click = "controlLayers('waterLayer')" ng-checked="true" ng-model="langToggle.WaterAct">Water Activities</ion-toggle>
           <ion-toggle ng-click = "controlLayers('groupLayer')" ng-checked="true" ng-model="langToggle.GroupAct">Group Activities</ion-toggle>
           <ion-toggle ng-click = "controlLayers('foodLayer')" ng-checked="true" ng-model="langToggle.food">Food and Hotels</ion-toggle>
@@ -248,7 +248,7 @@
       <ion-nav-buttons side="right">
         <a class="button button-icon button-clear ion-map" href="#/tab/map"></a>
       </ion-nav-buttons>
-      
+
       <div class="bar bar-subheader item-input-inset has-footer">
         <label class="item-input-wrapper">
           <i class="icon ion-ios-search placeholder-icon"></i>
@@ -339,7 +339,7 @@
           <button class="button button-clear" ng-click="searchQuery = ''">
             Cancel
           </button>
-        </div>       
+        </div>
 
         <div class="bar bar-subheader item-input-inset">
           <label class="item item-input item-select">

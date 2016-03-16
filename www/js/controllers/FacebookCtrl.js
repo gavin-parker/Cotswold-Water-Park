@@ -1,9 +1,9 @@
 
 app.controller('FacebookCtrl', function($scope){
-	$scope.openCordovaWebView = function()
+	$scope.openCordovaWebView = function(site)
 	{
 	 // Open cordova webview if the url is in the whitelist otherwise opens in app browser
-	 window.open('https://www.facebook.com/CotswoldWaterParkTrust','_self'); 
+	 window.open(site,'_self'); 
 
 	};
 });
