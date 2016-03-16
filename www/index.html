@@ -178,7 +178,7 @@
             <i class="icon ion-ios-search placeholder-icon"></i>
             <input type="search" placeholder="Search" ng-model="searchQuery">
           </label>
-          <button class="button button-clear">
+          <button class="button button-clear" ng-click="searchQuery = ''">
             Cancel
           </button>
         </div>
@@ -254,7 +254,7 @@
           <i class="icon ion-ios-search placeholder-icon"></i>
           <input type="search" placeholder="Search" ng-model="searchQuery">
         </label>
-        <button class="button button-clear">
+        <button class="button button-clear" ng-click="searchQuery = ''">
           Cancel
         </button>
       </div>
@@ -332,6 +332,16 @@
       </ion-nav-buttons>
 
         <div class="bar bar-subheader item-input-inset">
+          <label class="item-input-wrapper">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="search" placeholder="Search" ng-model="searchQuery">
+          </label>
+          <button class="button button-clear" ng-click="searchQuery = ''">
+            Cancel
+          </button>
+        </div>       
+
+        <div class="bar bar-subheader item-input-inset">
           <label class="item item-input item-select">
             <div class="input-label">
               Filter Activities
@@ -340,16 +350,6 @@
             </select>
           </label>
         </div>
-
-        <div class="bar bar-subheader item-input-inset">
-          <label class="item-input-wrapper">
-            <i class="icon ion-ios-search placeholder-icon"></i>
-            <input type="search" placeholder="Search" ng-model="searchQuery">
-          </label>
-          <button class="button button-clear">
-            Cancel
-          </button>
-        </div>       
 
         <ion-content class="has-twosubheaders">
           <ion-list>
@@ -429,7 +429,7 @@
             <i class="icon ion-ios-search placeholder-icon"></i>
             <input type="search" placeholder="Search" ng-model="searchQuery">
           </label>
-          <button class="button button-clear">
+          <button class="button button-clear" ng-click="searchQuery = ''">
             Cancel
           </button>
         </div>
@@ -466,7 +466,7 @@
             <i class="icon ion-ios-search placeholder-icon"></i>
             <input type="search" placeholder="Search" ng-model="searchQuery">
           </label>
-          <button class="button button-clear">
+          <button class="button button-clear" ng-click="searchQuery = ''">
             Cancel
           </button>
         </div>
