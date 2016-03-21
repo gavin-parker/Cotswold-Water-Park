@@ -91,8 +91,7 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
   }
 
   var copy = JSON.parse(window.localStorage['activities'])
-  $scope.activityOptions = ['All'];
-  $scope.selectedActivity = "All";
+  $scope.activityOptions = [];
   for(var i in copy) {
     for(var j = 0; j < copy[i].Type.length; j++) {
       if(!(isInArray(copy[i].Type[j], $scope.activityOptions))) { 
@@ -100,6 +99,9 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
       }
     }
   }
+  $scope.activityOptions.sort();
+  $scope.activityOptions.unshift("All");
+  $scope.selectedActivity = "All";
 
   $scope.isSelected = function(activity) {
     var result = false;

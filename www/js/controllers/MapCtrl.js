@@ -141,7 +141,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
               waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup(container));
               break;
 
-            case "Groups":
+            case "Corporate & Groups":
               groupLayer.addLayer(L.marker(loc, {icon: greenIcon}).addTo(map).bindPopup(container));
               break;
 
