@@ -20,6 +20,16 @@ app.factory('parkDataService', function($http, $q){
               defer.resolve(res);
             });
       return defer.promise;
+    },
+    watersports : function(){
+      var watersports;
+      var defer = $q.defer();
+      $http.get('js/watersports.json')
+           .success(function(res){
+              defer.resolve(res);
+              console.log(res);
+            });
+      return defer.promise;
     }
   };
 });

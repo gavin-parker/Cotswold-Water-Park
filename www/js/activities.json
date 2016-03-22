@@ -127,7 +127,7 @@
   },
   {
     "Name":"Cotswold Country Park and Beach",
-    "Type":["Corporate & Groups", "Food", "Beach"],
+    "Type":["Corporate & Groups", "Beach"],
     "Number":"01285 868 096",
     "Email":"info@cotswoldcountrypark.co.uk",
     "URL":"www.cotswoldcountrypark.co.uk",
@@ -324,7 +324,7 @@
     "FIELD16":""
   },
   {
-    "Name":"The White Hart",
+    "Name":"The White Hart, Ashton Keynes",
     "Type":["Food"],
     "Number":"01285 861 247",
     "Email":"enquiries@whitehartak.com",
@@ -360,7 +360,7 @@
     "FIELD16":""
   },
   {
-    "Name":"The Wild Duck Inn",
+    "Name":"The Wild Duck Inn, Ewen",
     "Type":["Food"],
     "Number":"01285 770 310",
     "Email":"duckreservations@aol.com",
@@ -378,7 +378,7 @@
     "FIELD16":""
   },
   {
-    "Name":"Masons Arms",
+    "Name":"Masons Arms, Meysey Hampton",
     "Type":["Food"],
     "Number":"01285 850 164",
     "Email":"masonsatmeysey@gmail.com",
@@ -475,6 +475,24 @@
     "URL":"www.lakepochard.co.uk",
     "Location":"[51.659613, -1.913403]",
     "Description":"Fully equipped Scandinavian-style Lodges, all with verandas and views across the 10-acre lake. Available for short or week breaks. Top quality carp fishing and large, airy Waterside Caf� on site.",
+    "FIELD8":"",
+    "FIELD9":"",
+    "FIELD10":"",
+    "FIELD11":"",
+    "FIELD12":"",
+    "FIELD13":"",
+    "FIELD14":"",
+    "FIELD15":"",
+    "FIELD16":""
+  },
+  {
+    "Name":"Cotswold Country Park and Beach",
+    "Type":["Food"],
+    "Number":"01285 868 096",
+    "Email":"info@cotswoldcountrypark.co.uk",
+    "URL":"www.cotswoldcountrypark.co.uk",
+    "Location":"[51.6613551,-1.9655737]",
+    "Description":"Open daily from 10am - 8pm during the summer with the largest inland bathing beach in the UK, lifeguarded during week-ends and school holidays from April.\nAdventure playgrounds, cafes and wonderful lakeside walks. Activities include: WMSki System 2 Cable, open water swimming, peddalo, row boat and kayak hire, stand up paddle boarding, zorbing and crazy golf",
     "FIELD8":"",
     "FIELD9":"",
     "FIELD10":"",
