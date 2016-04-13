@@ -126,7 +126,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
           btn.latlng = loc;
           L.DomEvent.on(btn, 'click', $scope.routeTo);
 
-          switch(result[i].Type){
+          switch(result[i].Type[0]){
             case "Food":
               //foodLayer.addLayer(L.marker(loc, {icon: foodIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
               foodLayer.addLayer(L.marker(loc, {icon: foodIcon}).addTo(map).bindPopup(container));
@@ -137,11 +137,11 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
               break;
 
             case "Angling":
-            case "Boat":
+            case "Boat Trips":
               waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup(container));
               break;
 
-            case "Groups":
+            case "Corporate & Groups":
               groupLayer.addLayer(L.marker(loc, {icon: greenIcon}).addTo(map).bindPopup(container));
               break;
 

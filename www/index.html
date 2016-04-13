@@ -35,6 +35,7 @@
   <script src="js/factories/scopeSaving.js"></script>
   <script src="js/controllers.js"></script>
   <script src="js/controllers/ActivitiesCtrl.js"></script>
+  <script src="js/controllers/WatersportsCtrl.js"></script>
   <script src="js/controllers/BirdsCtrl.js"></script>
   <script src="js/controllers/EventsCtrl.js"></script>
   <script src="js/controllers/FavsCtrl.js"></script>
@@ -48,6 +49,7 @@
   <script src="js/leaflet-src.js"></script>
   <script src="js/leaflet-routing-machine.js"></script>
 
+  <!--easy button plugin-->
   <link rel="stylesheet" href="css/easy-button.css">
   <script src="js/easy-button.js"></script>
 
@@ -70,6 +72,9 @@
         <ion-tabs ng-class="{'tabs-item-hide': $root.hideTabs}">
           <ion-tab>
             <ion-nav-view name="activities-tab"></ion-nav-view>
+          </ion-tab>
+          <ion-tab>
+            <ion-nav-view name="watersports-tab"></ion-nav-view>
           </ion-tab>
           <ion-tab>
             <ion-nav-view name="events-tab"></ion-nav-view>
@@ -110,6 +115,10 @@
             <ion-item menu-close href="#/tab/activities">
               <i class="icon ion-android-bicycle"></i>
               Activities
+            </ion-item>
+            <ion-item menu-close href="#/tab/watersports">
+              <i class="icon ion-android-boat"></i>
+              Watersports
             </ion-item>
             <ion-item menu-close href="#/tab/events">
               <i class="icon ion-calendar"></i>
@@ -194,7 +203,7 @@
 
                 <a class="item item-icon-left, item item-text-wrap" href="#">
                   <i class="icon ion-information-circled"></i>
-                  {{activity.Type}}
+                  {{activity.Type.join(", ")}}
                 </a>
                 <ion-list>
                   <div class="list">
@@ -310,7 +319,8 @@
             <input type="text" placeholder="Date" ng-model="sighting.Date"/>
           </label>
           <label class="item item-input">
-            <input type="text" placeholder="Sightings or Comments" ng-model="sighting.Text"/>
+            <input type="text" placeholder="Sightings or Comments" ng-model="sighting.Text"/> 
+            <!-- <textarea placeholder=" Sightings or Comments" ng-model = "sighting.Text" cols="30" rows="10"></textarea> -->
           </label>
           <button class="button button-positive" ng-click="submit(sighting);">Submit</button>
         </div> <!-- showToast('Sighting sent', 'long', 'bottom') -->
@@ -346,15 +356,15 @@
             <div class="input-label">
               Filter Activities
             </div>
-            <select ng-model="selectedActivity" ng-options="a for a in activityOptions">
+            <select ng-model="selectedActivity" ng-options="a for a in activityOptions" ng-click="shownGroup = null">
             </select>
           </label>
         </div>
 
         <ion-content class="has-twosubheaders">
           <ion-list>
-            <div ng-repeat="activity in activities | filter:searchQuery">
-              <ion-item class="item-stable" ng-click="toggleGroup(activity)" ng-class="{active: isGroupShown(activity)}" ng-show="selectedActivity == 'All' || activity.Type == selectedActivity">
+            <div ng-repeat="activity in activities | filter:searchQuery | orderBy:'Name'">
+              <ion-item class="item-stable" ng-click="toggleGroup(activity)" ng-class="{active: isGroupShown(activity)}" ng-show="selectedActivity == 'All' || isSelected(activity)">
                 <i class="icon" ng-class="isGroupShown(activity) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
                 &#xA0;
                 {{activity.Name}}
@@ -363,7 +373,100 @@
 
                 <a class="item item-icon-left, item item-text-wrap" href="#">
                   <i class="icon ion-information-circled"></i>
-                  {{activity.Type}}
+                  {{activity.Type.join(", ")}}
+                </a>
+                <ion-list>
+                  <div class="list">
+                    <div>
+
+                      <a class="item item-icon-left" href="#">
+                        <i class="icon ion-ios-telephone"></i>
+                        {{activity.Number}}
+                      </a>
+                      <a class="item item-icon-left" href="#">
+                        <i class="icon ion-email"></i>
+                        {{activity.Email}}
+                      </a>
+                      <a class="item item-icon-left" href="{{activity.url}}">
+                        <i class="icon ion-android-globe"></i>
+                        <hyper>{{activity.URL}}</hyper>
+                      </a>
+                      <a class="item item-icon-left, item item-text-wrap" href="#">
+                        <i class="icon ion-information-circled"></i>
+                        {{activity.Description}}
+                      </a>
+
+                      <a class= "item item-icon-center" href="#/tab/map">
+                        <div>
+                          <button class="button button-act" ng-click="showOnMap({{activity}})">
+                            <i class="icon ion-ios-navigate-outline"></i>
+                            Show Location on Map
+                          </button>
+                        </div>
+
+                        </a>
+                        <a class= "item item-icon-center" href="#">
+                          <div>
+                          <button class="button button-energized button-act"  ng-hide="activity.fav"ng-click="addToFavourites({{activity}})">
+                            <i class="icon ion-heart"></i>
+                            Add to Favourites
+                          </button>
+                        </div>
+                        <div>
+                          <button class="button button button-assertive button-act" ng-show="activity.fav"  ng-click="removeFromFavourites({{activity}})">
+                            <i class="icon ion-heart-broken"></i>
+                            Remove From Favourites
+                          </button>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </ion-list>
+              </ion-item>
+            </div>
+          </ion-list>
+        </ion-content>
+    </ion-view>
+  </script>
+
+  <script id="templates/watersports.html" type="text/ng-template">
+    <ion-view title="Cotswold Water Park" hide-tabs="true">
+      <ion-nav-buttons side="right">
+        <a class="button button-icon button-clear ion-map" href="#/tab/map"></a>
+      </ion-nav-buttons>
+      <div class="bar bar-subheader item-input-inset">
+          <label class="item-input-wrapper">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="search" placeholder="Search" ng-model="searchQuery">
+          </label>
+          <button class="button button-clear" ng-click="searchQuery = ''">
+            Cancel
+          </button>
+        </div>
+
+        <div class="bar bar-subheader item-input-inset">
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Filter Activities
+            </div>
+            <select ng-model="selectedActivity" ng-options="a for a in activityOptions" ng-click="shownGroup = null">
+            </select>
+          </label>
+        </div>
+
+        <ion-content class="has-twosubheaders">
+          <ion-list>
+            <div ng-repeat="activity in watersports | filter:searchQuery | orderBy:'Name'">
+              <ion-item class="item-stable" ng-click="toggleGroup(activity)" ng-class="{active: isGroupShown(activity)}" ng-show="selectedActivity == 'All' || isSelected(activity)">
+                <i class="icon" ng-class="isGroupShown(activity) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
+                &#xA0;
+                {{activity.Name}}
+              </ion-item>
+              <ion-item class="item-accordion" ng-show="isGroupShown(activity)">
+
+                <a class="item item-icon-left, item item-text-wrap" href="#">
+                  <i class="icon ion-information-circled"></i>
+                  {{activity.Type.join(", ")}}
                 </a>
                 <ion-list>
                   <div class="list">

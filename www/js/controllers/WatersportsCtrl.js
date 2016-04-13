@@ -1,16 +1,13 @@
-
-
-//function to control activities tab
-app.controller('ActivitiesCtrl', function($scope, parkDataService){
-  console.log('IN ACTIVITIES CTRL');
-  $scope.activities = [];
-  parkDataService.activities().then(function(result){
+app.controller('WatersportsCtrl', function($scope, parkDataService) {
+  console.log('IN watersports CTRL');
+  $scope.watersports = [];
+  parkDataService.watersports().then(function(result){
     console.log(result);
-    $scope.activities = result;
-    if($scope.activities == {} || $scope.activities == null){
-      $scope.activities = JSON.parse(window.localStorage['activities']);
+    $scope.watersports = result;
+    if($scope.watersports == {} || $scope.watersports == null){
+      $scope.watersports = JSON.parse(window.localStorage['watersports']);
     }else{
-    window.localStorage['activities'] = JSON.stringify($scope.activities);
+    window.localStorage['watersports'] = JSON.stringify($scope.watersports);
   }
     checkFavourites();
 
@@ -20,7 +17,7 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
     });
   });
 
-  $scope.num = parkDataService.activities.length;
+  $scope.num = parkDataService.watersports.length;
 
   $scope.toggleGroup = function(activity) {
     if ($scope.isGroupShown(activity)) {
@@ -38,9 +35,9 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
       favs = [];
     }
     favs.push(fav);
-    for(var i=0;i<$scope.activities.length;i++){
-      if($scope.activities[i].Name == fav.Name){
-        $scope.activities[i].fav = true;
+    for(var i=0;i<$scope.watersports.length;i++){
+      if($scope.watersports[i].Name == fav.Name){
+        $scope.watersports[i].fav = true;
       }
     }
     window.localStorage['favs'] = JSON.stringify(favs);
@@ -56,9 +53,9 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
         favs.splice(i, 1);
       }
     }
-    for(var i=0;i<$scope.activities.length;i++){
-      if($scope.activities[i].Name == fav.Name){
-        $scope.activities[i].fav = false;
+    for(var i=0;i<$scope.watersports.length;i++){
+      if($scope.watersports[i].Name == fav.Name){
+        $scope.watersports[i].fav = false;
       }
     }
 
@@ -67,11 +64,11 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
 
   checkFavourites = function(){
     var favs = JSON.parse(window.localStorage['favs'] || '{}');
-    for(var i=0;i<$scope.activities.length;i++){
-      $scope.activities[i].fav = false;
+    for(var i=0;i<$scope.watersports.length;i++){
+      $scope.watersports[i].fav = false;
       for(var j=0;j<favs.length;j++){
-        if($scope.activities[i].Name == favs[j].Name){
-          $scope.activities[i].fav = true;
+        if($scope.watersports[i].Name == favs[j].Name){
+          $scope.watersports[i].fav = true;
         }
       }
     }
@@ -90,7 +87,7 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
     return array.indexOf(value) > -1;
   }
 
-  var copy = JSON.parse(window.localStorage['activities'])
+  var copy = JSON.parse(window.localStorage['watersports'])
   $scope.activityOptions = [];
   for(var i in copy) {
     for(var j = 0; j < copy[i].Type.length; j++) {
