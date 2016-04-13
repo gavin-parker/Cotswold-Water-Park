@@ -2,7 +2,6 @@
 app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdService, $ionicPopover, Scopes){
   //Saving scopes -- important : used for sharing scope functions with other controllers
   Scopes.store('MapCtrl', $scope);
-
   //Initialize new layers and map
   var activityLayer = new L.layerGroup();
   var waterLayer = new L.layerGroup();
@@ -85,7 +84,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
           createMarker: function() { return null; }   //remove waypoints markers
         }).addTo(map);
       }else{
-        control.spliceWaypoints(1,1, e.latlng);   
+        control.spliceWaypoints(1,1, e.latlng);
       }
       //control.setWaypoints(waypoints);
       console.log(e.latlng);
@@ -212,7 +211,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     if (map.hasLayer( groupLayer )) $scope.controlLayers('groupLayer');
     if (map.hasLayer( birdLayer )) $scope.controlLayers('birdLayer');
 
-    // Turns of the viewable toggles    
+    // Turns of the viewable toggles
     Scopes.get('PopoverCtrl').toggleShowLocat();
 
     markers.clearLayers();
@@ -303,7 +302,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     //map.addLayer(offlineLayer);
     map.addLayer(osm);
     getLoc();
-    
+
     //Settings the toggle = true
     //var activities = parkDataService.activities();
   };

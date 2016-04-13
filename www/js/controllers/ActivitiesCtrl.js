@@ -90,11 +90,11 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
     return array.indexOf(value) > -1;
   }
 
-  var copy = JSON.parse(window.localStorage['activities'])
+  var copy = JSON.parse(window.localStorage['activities']);
   $scope.activityOptions = [];
   for(var i in copy) {
     for(var j = 0; j < copy[i].Type.length; j++) {
-      if(!(isInArray(copy[i].Type[j], $scope.activityOptions))) { 
+      if(!(isInArray(copy[i].Type[j], $scope.activityOptions))) {
         $scope.activityOptions.push(copy[i].Type[j]);
       }
     }
