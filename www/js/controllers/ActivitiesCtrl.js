@@ -112,4 +112,12 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
     }
     return result;
   }
+
+  $scope.openCordovaWebView = function(site)
+  {
+    console.log(site);
+   // Open cordova webview if the url is in the whitelist otherwise opens in app browser
+   window.open(site,'_self');
+
+  };
 });

@@ -10,6 +10,7 @@ app.controller('EventsCtrl', function($scope, eventService){
         $scope.events = JSON.parse(window.localStorage['events']);
       }else{
       window.localStorage['events'] = JSON.stringify($scope.events);
+
     }
     });
   }
@@ -26,5 +27,10 @@ app.controller('EventsCtrl', function($scope, eventService){
   $scope.isGroupShown = function(activity) {
     return $scope.shownGroup === activity;
   };
+  $scope.openCordovaWebView = function(site)
+	{
+	 // Open cordova webview if the url is in the whitelist otherwise opens in app browser
+	 window.open(site,'_self');
 
+	};
 });

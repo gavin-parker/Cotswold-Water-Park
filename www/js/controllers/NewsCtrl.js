@@ -20,5 +20,11 @@ app.controller('NewsCtrl', function($scope, newsService){
   $scope.isGroupShown = function(activity) {
     return $scope.shownGroup === activity;
   };
+  $scope.openCordovaWebView = function(site)
+  {
+   // Open cordova webview if the url is in the whitelist otherwise opens in app browser
+   window.open(site,'_self');
+
+  };
 
 });

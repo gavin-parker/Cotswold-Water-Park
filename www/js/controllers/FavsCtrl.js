@@ -34,5 +34,12 @@ app.controller('FavsCtrl', function($scope){
     console.log("Pressed show on map");
     $scope.removeMarkersAndShowActivity(coords);
   };
+  $scope.openCordovaWebView = function(site)
+  {
+    console.log(site);
+   // Open cordova webview if the url is in the whitelist otherwise opens in app browser
+   window.open(site,'_self');
+
+  };
 
 });

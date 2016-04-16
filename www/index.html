@@ -218,9 +218,9 @@
                         <i class="icon ion-email"></i>
                         {{activity.Email}}
                       </a>
-                      <a class="item item-icon-left" href="{{activity.url}}">
+                      <a class="item item-icon-left" >
                         <i class="icon ion-android-globe"></i>
-                        <hyper>{{activity.URL}}</hyper>
+                        <hyper ng-click="openCordovaWebView('http://{{activity.URL}}')">{{activity.URL}}</hyper>
                       </a>
                       <a class="item item-icon-left, item item-text-wrap" href="#">
                         <i class="icon ion-information-circled"></i>
@@ -280,14 +280,9 @@
             </ion-item>
             <ion-item class="item-accordion" ng-show="isGroupShown(event)">
               <div class="list">
-
-                <div class="item item-icon-left" href="#" ng-bind-html="event.contentSnippet">
-
-                  <i class="icon ion-ios-telephone"></i>
-                </div>
                 <a class="item item-icon-left" href="#">
                   <i class="icon ion-android-globe"></i>
-                  {{event.link}}
+                  <hyper ng-click="openCordovaWebView('{{event.link}}')">{{event.link}}</hyper>
                 </a>
               </div>
             </div>
@@ -391,9 +386,9 @@
                         <i class="icon ion-email"></i>
                         {{activity.Email}}
                       </a>
-                      <a class="item item-icon-left" href="{{activity.url}}">
+                      <a class="item item-icon-left">
                         <i class="icon ion-android-globe"></i>
-                        <hyper>{{activity.URL}}</hyper>
+                        <hyper ng-click="openCordovaWebView('http://{{activity.URL}}')">{{activity.URL}}</hyper>
                       </a>
                       <a class="item item-icon-left, item item-text-wrap" href="#">
                         <i class="icon ion-information-circled"></i>
@@ -558,6 +553,18 @@
 
                 </div>
               </ion-item>
+              <ion-item class="item-accordion" ng-show="isGroupShown(item)">
+                <div class="list">
+                  <a class="item item-icon-left" href="#">
+                    <i class="icon ion-android-globe"></i>
+                    <hyper ng-click="openCordovaWebView('{{item.link}}')">{{item.link}}</hyper>
+                  </a>
+                </div>
+              </div>
+              </ion-list>
+
+                </div>
+              </ion-item>
             </div>
           </ion-list>
         </ion-content>
@@ -587,14 +594,14 @@
         </strong>
         <ion-content class="has-subheader">
           <ion-list>
-            <div class="card" href="#" ng-repeat="bird in birds | filter:searchQuery">
+            <div class="card" href="#"  ng-repeat="bird in birds | filter:searchQuery">
             <div class="item item-avatar">
               <img src="img/twitter-bird.svg" />
               <h2>{{bird["by_link/_text"]}}</h2>
               <p>{{bird['postedon_link/_text']}} </p>
             </div>
             <img  class="card-img" src="{{bird.entrycontent_image}}"/>
-            <p ng-bind-html="bird.entry_content">
+            <p ng-bind-html="bird.entry_content" padding='5px'>
             </p>
         </ion-content>
     </ion-view>
