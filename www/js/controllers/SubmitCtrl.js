@@ -1,7 +1,7 @@
 
 
 
-app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaEmailComposer, $ionicPopup){
+app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http,$ionicLoading, $cordovaEmailComposer, $ionicPopup){
   $ionicLoading.hide();
 
     $scope.pictureUrl = 'http://placehold.it/300x300';
@@ -51,24 +51,10 @@ app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaEma
 
     var postSighting = function(sighting){
       console.log("posting a signting");
-      var email = {
-         to: 'gp14958@bristol.ac.uk',
-         cc: sighting.Email,
-         bcc: [],
-         attachments: [
-         ],
-         subject: 'Bird Sighting:' + sighting.Name,
-         body: sighting.Text,
-         isHtml: true
- };
-      $cordovaEmailComposer.isAvailable(function(){
-        console.log("email is available");
-        $cordovaEmailComposer.open(email, function(){
-          console.log("opened email");
-        }, function(){
-          console.log("email is down");
-        });
-      });
+      var body = decodeURIComponent(sighting.Text);
+      var Subject = "Bird%20Sighting";
+      window.location.href = 'mailto:gp14958@my.bristol.ac.uk?subject=' + Subject + '&body=' + body;
+
 
 
     };
