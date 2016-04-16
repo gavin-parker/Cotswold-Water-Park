@@ -1,11 +1,16 @@
 //controls news tab
-app.controller('NewsCtrl', function($scope, newsService){
+app.controller('NewsCtrl', function($scope, newsService,$ionicLoading){
   console.log('IN NEWS CTRL');
+  $ionicLoading.show({
+    template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>'
+  });
   function initialize(){
     newsService.Feed().then(function(result){
       $scope.news = result.feed.entries;
       console.log($scope.news);
     });
+    $ionicLoading.hide();
+
   }
   superfeedr.auth('gp14958','df172f3202b13c654d4777881720c9cd');
   superfeedr.setOnLoadCallback(initialize);

@@ -1,8 +1,11 @@
 //controller manipulating map
-app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdService, $ionicPopover, Scopes){
+app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdService, $ionicPopover, Scopes,$ionicLoading){
   //Saving scopes -- important : used for sharing scope functions with other controllers
   Scopes.store('MapCtrl', $scope);
   //Initialize new layers and map
+  $ionicLoading.show({
+    template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>'
+  });
   var activityLayer = new L.layerGroup();
   var waterLayer = new L.layerGroup();
   var foodLayer = new L.layerGroup();
@@ -313,7 +316,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   console.log("added event handler");
   addAllActivitiesToMap();
   addLakesToMap();
-
+  $ionicLoading.hide();
   console.log("control of layers set");
 
   //Popover display

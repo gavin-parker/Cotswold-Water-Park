@@ -1,9 +1,12 @@
 
 
 //function to control activities tab
-app.controller('ActivitiesCtrl', function($scope, parkDataService){
+app.controller('ActivitiesCtrl', function($scope, parkDataService,$ionicLoading){
   console.log('IN ACTIVITIES CTRL');
   $scope.activities = [];
+  $ionicLoading.show({
+    template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>'
+  });
   parkDataService.activities().then(function(result){
     console.log(result);
     $scope.activities = result;
@@ -18,6 +21,7 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService){
       checkFavourites();
       console.log("hi");
     });
+    $ionicLoading.hide();
   });
 
   $scope.num = parkDataService.activities.length;

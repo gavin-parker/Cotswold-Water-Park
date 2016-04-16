@@ -1,7 +1,11 @@
 //controls birds tab
-app.controller('BirdsCtrl', function($scope, birdService){
+app.controller('BirdsCtrl', function($scope, birdService,$ionicLoading){
   console.log('IN BIRDS CTRL');
+  $ionicLoading.show({
+    template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>'
+  });
   function initialize(){
+
     /*
     birdService.Feed().then(function(result){
       $scope.birds = result.feed.entries;
@@ -12,6 +16,7 @@ app.controller('BirdsCtrl', function($scope, birdService){
       $scope.birds = result;
       console.log($scope.birds);
       //console.log($scope.birds[0]["postedon_link/_text"]);
+      $ionicLoading.hide();
     });
   }
   superfeedr.auth('gp14958','df172f3202b13c654d4777881720c9cd');

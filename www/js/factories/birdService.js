@@ -9,7 +9,7 @@ app.factory('birdService', function($q, $http){
           for(var i=0;i< data.results.length;i++){
             var res = data.results[i];
             var content = res["entry_content"];
-            content = content.replace(".", ".<br/>");
+            content = content.replace(".", ".<br/><br/>");
             content = content.replace(/CWP[ ]?[0-9]*/g, function(a){
               console.log(a);
               if(a.match(/\d+/g) !== null){

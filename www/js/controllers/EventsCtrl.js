@@ -1,7 +1,10 @@
 //controls events tab
-app.controller('EventsCtrl', function($scope, eventService){
+app.controller('EventsCtrl', function($scope, eventService,$ionicLoading){
   console.log('IN EVENTS CTRL');
 
+  $ionicLoading.show({
+    template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>'
+  });
   function initialize(){
     eventService.Feed().then(function(result){
       $scope.events = result.feed.entries;
@@ -13,6 +16,8 @@ app.controller('EventsCtrl', function($scope, eventService){
 
     }
     });
+    $ionicLoading.hide();
+
   }
   superfeedr.auth('gp14958','df172f3202b13c654d4777881720c9cd');
   superfeedr.setOnLoadCallback(initialize);

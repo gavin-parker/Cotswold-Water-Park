@@ -2,6 +2,7 @@
 
 
 app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaEmailComposer, $ionicPopup){
+  
     $scope.pictureUrl = 'http://placehold.it/300x300';
     $scope.takePicture = function() {
       console.log("taking pic");
@@ -72,9 +73,9 @@ app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaEma
     };
 
     var clearSighting = function(sighting ) {
-        sighting.Email = "", 
-        sighting.Name = "", 
-        sighting.Text = "", 
+        sighting.Email = "",
+        sighting.Name = "",
+        sighting.Text = "",
         sighting.Date = ""
     };
 });
