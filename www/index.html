@@ -55,7 +55,7 @@
 
 </head>
 <body ng-app="starter" ng-csp="">
-
+<!--NAV BAR -->
   <script id="templates/menu.html" type="text/ng-template">
     <ion-side-menus enable-menu-with-back-views="false">
       <ion-side-menu-content >
@@ -140,7 +140,7 @@
               <i class="icon ion-eye"></i>
               Submit Sighting
             </ion-item>
-            <button class="button button-clear button-icon" ng-click="openCordovaWebView('https://www.facebook.com/CotswoldWaterParkTrusts')"> <i class = "icon ion-social-facebook custom-fb"></i></button>
+            <button class="button button-clear button-icon" ng-click="openCordovaWebView('https://www.facebook.com/CotswoldWaterParkTrust')"> <i class = "icon ion-social-facebook custom-fb"></i></button>
             <button class="button button-clear button-icon" ng-click="openCordovaWebView('https://twitter.com/CotswoldWaterPk?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor')"><i class = "icon ion-social-twitter custom-twitter"></i></button>
           </ion-list>
         </ion-content>
@@ -150,6 +150,7 @@
 
   <ion-nav-view></ion-nav-view>
 
+  <!-- MAP PAGE -->
   <script id="templates/map.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
     <ion-nav-buttons side="right">
@@ -160,7 +161,7 @@
         </ion-content>
     </ion-view>
   </script>
-
+  <!-- popover for map filters -->
   <script id="templates/popover.html" type="text/ng-template">
     <ion-popover-view>
       <ion-content ng-controller="PopoverCtrl">
@@ -176,7 +177,7 @@
       </ion-content>
     </ion-popover-view>
   </script>
-
+  <!-- Favourites menu -->
   <script id="templates/favs.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" align-title="center" hide-tabs="true">
       <ion-nav-buttons side="right">
@@ -251,6 +252,7 @@
         </ion-content>
     </ion-view>
   </script>
+  <!-- events menu -->
 
   <script id="templates/events.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
@@ -298,6 +300,7 @@
       </ion-content>
     </ion-view>
   </script>
+  <!-- Bird sighting submission page -->
 
 <script id="templates/submit.html" type="text/ng-template">
   <ion-view title="Cotswold Water Park" hide-tabs="true">
@@ -334,6 +337,7 @@
   </ion-view>
 
 </script>
+<!-- Activities menu -->
 
   <script id="templates/activities.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
@@ -521,6 +525,7 @@
         </ion-content>
     </ion-view>
   </script>
+  <!-- News menu -->
 
   <script id="templates/news.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
@@ -558,6 +563,7 @@
         </ion-content>
     </ion-view>
   </script>
+  <!-- Bird sighting feed -->
 
   <script id="templates/birds.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
@@ -590,16 +596,6 @@
             <img  class="card-img" src="{{bird.entrycontent_image}}"/>
             <p ng-bind-html="bird.entry_content">
             </p>
-        </ion-content>
-    </ion-view>
-  </script>
-
-  <script id="templates/facebook.html" type="text/ng-template">
-    <ion-view title="Cotswold Water Park" hide-tabs="true" ng-init="openCordovaWebView()">
-      <ion-nav-buttons side="right">
-        <a class="button button-icon button-clear ion-map" href="#/tab/map"></a>
-      </ion-nav-buttons>
-        <ion-content class="has-subheader">
         </ion-content>
     </ion-view>
   </script>
