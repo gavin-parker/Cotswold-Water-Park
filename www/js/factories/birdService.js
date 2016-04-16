@@ -10,7 +10,14 @@ app.factory('birdService', function($q, $http){
             var res = data.results[i];
             var content = res["entry_content"];
             content = content.replace(".", ".<br/>");
-            content = content.replace(/CWP[]?[0-9]*/g, "<br/><b>$&</b>");
+            content = content.replace(/CWP[ ]?[0-9]*/g, function(a){
+              console.log(a);
+              if(a.match(/\d+/g) !== null){
+              return '<b>' + a + '</b>';
+            }else{
+              return a;
+            }
+            });
 
             data.results[i].entry_content = content;
 
