@@ -3,9 +3,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   //Saving scopes -- important : used for sharing scope functions with other controllers
   Scopes.store('MapCtrl', $scope);
   //Initialize new layers and map
-  $ionicLoading.show({
-    template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>'
-  });
+
   var activityLayer = new L.layerGroup();
   var waterLayer = new L.layerGroup();
   var foodLayer = new L.layerGroup();
@@ -295,7 +293,11 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     L.easyButton('&target;', function(btn, map){
       map.setView([x, y]);
     }).addTo(map);
-
+    $ionicLoading.show({
+      template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>',
+      duration: 5000,
+      noBackdrop: true
+    });
     //navigator.geolocation.getCurrentPosition(getLoc, onError);
     var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     var osmAttrib='locals';
@@ -304,19 +306,25 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     map.setMaxBounds(bounds);
     //map.addLayer(offlineLayer);
     map.addLayer(osm);
+    osm.on("load",function() {
+      console.log("loaded tiles");
+      $ionicLoading.hide();
+     });
     getLoc();
 
     //Settings the toggle = true
     //var activities = parkDataService.activities();
   };
-
+  $ionicLoading.show({
+    template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>',
+    duration: 5000
+  });
   init();
   console.log("Map initialized");
   //map.on('contextmenu', routeTo);
   console.log("added event handler");
   addAllActivitiesToMap();
   addLakesToMap();
-  $ionicLoading.hide();
   console.log("control of layers set");
 
   //Popover display

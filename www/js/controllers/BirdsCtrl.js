@@ -1,9 +1,7 @@
 //controls birds tab
 app.controller('BirdsCtrl', function($scope, birdService,$ionicLoading){
   console.log('IN BIRDS CTRL');
-  $ionicLoading.show({
-    template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>'
-  });
+
   function initialize(){
 
     /*
@@ -19,6 +17,11 @@ app.controller('BirdsCtrl', function($scope, birdService,$ionicLoading){
       $ionicLoading.hide();
     });
   }
+  $ionicLoading.show({
+    template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>',
+    duration: 5000
+  });
+
   superfeedr.auth('gp14958','df172f3202b13c654d4777881720c9cd');
   superfeedr.setOnLoadCallback(initialize);
 

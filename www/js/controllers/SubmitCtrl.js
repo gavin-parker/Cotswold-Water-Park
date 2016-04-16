@@ -2,7 +2,8 @@
 
 
 app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http, $cordovaEmailComposer, $ionicPopup){
-  
+  $ionicLoading.hide();
+
     $scope.pictureUrl = 'http://placehold.it/300x300';
     $scope.takePicture = function() {
       console.log("taking pic");

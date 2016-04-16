@@ -7,8 +7,11 @@ app.config(['$ionicConfigProvider', function($ionicConfigProvider) {
 
 }]);
 
+
+
+
 //Setup functions
-app.run(function($ionicPlatform) {
+app.run(function($ionicPlatform,$ionicLoading, $rootScope) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -22,6 +25,28 @@ app.run(function($ionicPlatform) {
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+
+
+    $rootScope.$on('$stateChangeStart',
+    function(event, toState, toParams, fromState, fromParams, options){
+      console.log("state change");
+      $rootScope.$broadcast('loading:show');
+    });
+    $rootScope.$on('loading:hide', function () {
+        $ionicLoading.hide();
+    });
+    $rootScope.$on('$stateChangeSuccess', function () {
+    console.log('done');
+    $rootScope.$broadcast('loading:hide');
+});
+
+    $rootScope.$on('loading:show', function () {
+      console.log("LOADING");
+      $ionicLoading.show({
+        template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>',
+        duration: 5000
+      });
+});
 
 
     // onError Callback receives a PositionError object

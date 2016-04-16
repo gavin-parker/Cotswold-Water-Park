@@ -5,8 +5,10 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService,$ionicLoading)
   console.log('IN ACTIVITIES CTRL');
   $scope.activities = [];
   $ionicLoading.show({
-    template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>'
+    template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>',
+    duration: 5000
   });
+
   parkDataService.activities().then(function(result){
     console.log(result);
     $scope.activities = result;

@@ -1,9 +1,7 @@
 //controls news tab
 app.controller('NewsCtrl', function($scope, newsService,$ionicLoading){
   console.log('IN NEWS CTRL');
-  $ionicLoading.show({
-    template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>'
-  });
+
   function initialize(){
     newsService.Feed().then(function(result){
       $scope.news = result.feed.entries;

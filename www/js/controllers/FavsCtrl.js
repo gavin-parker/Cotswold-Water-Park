@@ -1,8 +1,6 @@
 app.controller('FavsCtrl', function($scope,$ionicLoading){
   $scope.favourites = [];
-  $ionicLoading.show({
-    template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>'
-  });
+
   $scope.$on('$ionicView.enter', function() {
     $scope.favourites = JSON.parse(window.localStorage['favs'] || {});
     console.log("hi");
