@@ -205,8 +205,10 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     }
       });
     };
+
+  var show_location_markers = [];
   $rootScope.removeMarkersAndShowActivity = function(e){ // removes all other markers from map and shows activity marker
-    // Automatically Removes layers only if they need to be removed
+    // Automatically Removes layers controls only if they need to be removed
     if (map.hasLayer( foodLayer )) $scope.controlLayers('foodLayer');
     if (map.hasLayer( waterLayer )) $scope.controlLayers('waterLayer');
     if (map.hasLayer( activityLayer )) $scope.controlLayers('activityLayer');
@@ -229,6 +231,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     btn.latlng = loc;
     L.DomEvent.on(btn, 'click', $scope.routeTo);
     var marker = L.marker(loc, {icon: redIcon}).addTo(map).bindPopup(container);
+    show_location_markers.push(marker);
     markers.addLayer(marker);
     map.addLayer(markers);
     map.panTo( loc );
@@ -248,6 +251,14 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   $scope.controlLayers = function(toggledLayer){
     var toToggle = activityLayer;
     var toggle   = activityToggle;
+
+    // remove all show_location markers
+    console.log('show locations : ', show_location_markers  );
+    if (show_location_markers.length > 0){
+      for ( var i = 0; i < show_location_markers.length; i++){
+        map.removeLayer(show_location_markers[i]);
+      }
+    }
 
     //getting toggle id and correct layer
     if (toggledLayer === 'waterLayer') {
