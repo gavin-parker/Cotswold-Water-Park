@@ -2,7 +2,6 @@
 
 
 app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http,$ionicLoading, $cordovaEmailComposer, $ionicPopup){
-  $ionicLoading.hide();
 
     $scope.pictureUrl = 'http://placehold.it/300x300';
     $scope.takePicture = function() {
@@ -16,6 +15,8 @@ app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http,$ionicLoadin
       $cordovaCamera.getPicture(options).then(function(data){
         console.log('camera data: ' + angular.toJson(data));
         $scope.pictureUrl = "data:image/jpeg;base64," + data;
+        console.log($scope.pictureUrl);
+        console.log(data);
       }, function(err){
         // there was an error
         console.log("error");
@@ -53,7 +54,7 @@ app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http,$ionicLoadin
       console.log("posting a signting");
       var body = decodeURIComponent(sighting.Text);
       var Subject = "Bird%20Sighting";
-      window.location.href = 'mailto:gp14958@my.bristol.ac.uk?subject=' + Subject + '&body=' + body;
+      window.location.href = 'mailto:gp14958@my.bristol.ac.uk?subject=' + Subject + '&body=' + body + '<html><body><img src=" ' +  $scope.pictureUrl +  '" /> </body></html>';
 
 
 
@@ -65,4 +66,6 @@ app.controller('SubmitCtrl', function($scope, $cordovaCamera, $http,$ionicLoadin
         sighting.Text = "",
         sighting.Date = ""
     };
+    $ionicLoading.hide();
+
 });

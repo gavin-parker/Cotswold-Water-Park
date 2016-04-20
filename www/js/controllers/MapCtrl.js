@@ -293,11 +293,6 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     L.easyButton('&target;', function(btn, map){
       map.setView([x, y]);
     }).addTo(map);
-    $ionicLoading.show({
-      template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>',
-      duration: 5000,
-      noBackdrop: true
-    });
     //navigator.geolocation.getCurrentPosition(getLoc, onError);
     var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     var osmAttrib='locals';
@@ -317,7 +312,8 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   };
   $ionicLoading.show({
     template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>',
-    duration: 5000
+    duration: 5000,
+    scope: $scope
   });
   init();
   console.log("Map initialized");

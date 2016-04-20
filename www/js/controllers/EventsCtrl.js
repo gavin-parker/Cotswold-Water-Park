@@ -1,8 +1,11 @@
 //controls events tab
 app.controller('EventsCtrl', function($scope, eventService,$ionicLoading){
   console.log('IN EVENTS CTRL');
-
-
+  $ionicLoading.show({
+    template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>',
+    duration: 5000,
+    scope: $scope
+  });
   function initialize(){
     eventService.Feed().then(function(result){
       $scope.events = result.feed.entries;

@@ -6,7 +6,8 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService,$ionicLoading)
   $scope.activities = [];
   $ionicLoading.show({
     template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>',
-    duration: 5000
+    duration: 5000,
+    scope: $scope
   });
 
   parkDataService.activities().then(function(result){
@@ -95,7 +96,7 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService,$ionicLoading)
   function isInArray(value, array) {
     return array.indexOf(value) > -1;
   }
-
+try{
   var copy = JSON.parse(window.localStorage['activities']);
   $scope.activityOptions = [];
   for(var i in copy) {
@@ -108,6 +109,10 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService,$ionicLoading)
   $scope.activityOptions.sort();
   $scope.activityOptions.unshift("All");
   $scope.selectedActivity = "All";
+
+}catch(err){
+  console.log(err);
+}
 
   $scope.isSelected = function(activity) {
     var result = false;
