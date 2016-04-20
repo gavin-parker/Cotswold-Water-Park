@@ -28,6 +28,15 @@ hyper{
   color: blue;
   text-decoration: underline;
 }
+ion-popover-view ion-header-bar{
+  text-align: center;
+}
+ion-header-bar h2{
+  margin: auto;
+}
+ion-popover-view ion-content{
+  padding:5px;
+}
 
 textarea {
   outline: none;

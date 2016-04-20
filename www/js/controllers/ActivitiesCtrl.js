@@ -1,7 +1,7 @@
 
 
 //function to control activities tab
-app.controller('ActivitiesCtrl', function($scope, parkDataService,$ionicLoading){
+app.controller('ActivitiesCtrl', function($scope, parkDataService,$ionicLoading,$ionicPopover){
   console.log('IN ACTIVITIES CTRL');
   $scope.activities = [];
   $ionicLoading.show({
@@ -9,6 +9,27 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService,$ionicLoading)
     duration: 5000,
     scope: $scope
   });
+
+  var template = '<ion-popover-view><ion-header-bar><h2>Activities</h2></ion-header-bar><ion-content><p>This page shows all the activities available in the waterpark. <br/>\
+  Tap on an activity for more information.</p></ion-content></ion-popover-view>';
+  $scope.popover = $ionicPopover.fromTemplate(template,{
+    scope: $scope
+  });
+
+  function firstLoad(){
+    var dat = window.localStorage['actLoad'];
+    if(dat == 1){
+      return 0;
+    }else{
+      window.localStorage['actLoad'] = 1;
+      return 1;
+    }
+  }
+
+
+  $scope.showInfo = function(){
+    $scope.popover.show();
+  };
 
   parkDataService.activities().then(function(result){
     console.log(result);
@@ -23,6 +44,9 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService,$ionicLoading)
     $scope.$on('$ionicView.enter', function() {
       checkFavourites();
       console.log("hi");
+      if(firstLoad()){
+        $scope.showInfo();
+      }
     });
     //$ionicLoading.hide();
   });

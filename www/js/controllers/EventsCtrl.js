@@ -1,11 +1,33 @@
 //controls events tab
-app.controller('EventsCtrl', function($scope, eventService,$ionicLoading){
+app.controller('EventsCtrl', function($scope, eventService,$ionicLoading,$ionicPopover){
   console.log('IN EVENTS CTRL');
   $ionicLoading.show({
     template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>',
     duration: 5000,
     scope: $scope
   });
+
+  var template = '<ion-popover-view><ion-header-bar><h2>The Events Feed</h2></ion-header-bar><ion-content><p>The Events Feed shows the latest events on <hyper>waterpark.org<br/>\
+  </hyper> </p></ion-content></ion-popover-view>';
+  $scope.popover = $ionicPopover.fromTemplate(template,{
+    scope: $scope
+  });
+
+  function firstLoad(){
+    var dat = window.localStorage['eventLoad'];
+    if(dat == 1){
+      return 0;
+    }else{
+      window.localStorage['eventLoad'] = 1;
+      return 1;
+    }
+  }
+
+
+  $scope.showInfo = function(){
+    $scope.popover.show();
+  };
+
   function initialize(){
     eventService.Feed().then(function(result){
       $scope.events = result.feed.entries;
@@ -18,7 +40,9 @@ app.controller('EventsCtrl', function($scope, eventService,$ionicLoading){
     }
     });
     $ionicLoading.hide();
-
+    if(firstLoad()){
+      $scope.showInfo();
+    }
   }
   $ionicLoading.show({
     template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>',
