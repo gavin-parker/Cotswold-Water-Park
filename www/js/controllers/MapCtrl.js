@@ -305,6 +305,17 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
       console.log("loaded tiles");
       $ionicLoading.hide();
      });
+     map.on('zoomend', function(){
+       if(map.getZoom() <= 13){
+         if(map.hasLayer(lakeLayer)){
+         map.removeLayer(lakeLayer);
+       }
+       }else{
+         if(!map.hasLayer(lakeLayer)){
+         map.addLayer(lakeLayer);
+       }
+       }
+     });
     getLoc();
 
     //Settings the toggle = true
