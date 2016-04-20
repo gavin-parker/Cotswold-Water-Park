@@ -61,6 +61,8 @@ app.run(function($ionicPlatform,$ionicLoading, $rootScope) {
   });
 });
 
+
+
 app.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 

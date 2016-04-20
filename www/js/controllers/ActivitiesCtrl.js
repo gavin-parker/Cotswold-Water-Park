@@ -24,7 +24,7 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService,$ionicLoading)
       checkFavourites();
       console.log("hi");
     });
-    $ionicLoading.hide();
+    //$ionicLoading.hide();
   });
 
   $scope.num = parkDataService.activities.length;

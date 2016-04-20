@@ -25,6 +25,7 @@
   <script type="text/javascript" src="js/superfeedr.js"></script>
   <script stc="js/datahandler.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/directives/repeat-finish.js"></script>
   <script src="js/factories/birdService.js"></script>
   <script src="js/factories/cameraService.js"></script>
   <script src="js/factories/eventService.js"></script>
@@ -194,7 +195,7 @@
         </div>
         <ion-content class="has-subheader">
           <ion-list>
-            <div ng-repeat="activity in favourites | filter:searchQuery">
+            <div ng-repeat="activity in favourites | filter:searchQuery" repeat-finish>
               <ion-item class="item-stable" ng-click="toggleGroup(activity)" >
                 <i class="icon" ng-class="isGroupShown(activity) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
                 &#xA0;
@@ -272,7 +273,7 @@
 
       <ion-content class="has-subheader">
         <ion-list>
-          <div ng-repeat="event in events | filter:searchQuery">
+          <div ng-repeat="event in events | filter:searchQuery" repeat-finish>
             <ion-item class="item-stable" ng-click="toggleGroup(event)" ng-class="{active: isGroupShown(event)}">
               <i class="icon" ng-class="isGroupShown(event) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
               &#xA0;
@@ -353,7 +354,7 @@
 
         <ion-content class="has-twosubheaders">
           <ion-list>
-            <div ng-repeat="activity in activities | filter:searchQuery | orderBy:'Name'">
+            <div ng-repeat="activity in activities | filter:searchQuery | orderBy:'Name'" repeat-finish>
               <ion-item class="item-stable" ng-click="toggleGroup(activity)" ng-class="{active: isGroupShown(activity)}" ng-show="selectedActivity == 'All' || isSelected(activity)">
                 <i class="icon" ng-class="isGroupShown(activity) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
                 &#xA0;
@@ -446,7 +447,7 @@
 
         <ion-content class="has-twosubheaders">
           <ion-list>
-            <div ng-repeat="activity in watersports | filter:searchQuery | orderBy:'Name'">
+            <div ng-repeat="activity in watersports | filter:searchQuery | orderBy:'Name'" repeat-finish>
               <ion-item class="item-stable" ng-click="toggleGroup(activity)" ng-class="{active: isGroupShown(activity)}" ng-show="selectedActivity == 'All' || isSelected(activity)">
                 <i class="icon" ng-class="isGroupShown(activity) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
                 &#xA0;
@@ -529,7 +530,7 @@
         </div>
         <ion-content class="has-subheader">
           <ion-list>
-            <div ng-repeat="item in news | filter:searchQuery">
+            <div ng-repeat="item in news | filter:searchQuery" repeat-finish>
               <ion-item class="item-stable" ng-click="toggleGroup(item)" ng-class="{active: isGroupShown(item)}">
                 <i class="icon" ng-class="isGroupShown(item) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
                 &#xA0;

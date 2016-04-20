@@ -4,6 +4,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   Scopes.store('MapCtrl', $scope);
   //Initialize new layers and map
 
+
   var activityLayer = new L.layerGroup();
   var waterLayer = new L.layerGroup();
   var foodLayer = new L.layerGroup();
