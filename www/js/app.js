@@ -12,21 +12,16 @@ app.config(['$ionicConfigProvider', function($ionicConfigProvider) {
 
 //Setup functions
 app.run(function($ionicPlatform,$ionicLoading, $rootScope) {
+
+  console.log("RUN");
+  $ionicLoading.show({
+    template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>',
+    duration: 5000
+  });
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-
-
-
-
-    if(window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-    if(window.StatusBar) {
-      StatusBar.styleDefault();
-    }
-
-
     $rootScope.$on('$stateChangeStart',
     function(event, toState, toParams, fromState, fromParams, options){
       console.log("state change");
@@ -38,7 +33,7 @@ app.run(function($ionicPlatform,$ionicLoading, $rootScope) {
     $rootScope.$on('$stateChangeSuccess', function () {
     console.log('done');
     $rootScope.$broadcast('loading:hide');
-});
+  });
 
     $rootScope.$on('loading:show', function () {
       console.log("LOADING");
@@ -49,10 +44,24 @@ app.run(function($ionicPlatform,$ionicLoading, $rootScope) {
 });
 
 
+
+    if(window.cordova && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    }
+    if(window.StatusBar) {
+      StatusBar.styleDefault();
+    }
+
+    //$rootScope.$broadcast('loading:hide');
+
+
+
     // onError Callback receives a PositionError object
     //
   });
 });
+
+
 
 app.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -84,16 +93,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
-  .state('tabs.watersports', {
-    url: "/watersports",
-    views: {
+  // .state('tabs.watersports', {
+  //   url: "/watersports",
+  //   views: {
 
-      'watersports-tab': {
-        templateUrl: "templates/watersports.html",
-        controller : "WatersportsCtrl"
-      }
-    }
-  })
+  //     'watersports-tab': {
+  //       templateUrl: "templates/watersports.html",
+  //       controller : "WatersportsCtrl"
+  //     }
+  //   }
+  // })
   .state('tabs.events', {
     url: "/events",
     views: {

@@ -28,6 +28,15 @@ hyper{
   color: blue;
   text-decoration: underline;
 }
+ion-popover-view ion-header-bar{
+  text-align: center;
+}
+ion-header-bar h2{
+  margin: auto;
+}
+ion-popover-view ion-content{
+  padding:5px;
+}
 
 textarea {
   outline: none;
@@ -44,6 +53,7 @@ textarea {
   margin: auto;
   display: block;
   position: absolute;
+  margin-bottom: 10px;
 }
 card{
 
@@ -75,6 +85,30 @@ z-index: 1000;
 	width: 100%;
 }
 
+.general_act_icon {
+	content: 	url('./../img/redMarker.png');
+	width: 15px;
+}
+
+.hotel_icon {
+	content: 	url('./../img/restaurant.png');
+	width: 15px;
+}
+
+.water_icon{
+	content: 	url('./../img/blueMarker.png');
+	width: 15px;
+}
+
+.group_icon{
+	content: 	url('./../img/greenMarker.png');
+	width: 15px;
+}
+
+.birds_icon{
+	content: 	url('./../img/bird.png');
+	width: 15px;
+}
 
 /* required styles */
 

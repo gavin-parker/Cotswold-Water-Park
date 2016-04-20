@@ -25,6 +25,7 @@
   <script type="text/javascript" src="js/superfeedr.js"></script>
   <script stc="js/datahandler.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/directives/repeat-finish.js"></script>
   <script src="js/factories/birdService.js"></script>
   <script src="js/factories/cameraService.js"></script>
   <script src="js/factories/eventService.js"></script>
@@ -35,7 +36,7 @@
   <script src="js/factories/scopeSaving.js"></script>
   <script src="js/controllers.js"></script>
   <script src="js/controllers/ActivitiesCtrl.js"></script>
-  <script src="js/controllers/WatersportsCtrl.js"></script>
+ <!--  <script src="js/controllers/WatersportsCtrl.js"></script> -->
   <script src="js/controllers/BirdsCtrl.js"></script>
   <script src="js/controllers/EventsCtrl.js"></script>
   <script src="js/controllers/FavsCtrl.js"></script>
@@ -76,9 +77,9 @@
           <ion-tab>
             <ion-nav-view name="activities-tab"></ion-nav-view>
           </ion-tab>
-          <ion-tab>
+          <!-- <ion-tab>
             <ion-nav-view name="watersports-tab"></ion-nav-view>
-          </ion-tab>
+          </ion-tab> -->
           <ion-tab>
             <ion-nav-view name="events-tab"></ion-nav-view>
           </ion-tab>
@@ -119,10 +120,10 @@
               <i class="icon ion-android-bicycle"></i>
               Activities
             </ion-item>
-            <ion-item menu-close href="#/tab/watersports">
+           <!--  <ion-item menu-close href="#/tab/watersports">
               <i class="icon ion-android-boat"></i>
               Watersports
-            </ion-item>
+            </ion-item> -->
             <ion-item menu-close href="#/tab/events">
               <i class="icon ion-calendar"></i>
               Events
@@ -169,11 +170,11 @@
     <ion-popover-view>
       <ion-content ng-controller="PopoverCtrl">
         <div class="list">
-          <ion-toggle ng-click = "controlLayers('activityLayer')" ng-checked="true" ng-model="langToggle.Act">General Activities</ion-toggle>
-          <ion-toggle ng-click = "controlLayers('waterLayer')" ng-checked="true" ng-model="langToggle.WaterAct">Water Activities</ion-toggle>
-          <ion-toggle ng-click = "controlLayers('groupLayer')" ng-checked="true" ng-model="langToggle.GroupAct">Group Activities</ion-toggle>
-          <ion-toggle ng-click = "controlLayers('foodLayer')" ng-checked="true" ng-model="langToggle.food">Food and Hotels</ion-toggle>
-          <ion-toggle ng-click = "controlLayers('birdLayer')" ng-checked="true" ng-model="langToggle.birds">Birds</ion-toggle>
+          <ion-toggle ng-click = "controlLayers('activityLayer')" ng-checked="true" ng-model="langToggle.Act" i> <i class ="general_act_icon"></i> General Activities  </ion-toggle>
+          <ion-toggle ng-click = "controlLayers('waterLayer')" ng-checked="true" ng-model="langToggle.WaterAct"> <i class ="water_icon"></i> Water Activities</ion-toggle>
+          <ion-toggle ng-click = "controlLayers('groupLayer')" ng-checked="true" ng-model="langToggle.GroupAct"> <i class ="group_icon"></i> Group Activities</ion-toggle>
+          <ion-toggle ng-click = "controlLayers('foodLayer')" ng-checked="true" ng-model="langToggle.food"> <i class ="hotel_icon"></i> Food and Hotels</ion-toggle>
+          <ion-toggle ng-click = "controlLayers('birdLayer')" ng-checked="true" ng-model="langToggle.birds"> <i class ="birds_icon"></i> Birds</ion-toggle>
           <ion-toggle ng-click = "controlLayers('lakeLayer')" ng-checked="true" ng-model="langToggle.lakes">Lake numbers</ion-toggle>
           <ion-toggle ng-click = "controlLayers('offlineLayer')" ng-checked="false" ng-model="langToggle.offline">Offline</ion-toggle>
         </div>
@@ -197,7 +198,7 @@
         </div>
         <ion-content class="has-subheader">
           <ion-list>
-            <div ng-repeat="activity in favourites | filter:searchQuery">
+            <div ng-repeat="activity in favourites | filter:searchQuery" repeat-finish>
               <ion-item class="item-stable" ng-click="toggleGroup(activity)" >
                 <i class="icon" ng-class="isGroupShown(activity) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
                 &#xA0;
@@ -275,7 +276,7 @@
 
       <ion-content class="has-subheader">
         <ion-list>
-          <div ng-repeat="event in events | filter:searchQuery">
+          <div ng-repeat="event in events | filter:searchQuery" repeat-finish>
             <ion-item class="item-stable" ng-click="toggleGroup(event)" ng-class="{active: isGroupShown(event)}">
               <i class="icon" ng-class="isGroupShown(event) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
               &#xA0;
@@ -356,7 +357,7 @@
 
         <ion-content class="has-twosubheaders">
           <ion-list>
-            <div ng-repeat="activity in activities | filter:searchQuery | orderBy:'Name'">
+            <div ng-repeat="activity in activities | filter:searchQuery | orderBy:'Name'" repeat-finish>
               <ion-item class="item-stable" ng-click="toggleGroup(activity)" ng-class="{active: isGroupShown(activity)}" ng-show="selectedActivity == 'All' || isSelected(activity)">
                 <i class="icon" ng-class="isGroupShown(activity) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
                 &#xA0;
@@ -422,7 +423,7 @@
     </ion-view>
   </script>
 
-  <script id="templates/watersports.html" type="text/ng-template">
+<!--   <script id="templates/watersports.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
       <ion-nav-buttons side="right">
         <a class="button button-icon button-clear ion-map" href="#/tab/map"></a>
@@ -449,7 +450,7 @@
 
         <ion-content class="has-twosubheaders">
           <ion-list>
-            <div ng-repeat="activity in watersports | filter:searchQuery | orderBy:'Name'">
+            <div ng-repeat="activity in watersports | filter:searchQuery | orderBy:'Name'" repeat-finish>
               <ion-item class="item-stable" ng-click="toggleGroup(activity)" ng-class="{active: isGroupShown(activity)}" ng-show="selectedActivity == 'All' || isSelected(activity)">
                 <i class="icon" ng-class="isGroupShown(activity) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
                 &#xA0;
@@ -513,7 +514,7 @@
           </ion-list>
         </ion-content>
     </ion-view>
-  </script>
+  </script> -->
   <!-- News menu -->
 
   <script id="templates/news.html" type="text/ng-template">
@@ -532,7 +533,7 @@
         </div>
         <ion-content class="has-subheader">
           <ion-list>
-            <div ng-repeat="item in news | filter:searchQuery">
+            <div ng-repeat="item in news | filter:searchQuery" repeat-finish>
               <ion-item class="item-stable" ng-click="toggleGroup(item)" ng-class="{active: isGroupShown(item)}">
                 <i class="icon" ng-class="isGroupShown(item) ? &apos;ion-minus&apos; : &apos;ion-plus&apos;"></i>
                 &#xA0;
@@ -566,7 +567,7 @@
   </script>
   <!-- Bird sighting feed -->
 
-  <script id="templates/birds.html" type="text/ng-template">
+    <script id="templates/birds.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
       <ion-nav-buttons side="right">
         <a class="button button-icon button-clear ion-map" href="#/tab/map"></a>
@@ -587,14 +588,15 @@
         </a>
         </strong>
         <ion-content class="has-subheader">
+
           <ion-list>
-            <div class="card" href="#"  ng-repeat="bird in birds | filter:searchQuery">
+            <div class="card" href="#"  ng-repeat="bird in birds | filter:searchQuery" ng-show="!$first">
             <div class="item item-avatar">
               <img src="img/twitter-bird.svg" />
-              <h2>{{bird["by_link/_text"]}}</h2>
+              <h3>CWP Bird Sightings</h3>
               <p>{{bird['postedon_link/_text']}} </p>
             </div>
-            <img  class="card-img" src="{{bird.entrycontent_image}}"/>
+            <img ng-repeat="img in bird.entrycontent_image" class="card-img" src="{{img}}"/>
             <p ng-bind-html="bird.entry_content" padding='5px'>
             </p>
         </ion-content>

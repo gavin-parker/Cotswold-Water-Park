@@ -1,13 +1,35 @@
 
 
 //function to control activities tab
-app.controller('ActivitiesCtrl', function($scope, parkDataService,$ionicLoading){
+app.controller('ActivitiesCtrl', function($scope, parkDataService,$ionicLoading,$ionicPopover){
   console.log('IN ACTIVITIES CTRL');
   $scope.activities = [];
   $ionicLoading.show({
     template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>',
-    duration: 5000
+    duration: 5000,
+    scope: $scope
   });
+
+  var template = '<ion-popover-view><ion-header-bar><h2>Activities</h2></ion-header-bar><ion-content><p>This page shows all the activities available in the waterpark. <br/>\
+  Tap on an activity for more information.</p></ion-content></ion-popover-view>';
+  $scope.popover = $ionicPopover.fromTemplate(template,{
+    scope: $scope
+  });
+
+  function firstLoad(){
+    var dat = window.localStorage['actLoad'];
+    if(dat == 1){
+      return 0;
+    }else{
+      window.localStorage['actLoad'] = 1;
+      return 1;
+    }
+  }
+
+
+  $scope.showInfo = function(){
+    $scope.popover.show();
+  };
 
   parkDataService.activities().then(function(result){
     console.log(result);
@@ -22,8 +44,11 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService,$ionicLoading)
     $scope.$on('$ionicView.enter', function() {
       checkFavourites();
       console.log("hi");
+      if(firstLoad()){
+        $scope.showInfo();
+      }
     });
-    $ionicLoading.hide();
+    //$ionicLoading.hide();
   });
 
   $scope.num = parkDataService.activities.length;
@@ -95,7 +120,7 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService,$ionicLoading)
   function isInArray(value, array) {
     return array.indexOf(value) > -1;
   }
-
+try{
   var copy = JSON.parse(window.localStorage['activities']);
   $scope.activityOptions = [];
   for(var i in copy) {
@@ -108,6 +133,10 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService,$ionicLoading)
   $scope.activityOptions.sort();
   $scope.activityOptions.unshift("All");
   $scope.selectedActivity = "All";
+
+}catch(err){
+  console.log(err);
+}
 
   $scope.isSelected = function(activity) {
     var result = false;

@@ -1,3 +1,5 @@
+// there is a problem for watersports ->  does not store the location of the 
+// place properly .. 
 app.controller('WatersportsCtrl', function($scope, parkDataService) {
   console.log('IN watersports CTRL');
   $scope.watersports = [];

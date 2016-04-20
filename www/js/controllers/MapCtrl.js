@@ -4,6 +4,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   Scopes.store('MapCtrl', $scope);
   //Initialize new layers and map
 
+
   var activityLayer = new L.layerGroup();
   var waterLayer = new L.layerGroup();
   var foodLayer = new L.layerGroup();
@@ -103,7 +104,9 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   var addAllActivitiesToMap = function(){
     parkDataService.activities().then(function(result){
       $scope.activities = result;
+
       console.log("yay");
+      console.log(result.length);
       for(var i = 0;i < result.length;i++) {
 
           console.log(result[i].Name);
@@ -117,7 +120,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
           btn.innerHTML = "Directions";
           btn.latlng = loc;
           L.DomEvent.on(btn, 'click', $scope.routeTo);
-
+          console.log(result[i].Type[0]);
           switch(result[i].Type[0]){
             case "Food":
               //foodLayer.addLayer(L.marker(loc, {icon: foodIcon}).addTo(map).bindPopup((result[i].Name)+'</br>'+(result[i].Description)+button).on('click', $scope.routeTo));
@@ -129,6 +132,8 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
               break;
 
             case "Angling":
+            activityLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup(container));
+            break;
             case "Boat Trips":
               waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup(container));
               break;
@@ -196,8 +201,11 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     }
       });
     };
+
+  var show_location_markers = [];
   $rootScope.removeMarkersAndShowActivity = function(e){ // removes all other markers from map and shows activity marker
-    // Automatically Removes layers only if they need to be removed
+    console.log('IN remove marker act : ', e);
+    // Automatically Removes layers controls only if they need to be removed
     if (map.hasLayer( foodLayer )) $scope.controlLayers('foodLayer');
     if (map.hasLayer( waterLayer )) $scope.controlLayers('waterLayer');
     if (map.hasLayer( activityLayer )) $scope.controlLayers('activityLayer');
@@ -220,6 +228,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     btn.latlng = loc;
     L.DomEvent.on(btn, 'click', $scope.routeTo);
     var marker = L.marker(loc, {icon: redIcon}).addTo(map).bindPopup(container);
+    show_location_markers.push(marker);
     markers.addLayer(marker);
     map.addLayer(markers);
     map.panTo( loc );
@@ -239,6 +248,14 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   $scope.controlLayers = function(toggledLayer){
     var toToggle = activityLayer;
     var toggle   = activityToggle;
+
+    // remove all show_location markers
+    console.log('show locations : ', show_location_markers  );
+    if (show_location_markers.length > 0){
+      for ( var i = 0; i < show_location_markers.length; i++){
+        map.removeLayer(show_location_markers[i]);
+      }
+    }
 
     //getting toggle id and correct layer
     if (toggledLayer === 'waterLayer') {
@@ -285,11 +302,6 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     L.easyButton('&target;', function(btn, map){
       map.setView([x, y]);
     }).addTo(map);
-    $ionicLoading.show({
-      template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>',
-      duration: 5000,
-      noBackdrop: true
-    });
     //navigator.geolocation.getCurrentPosition(getLoc, onError);
     lc.start();
     var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
@@ -303,6 +315,17 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
       console.log("loaded tiles");
       $ionicLoading.hide();
      });
+     map.on('zoomend', function(){
+       if(map.getZoom() <= 13){
+         if(map.hasLayer(lakeLayer)){
+         map.removeLayer(lakeLayer);
+       }
+       }else{
+         if(!map.hasLayer(lakeLayer)){
+         map.addLayer(lakeLayer);
+       }
+       }
+     });
     getLoc();
 
     //Settings the toggle = true
@@ -310,7 +333,8 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   };
   $ionicLoading.show({
     template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>',
-    duration: 5000
+    duration: 5000,
+    scope: $scope
   });
   init();
   console.log("Map initialized");
