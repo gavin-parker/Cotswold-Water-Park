@@ -85,7 +85,7 @@ You can find the project at: https://github.com/domoritz/leaflet-locatecontrol
                 metersUnit: "meters",
                 feetUnit: "feet",
                 popup: "You are within {distance} {unit} from this point",
-                outsideMapBoundsMsg: "You seem located outside the boundaries of the map"
+                outsideMapBoundsMsg: "You are located outside Cotswold Water Park; default location set"
             },
             locateOptions: {
                 maxZoom: Infinity,
