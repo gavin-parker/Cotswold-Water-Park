@@ -564,7 +564,7 @@
   </script>
   <!-- Bird sighting feed -->
 
-  <script id="templates/birds.html" type="text/ng-template">
+    <script id="templates/birds.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
       <ion-nav-buttons side="right">
         <a class="button button-icon button-clear ion-map" href="#/tab/map"></a>
@@ -586,10 +586,10 @@
         </strong>
         <ion-content class="has-subheader">
           <ion-list>
-            <div class="card" href="#"  ng-repeat="bird in birds | filter:searchQuery">
+            <div class="card" href="#"  ng-repeat="bird in birds | filter:searchQuery" ng-show="!$first">
             <div class="item item-avatar">
               <img src="img/twitter-bird.svg" />
-              <h2>{{bird["by_link/_text"]}}</h2>
+              <h3>CWP Bird Sightings</h3>
               <p>{{bird['postedon_link/_text']}} </p>
             </div>
             <img ng-repeat="img in bird.entrycontent_image" class="card-img" src="{{img}}"/>

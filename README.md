@@ -14,5 +14,6 @@ http://blog.ionic.io/crosswalk-comes-to-ionic/ - performance immprovements </br>
 http://geocoder.opencagedata.com/ </br>
 Credits: </br>
 Sleeping Bed Silhouette made by Scott de Jonge from www.flaticon.com </br>
+Sports icon made by Freepic from www.flaticon.com </br>
 </br>
 APP ID: 6a167a90
