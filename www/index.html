@@ -591,10 +591,14 @@
             <div class="item item-avatar">
               <img src="img/twitter-bird.svg" />
               <h3>CWP Bird Sightings</h3>
-              <p>{{bird['postedon_link/_text']}} </p>
+              <p>{{bird['ENTRYTITLE_LINK/_text']}} </p>
             </div>
-            <img ng-repeat="img in bird.entrycontent_image" class="card-img" src="{{img}}"/>
-            <p ng-bind-html="bird.entry_content" padding='5px'>
+            <img class="card-img" src="{{bird['TILEDGALLERY_IMAGE_1']}}" alt="{{bird['TILEDGALLERY_VALUE_1']}}"/>
+            <img class="card-img" src="{{bird['TILEDGALLERY_IMAGE_2']}}" alt="{{bird['TILEDGALLERY_VALUE_2']}}"/>
+            <img class="card-img" src="{{bird['TILEDGALLERY_IMAGE_3']}}" alt="{{bird['TILEDGALLERY_VALUE_3']}}"/>
+
+            <p ng-repeat="text in bird['ENTRYCONTENT_DESCRIPTIONS'] track by $index" padding='5px'>
+              {{text}}
             </p>
         </ion-content>
     </ion-view>
