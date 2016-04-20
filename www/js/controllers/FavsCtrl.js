@@ -1,10 +1,32 @@
-app.controller('FavsCtrl', function($scope,$ionicLoading){
+app.controller('FavsCtrl', function($scope,$ionicLoading,$ionicPopover){
   $scope.favourites = [];
   $ionicLoading.show({
     template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>',
     duration: 5000,
     scope: $scope
   });
+
+  var template = '<ion-popover-view><ion-header-bar><h2>Favourites</h2></ion-header-bar><ion-content><p>This page shows your favourite activities. Add as many as you like from the activity page!</p></ion-content></ion-popover-view>';
+  $scope.popover = $ionicPopover.fromTemplate(template,{
+    scope: $scope
+  });
+
+  function firstLoad(){
+    var dat = window.localStorage['favLoad'];
+    if(dat == 1){
+      return 0;
+    }else{
+      window.localStorage['favLoad'] = 1;
+      return 1;
+    }
+  }
+
+
+  $scope.showInfo = function(){
+    $scope.popover.show();
+  };
+
+
   $scope.$on('$ionicView.enter', function() {
     $scope.favourites = JSON.parse(window.localStorage['favs'] || {});
     console.log("hi");
@@ -47,4 +69,7 @@ app.controller('FavsCtrl', function($scope,$ionicLoading){
 
   };
 
+if(firstLoad()){
+  $scope.showInfo();
+}
 });
