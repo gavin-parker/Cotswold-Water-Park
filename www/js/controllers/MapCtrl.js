@@ -37,6 +37,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   var map = new L.Map('map', {
     layers: [activityLayer, waterLayer, foodLayer, groupLayer, birdLayer, lakeLayer]
   });
+  var lc = L.control.locate().addTo(map);
 
   //Layer Options
   var overlayMaps = {
@@ -45,8 +46,8 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     "Food and Hotels": foodLayer,
     "Group Activities": groupLayer,
     "Birds": birdLayer,
-    "offline" : offlineLayer,
-    "lake numbers" : lakeLayer
+    "Offline" : offlineLayer,
+    "Lake numbers" : lakeLayer
   };
 
   //boundaries for the map
@@ -76,17 +77,8 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
 
   //get current location, if not in water park then set view to default location
   var getLoc = function(position) {
-    /*
-    var x = position.coords.latitude;
-    var y = position.coords.longitude;
-    */
-    if(bounds.contains(new L.LatLng(x,y))) {
       map.setView(new L.LatLng(x, y), 13);
       L.marker([x,y], {icon: pinPoint}).addTo(map).bindPopup('You Are Here');
-    } else {
-      map.setView(new L.LatLng(51.655, -1.92), 13);
-      //alert("You are not in the water park!");
-    }
   };
 
   $rootScope.routeTo = function(e){
@@ -160,7 +152,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
               break;
 
             case "Angling":
-            activityLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup(container));
+              waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup(container));
             break;
             case "Boat Trips":
               waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup(container));
@@ -232,6 +224,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
 
   var show_location_markers = [];
   $rootScope.removeMarkersAndShowActivity = function(e){ // removes all other markers from map and shows activity marker
+    console.log('IN remove marker act : ', e);
     // Automatically Removes layers controls only if they need to be removed
     if (map.hasLayer( foodLayer )) $scope.controlLayers('foodLayer');
     if (map.hasLayer( waterLayer )) $scope.controlLayers('waterLayer');
@@ -330,6 +323,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
       map.setView([x, y]);
     }).addTo(map);
     //navigator.geolocation.getCurrentPosition(getLoc, onError);
+    lc.start();
     var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     var osmAttrib='locals';
     //var offlineLayer = new L.TileLayer(local, {minZoom: 12, maxZoom: 16, attribution: osmAttrib});

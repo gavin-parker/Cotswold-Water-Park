@@ -36,7 +36,7 @@
   <script src="js/factories/scopeSaving.js"></script>
   <script src="js/controllers.js"></script>
   <script src="js/controllers/ActivitiesCtrl.js"></script>
-  <script src="js/controllers/WatersportsCtrl.js"></script>
+ <!--  <script src="js/controllers/WatersportsCtrl.js"></script> -->
   <script src="js/controllers/BirdsCtrl.js"></script>
   <script src="js/controllers/EventsCtrl.js"></script>
   <script src="js/controllers/FavsCtrl.js"></script>
@@ -48,6 +48,9 @@
 
 
   <script src="js/leaflet-src.js"></script>
+
+  <script src="js/L.Control.Locate.js"></script>
+  
   <script src="js/leaflet-routing-machine.js"></script>
 
   <!--easy button plugin-->
@@ -74,9 +77,9 @@
           <ion-tab>
             <ion-nav-view name="activities-tab"></ion-nav-view>
           </ion-tab>
-          <ion-tab>
+          <!-- <ion-tab>
             <ion-nav-view name="watersports-tab"></ion-nav-view>
-          </ion-tab>
+          </ion-tab> -->
           <ion-tab>
             <ion-nav-view name="events-tab"></ion-nav-view>
           </ion-tab>
@@ -117,10 +120,10 @@
               <i class="icon ion-android-bicycle"></i>
               Activities
             </ion-item>
-            <ion-item menu-close href="#/tab/watersports">
+           <!--  <ion-item menu-close href="#/tab/watersports">
               <i class="icon ion-android-boat"></i>
               Watersports
-            </ion-item>
+            </ion-item> -->
             <ion-item menu-close href="#/tab/events">
               <i class="icon ion-calendar"></i>
               Events
@@ -420,7 +423,7 @@
     </ion-view>
   </script>
 
-  <script id="templates/watersports.html" type="text/ng-template">
+<!--   <script id="templates/watersports.html" type="text/ng-template">
     <ion-view title="Cotswold Water Park" hide-tabs="true">
       <ion-nav-buttons side="right">
         <a class="button button-icon button-clear ion-map" href="#/tab/map"></a>
@@ -511,7 +514,7 @@
           </ion-list>
         </ion-content>
     </ion-view>
-  </script>
+  </script> -->
   <!-- News menu -->
 
   <script id="templates/news.html" type="text/ng-template">
