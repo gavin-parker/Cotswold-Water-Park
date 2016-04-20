@@ -93,16 +93,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     }
   })
-  .state('tabs.watersports', {
-    url: "/watersports",
-    views: {
+  // .state('tabs.watersports', {
+  //   url: "/watersports",
+  //   views: {
 
-      'watersports-tab': {
-        templateUrl: "templates/watersports.html",
-        controller : "WatersportsCtrl"
-      }
-    }
-  })
+  //     'watersports-tab': {
+  //       templateUrl: "templates/watersports.html",
+  //       controller : "WatersportsCtrl"
+  //     }
+  //   }
+  // })
   .state('tabs.events', {
     url: "/events",
     views: {

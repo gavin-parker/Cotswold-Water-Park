@@ -208,6 +208,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
 
   var show_location_markers = [];
   $rootScope.removeMarkersAndShowActivity = function(e){ // removes all other markers from map and shows activity marker
+    console.log('IN remove marker act : ', e);
     // Automatically Removes layers controls only if they need to be removed
     if (map.hasLayer( foodLayer )) $scope.controlLayers('foodLayer');
     if (map.hasLayer( waterLayer )) $scope.controlLayers('waterLayer');
