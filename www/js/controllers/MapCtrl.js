@@ -140,7 +140,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
               break;
 
             case "Angling":
-            activityLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup(container));
+              waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup(container));
             break;
             case "Boat Trips":
               waterLayer.addLayer(L.marker(loc, {icon: blueIcon}).addTo(map).bindPopup(container));
