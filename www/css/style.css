@@ -85,6 +85,30 @@ z-index: 1000;
 	width: 100%;
 }
 
+.general_act_icon {
+	content: 	url('./../img/redMarker.png');
+	width: 15px;
+}
+
+.hotel_icon {
+	content: 	url('./../img/restaurant.png');
+	width: 15px;
+}
+
+.water_icon{
+	content: 	url('./../img/blueMarker.png');
+	width: 15px;
+}
+
+.group_icon{
+	content: 	url('./../img/greenMarker.png');
+	width: 15px;
+}
+
+.birds_icon{
+	content: 	url('./../img/bird.png');
+	width: 15px;
+}
 
 /* required styles */
 
