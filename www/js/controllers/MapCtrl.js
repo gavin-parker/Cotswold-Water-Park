@@ -319,7 +319,8 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
 
   var init = function(){
     //add button which finds current location
-    L.easyButton('&target;', function(btn, map){
+    //&target;
+    L.easyButton('<span class="star">&current;</span>', function(btn, map){
       map.setView([x, y]);
     }).addTo(map);
     //navigator.geolocation.getCurrentPosition(getLoc, onError);
