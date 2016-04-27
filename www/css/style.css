@@ -58,6 +58,9 @@ textarea {
 card{
 
 }
+.eventhtml p{
+  white-space:normal;
+}
 .lakeIcon{
   text-align: justify;
   display: inline-block;

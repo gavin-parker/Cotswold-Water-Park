@@ -50,7 +50,7 @@
   <script src="js/leaflet-src.js"></script>
 
   <script src="js/L.Control.Locate.js"></script>
-  
+
   <script src="js/leaflet-routing-machine.js"></script>
 
   <!--easy button plugin-->
@@ -288,6 +288,10 @@
                   <i class="icon ion-android-globe"></i>
                   <hyper ng-click="openCordovaWebView('{{event.link}}')">{{event.link}}</hyper>
                 </a>
+                <div ng-bind-html="event.contentSnippet" text-overflow="scroll" class="eventhtml">
+
+                </div>
+
               </div>
             </div>
             </ion-list>
