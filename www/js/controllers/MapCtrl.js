@@ -356,6 +356,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     duration: 5000,
     scope: $scope
   });
+
   init();
   if(firstLoad()){
     $scope.showInfo();

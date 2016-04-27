@@ -2,19 +2,40 @@
 
 //function to control activities tab
 app.controller('ActivitiesCtrl', function($scope, parkDataService,$ionicLoading,$ionicPopover){
-  console.log('IN ACTIVITIES CTRL');
-  $scope.activities = [];
-  $ionicLoading.show({
-    template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>',
-    duration: 5000,
-    scope: $scope
-  });
 
-  var template = '<ion-popover-view><ion-header-bar><h2>Activities</h2></ion-header-bar><ion-content><p>This page shows all the activities available in the waterpark. <br/>\
-  Tap on an activity for more information.</p></ion-content></ion-popover-view>';
-  $scope.popover = $ionicPopover.fromTemplate(template,{
-    scope: $scope
-  });
+
+
+  var init = function(){
+    console.log('IN ACTIVITIES CTRL');
+    $scope.activities = [];
+    $ionicLoading.show({
+      template: '<ion-spinner class="spinner-positive" icon="android"></ion-spinner>',
+      duration: 5000,
+      scope: $scope
+    });
+    var template = '<ion-popover-view><ion-header-bar><h2>Activities</h2></ion-header-bar><ion-content><p>This page shows all the activities available in the waterpark. <br/>\
+    Tap on an activity for more information.</p></ion-content></ion-popover-view>';
+    $scope.popover = $ionicPopover.fromTemplate(template,{
+      scope: $scope
+    });
+
+    parkDataService.activities().then(function(result){
+      console.log(result);
+      $scope.activities = result;
+      if($scope.activities == {} || $scope.activities == null){
+        $scope.activities = JSON.parse(window.localStorage['activities']);
+      }else{
+      window.localStorage['activities'] = JSON.stringify($scope.activities);
+    }
+      checkFavourites();
+      $scope.num = parkDataService.activities.length;
+
+
+      //$ionicLoading.hide();
+    });
+  }
+
+
 
   function firstLoad(){
     var dat = window.localStorage['actLoad'];
@@ -31,27 +52,16 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService,$ionicLoading,
     $scope.popover.show();
   };
 
-  parkDataService.activities().then(function(result){
-    console.log(result);
-    $scope.activities = result;
-    if($scope.activities == {} || $scope.activities == null){
-      $scope.activities = JSON.parse(window.localStorage['activities']);
-    }else{
-    window.localStorage['activities'] = JSON.stringify($scope.activities);
-  }
+
+
+  $scope.$on('$ionicView.enter', function() {
     checkFavourites();
+    console.log("hi");
+    if(firstLoad()){
+      $scope.showInfo();
+    }
 
-    $scope.$on('$ionicView.enter', function() {
-      checkFavourites();
-      console.log("hi");
-      if(firstLoad()){
-        $scope.showInfo();
-      }
-    });
-    //$ionicLoading.hide();
   });
-
-  $scope.num = parkDataService.activities.length;
 
   $scope.toggleGroup = function(activity) {
     if ($scope.isGroupShown(activity)) {
@@ -155,4 +165,5 @@ try{
    window.open(site,'_self');
 
   };
+  init();
 });
