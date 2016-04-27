@@ -345,14 +345,12 @@
           </button>
         </div>
 
-        <div class="bar bar-subheader item-input-inset">
-          <label class="item item-input item-select">
-            <div class="input-label">
-              Filter Activities
-            </div>
-            <select ng-model="selectedActivity" ng-options="a for a in activityOptions" ng-click="shownGroup = null">
-            </select>
-          </label>
+        <div class="bar bar-subheader item-input-inset" style='overflow:hidden'>
+            <ul class = "ul-activity" >
+              <li class = "li-activity" ng-repeat = "activity in activityOptions" >
+                <a class = "a-activity"ng-click = "select(activity)">{{activity}}</a>
+              </li>
+            </ul>
         </div>
 
         <ion-content class="has-twosubheaders">
