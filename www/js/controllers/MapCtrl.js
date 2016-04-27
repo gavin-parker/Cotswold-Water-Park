@@ -101,6 +101,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
         control.spliceWaypoints(1,1, e.latlng);
       }
       //control.setWaypoints(waypoints);
+      //console.log("ROUTE: ", control.options.summaryTemplate);
       console.log(e.latlng);
       console.log("Added routing control to map");
       L.Routing.errorControl(control).addTo(map);

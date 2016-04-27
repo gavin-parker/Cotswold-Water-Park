@@ -597,6 +597,27 @@ z-index: 1000;
 }
 
 
+.ul-activity{
+    height: 40px;
+    overflow-x : scroll;
+    white-space: nowrap;
+}
+
+.li-activity{
+    display:inline-block;
+}
+
+.a-activity{
+	background-color: #4CAF50;
+	color: white;
+    display: block;
+    padding:10px;
+    overflow: hidden;
+}
+
+.a-activity.active{
+	background-color: #333;
+}
 /* div icon */
 /*
 .leaflet-div-icon {

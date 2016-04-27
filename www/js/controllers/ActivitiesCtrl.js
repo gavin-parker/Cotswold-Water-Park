@@ -64,6 +64,7 @@ app.controller('ActivitiesCtrl', function($scope, parkDataService,$ionicLoading,
   });
 
   $scope.toggleGroup = function(activity) {
+    console.log(activity);
     if ($scope.isGroupShown(activity)) {
       $scope.shownGroup = null;
     } else {
@@ -147,6 +148,12 @@ try{
 }catch(err){
   console.log(err);
 }
+
+  $scope.select = function(activity){
+    console.log(activity)
+    console.log(activity.Type)
+    $scope.selectedActivity = activity;
+  }
 
   $scope.isSelected = function(activity) {
     var result = false;
