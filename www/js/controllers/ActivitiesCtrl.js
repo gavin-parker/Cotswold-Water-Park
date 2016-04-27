@@ -143,16 +143,23 @@ try{
   }
   $scope.activityOptions.sort();
   $scope.activityOptions.unshift("All");
+
   $scope.selectedActivity = "All";
 
 }catch(err){
   console.log(err);
 }
+  $scope.getStyle = function(activity){
+    if($scope.selectedActivity == activity){
+      return {'background-color':'#9CCC65'};
+    }else{
+      return "";
+    }
+  }
 
   $scope.select = function(activity){
-    console.log(activity)
-    console.log(activity.Type)
     $scope.selectedActivity = activity;
+    console.log(activity.style);
   }
 
   $scope.isSelected = function(activity) {
