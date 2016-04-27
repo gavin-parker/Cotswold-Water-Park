@@ -4,6 +4,26 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   Scopes.store('MapCtrl', $scope);
   //Initialize new layers and map
 
+    var template = '<ion-popover-view><ion-header-bar><h2>The Map</h2></ion-header-bar><ion-content><p>The Map shows all the activites in the waterpark. Tap on a marker for more information\
+    and to get directions. Click the button at the top to filter activities and enable offline mode. </p></ion-content></ion-popover-view>';
+    $scope.popover = $ionicPopover.fromTemplate(template,{
+      scope: $scope
+    });
+
+    function firstLoad(){
+      var dat = window.localStorage['mapLoad'];
+      if(dat == 1){
+        return 0;
+      }else{
+        window.localStorage['mapLoad'] = 1;
+        return 1;
+      }
+    }
+
+
+    $scope.showInfo = function(){
+      $scope.popover.show();
+    };
 
   var activityLayer = new L.layerGroup();
   var waterLayer = new L.layerGroup();
@@ -31,8 +51,8 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   };
 
   //boundaries for the map
-  var southWest = L.latLng(51.59, -2.05);
-  var northEast = L.latLng(51.73, -1.63);
+  var southWest = L.latLng(51.56, -2.08);
+  var northEast = L.latLng(51.77, -1.58);
   bounds = L.latLngBounds(southWest, northEast)
 
   var x = 51.65; //Temporary start location, change to user location
@@ -300,7 +320,8 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
 
   var init = function(){
     //add button which finds current location
-    L.easyButton('&target;', function(btn, map){
+    //&target;
+    L.easyButton('<span class="star">&current;</span>', function(btn, map){
       map.setView([x, y]);
     }).addTo(map);
     //navigator.geolocation.getCurrentPosition(getLoc, onError);
@@ -338,6 +359,9 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     scope: $scope
   });
   init();
+  if(firstLoad()){
+    $scope.showInfo();
+  }
   console.log("Map initialized");
   //map.on('contextmenu', routeTo);
   console.log("added event handler");
