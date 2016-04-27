@@ -51,8 +51,8 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   };
 
   //boundaries for the map
-  var southWest = L.latLng(51.59, -2.05);
-  var northEast = L.latLng(51.73, -1.63);
+  var southWest = L.latLng(51.56, -2.08);
+  var northEast = L.latLng(51.77, -1.58);
   bounds = L.latLngBounds(southWest, northEast)
 
   var x = 51.65; //Temporary start location, change to user location
@@ -319,7 +319,8 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
 
   var init = function(){
     //add button which finds current location
-    L.easyButton('&target;', function(btn, map){
+    //&target;
+    L.easyButton('<span class="star">&current;</span>', function(btn, map){
       map.setView([x, y]);
     }).addTo(map);
     //navigator.geolocation.getCurrentPosition(getLoc, onError);

@@ -587,7 +587,15 @@ z-index: 1000;
 
 /*class used by the activities to stop the overlap of the subheaders*/
 .has-twosubheaders {
-  top: 132px; }
+  top: 132px; 
+}
+
+.star {
+	vertical-align: center;
+	text-align: center;
+	font-size: 2em;
+}
+
 
 /* div icon */
 /*
