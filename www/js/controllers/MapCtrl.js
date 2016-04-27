@@ -52,7 +52,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
 
   //boundaries for the map
   var southWest = L.latLng(51.56, -2.08);
-  var northEast = L.latLng(51.75, -1.59);
+  var northEast = L.latLng(51.77, -1.58);
   bounds = L.latLngBounds(southWest, northEast)
 
   var x = 51.65; //Temporary start location, change to user location
