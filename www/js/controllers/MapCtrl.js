@@ -1,5 +1,5 @@
 //controller manipulating map
-app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdService, $ionicPopover, Scopes,$ionicLoading){
+app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdService, $ionicPopover, Scopes,$ionicLoading,$cordovaGeolocation, $ionicPopup){
   //Saving scopes -- important : used for sharing scope functions with other controllers
   Scopes.store('MapCtrl', $scope);
   //Initialize new layers and map
@@ -21,10 +21,12 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     }
 
 
+
     $scope.showInfo = function(){
       $scope.popover.show();
     };
-
+  $scope.locText = "You are currently located outside of the park";
+  var spoof = true;
   var activityLayer = new L.layerGroup();
   var waterLayer = new L.layerGroup();
   var foodLayer = new L.layerGroup();
@@ -37,8 +39,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   var map = new L.Map('map', {
     layers: [activityLayer, waterLayer, foodLayer, groupLayer, birdLayer, lakeLayer]
   });
-  var lc = L.control.locate().addTo(map);
-
+  var userMarker;
   //Layer Options
   var overlayMaps = {
     "General Activities": activityLayer,
@@ -53,11 +54,25 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   //boundaries for the map
   var southWest = L.latLng(51.56, -2.08);
   var northEast = L.latLng(51.77, -1.58);
-  bounds = L.latLngBounds(southWest, northEast)
-
+  bounds = L.latLngBounds(southWest, northEast);
+  var defaultxy = [51.65,-1.91];
   var x = 51.65; //Temporary start location, change to user location
   var y = -1.91; //
 
+  $cordovaGeolocation.watchPosition({
+    timeout: 3000,
+    enableHighAccuracy: false
+  }).then(null,
+  function(error){
+    console.log("Could not find location");
+    console.log(error);
+  },function(position){
+    console.log(position.coords.latitude,position.coords.longitude);
+    x = position.coords.latitude;
+    y = position.coords.longitude;
+    console.log(x,y);
+    getLoc();
+  });
   var control = null;
   var markerIcon = L.Icon.extend({
     options: {
@@ -75,10 +90,14 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   var birdIcon = new markerIcon({iconUrl: 'img/bird.png'});
   var pinPoint = new markerIcon({iconUrl: 'img/pinpoint.png'});
 
+
   //get current location, if not in water park then set view to default location
   var getLoc = function(position) {
-      map.setView(new L.LatLng(x, y), 13);
-      L.marker([x,y], {icon: pinPoint}).addTo(map).bindPopup('You Are Here');
+    if(spoof){
+    userMarker.setLatLng(new L.latLng(defaultxy[0],defaultxy[1]));
+    }else{
+    userMarker.setLatLng(new L.latLng(x,y));
+  }
   };
 
   $rootScope.routeTo = function(e){
@@ -318,19 +337,43 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     //console.log(!toggle)
   };
 
+
+
   var init = function(){
     //add button which finds current location
     //&target;
     L.easyButton('<span class="star">&current;</span>', function(btn, map){
+      if(bounds.contains(new L.latLng(x,y))) {
       map.setView([x, y]);
+    }else{
+      var locationPopup = $ionicPopup.confirm({
+        title: "outside of park",
+        template: "You are outside of the park, are you sure you want to go to your location?"
+      });
+      locationPopup.then(function(res){
+        if(res){
+          map.setMaxBounds(null);
+          map.setView(new L.latLng(x,y));
+          spoof = false;
+          getLoc();
+        }else{
+          spoof = true;
+          map.setMaxBounds(bounds);
+          map.setView(new L.latLng(defaultxy[0],defaultxy[1]),13);
+          getLoc();
+        }
+      });
+
+    }
     }).addTo(map);
     //navigator.geolocation.getCurrentPosition(getLoc, onError);
-    lc.start();
     var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     var osmAttrib='locals';
     //var offlineLayer = new L.TileLayer(local, {minZoom: 12, maxZoom: 16, attribution: osmAttrib});
     var osm = new L.TileLayer(osmUrl, {minZoom: 12, maxZoom: 16, attribution: osmAttrib});
     map.setMaxBounds(bounds);
+    userMarker = (L.marker([x,y], {icon: pinPoint}).addTo(map).bindPopup('You Are Here'));
+
     //map.addLayer(offlineLayer);
     map.addLayer(osm);
     osm.on("load",function() {
@@ -349,7 +392,9 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
        }
      });
     getLoc();
-
+    map.setMaxBounds(bounds);
+    map.setView(new L.latLng(x,y),13);
+    getLoc();
     //Settings the toggle = true
     //var activities = parkDataService.activities();
   };
@@ -360,6 +405,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   });
 
   init();
+
   if(firstLoad()){
     $scope.showInfo();
   }
@@ -369,6 +415,7 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
   addAllActivitiesToMap();
   addLakesToMap();
   console.log("control of layers set");
+  //userMarker.addTo(map).bindPopup('You Are Here');
 
   //Popover display
   $ionicPopover.fromTemplateUrl('templates/popover.html', {
