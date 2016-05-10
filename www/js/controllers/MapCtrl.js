@@ -68,8 +68,10 @@ app.controller('MapCtrl', function($scope, $rootScope, parkDataService, birdServ
     console.log(error);
   },function(position){
     console.log(position.coords.latitude,position.coords.longitude);
+    if(!spoof){
     x = position.coords.latitude;
     y = position.coords.longitude;
+  }
     console.log(x,y);
     getLoc();
   });
